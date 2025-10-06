@@ -1,0 +1,9 @@
+ObjData ball
+ObjData robot0
+ObjData robot1
+ObjData robot2
+ObjData robot3
+ObjData robot4
+ObjData robot5
+int32 score1
+int32 score2

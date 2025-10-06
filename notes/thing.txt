@@ -1,0 +1,51 @@
+        ball = field.ball
+        my_robots = [field.robot0, field.robot1, field.robot2]
+        opp_robots = [field.robot3, field.robot4, field.robot5]
+        
+        all_robots_on_field = my_robots + opp_robots
+
+        ball_pos = np.array([ball.x, ball.y])
+        vec_ball_to_goal = OPPONENT_GOAL_POS - ball_pos
+        
+        # Target position is 1m behind the ball along the attack line
+        attacker_target_pos = ball_pos - 1 * (vec_ball_to_goal / np.linalg.norm(vec_ball_to_goal))
+        
+        # Target orientation is the angle of the attack line
+        attacker_target_theta = np.rad2deg(np.arctan2(vec_ball_to_goal[1], vec_ball_to_goal[0]) + 90) 
+
+        # **Defender (Robot 1):** Stay between the ball and our goal.
+        my_goal_pos = MY_GOAL_POS
+        defender_target_pos = (ball_pos + my_goal_pos) / 2.0
+        vec_def_to_ball = ball_pos - defender_target_pos
+        defender_target_theta = np.rad2deg(np.arctan2(vec_def_to_ball[1], vec_def_to_ball[0]) + 90 ) # Face the ball
+        
+        # **Midfielder (Robot 2):** Go to a fixed support position.
+        mid_pos = np.array([my_robots[2].x, my_robots[2].y])
+        midfielder_target_pos = np.array([3, -5]) # A static point on our side
+        vec_mid_to_ball = ball_pos - mid_pos
+        midfielder_target_theta = np.rad2deg(np.arctan2(vec_mid_to_ball[1], vec_mid_to_ball[0]) + 90) # Face the ball
+
+        # --- 3. Command Generation & Publishing ---
+        targets = {
+            0: (attacker_target_pos, attacker_target_theta),
+            1: (defender_target_pos, defender_target_theta),
+            2: (midfielder_target_pos, midfielder_target_theta)
+        }
+        
+        for i in range(3):
+            robot = my_robots[i]
+            target_pos, target_theta = targets[i]
+            
+            PREDICTION_TIME = 0
+            obstacles = []
+            for r in all_robots_on_field:
+                if r.obj_id != robot.obj_id:
+                    predicted_x = r.x + r.vx * PREDICTION_TIME
+                    predicted_y = r.y + r.vy * PREDICTION_TIME
+                    obstacles.append(Obstacle(predicted_x, predicted_y))
+
+            cmd_msg = self.skills.moveToPoint(robot, target_pos, target_theta, obstacles)
+            
+            # Publish the command
+            if i in self.cmd_publishers:
+                self.cmd_publishers[i].publish(cmd_msg)

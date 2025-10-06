@@ -1,0 +1,410 @@
+<?xml version="1.0"?>
+<robot name="field_composite">
+
+    <material name="black">
+  <color rgba="0.2 0.2 0.2 1"/>
+</material>
+
+  <link name="world"/>
+
+  <joint name="world_to_base_joint" type="fixed">
+    <parent link="world"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="base_link"/>
+
+  <link name="field_part_001">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_001.stl" scale="10 10 20"/>
+      </geometry>
+            <material name="black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_001.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_001" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_001"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_002">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_002.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_002.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_002" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_002"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_003">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_003.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_003.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_003" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_003"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_004">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_004.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_004.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_004" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_004"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_005">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_005.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_005.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_005" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_005"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_006">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_006.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_006.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_006" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_006"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_007">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_007.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_007.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_007" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_007"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_008">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_008.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_008.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_008" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_008"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_009">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_009.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_009.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_009" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_009"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_010">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_010.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_010.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_010" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_010"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_011">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_011.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_011.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_011" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_011"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_012">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_012.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_012.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_012" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_012"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_013">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_013.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_013.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_013" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_013"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_014">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_014.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_014.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_014" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_014"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_015">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_015.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_015.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_015" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_015"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_016">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_016.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_016.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_016" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_016"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+  <link name="field_part_017">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="0.0"/>
+      <inertia ixx="0.0" ixy="0.0" ixz="0.0" iyy="0.0" iyz="0.0" izz="0.0"/>
+    </inertial>
+    <visual>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_017.stl" scale="10 10 20"/>
+      </geometry>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://sim/meshes/fieldPlane_017.stl" scale="10 10 20"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="base_to_part_017" type="fixed">
+    <parent link="base_link"/>
+    <child link="field_part_017"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+  </joint>
+
+</robot>

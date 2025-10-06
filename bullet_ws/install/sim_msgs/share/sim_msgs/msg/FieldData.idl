@@ -1,0 +1,29 @@
+// generated from rosidl_adapter/resource/msg.idl.em
+// with input from sim_msgs/msg/FieldData.msg
+// generated code does not contain a copyright notice
+
+#include "sim_msgs/msg/ObjData.idl"
+
+module sim_msgs {
+  module msg {
+    struct FieldData {
+      sim_msgs::msg::ObjData ball;
+
+      sim_msgs::msg::ObjData robot0;
+
+      sim_msgs::msg::ObjData robot1;
+
+      sim_msgs::msg::ObjData robot2;
+
+      sim_msgs::msg::ObjData robot3;
+
+      sim_msgs::msg::ObjData robot4;
+
+      sim_msgs::msg::ObjData robot5;
+
+      int32 score1;
+
+      int32 score2;
+    };
+  };
+};

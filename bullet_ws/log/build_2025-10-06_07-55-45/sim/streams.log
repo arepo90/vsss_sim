@@ -1,0 +1,78 @@
+[0.548s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/src/sim': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sim build --build-base /home/arepo/vsss_sim/bullet_ws/build/sim/build install --record /home/arepo/vsss_sim/bullet_ws/build/sim/install.log --single-version-externally-managed install_data
+[0.770s] running egg_info
+[0.771s] creating ../../build/sim/sim.egg-info
+[0.771s] writing ../../build/sim/sim.egg-info/PKG-INFO
+[0.771s] writing dependency_links to ../../build/sim/sim.egg-info/dependency_links.txt
+[0.771s] writing entry points to ../../build/sim/sim.egg-info/entry_points.txt
+[0.771s] writing requirements to ../../build/sim/sim.egg-info/requires.txt
+[0.771s] writing top-level names to ../../build/sim/sim.egg-info/top_level.txt
+[0.771s] writing manifest file '../../build/sim/sim.egg-info/SOURCES.txt'
+[0.772s] reading manifest file '../../build/sim/sim.egg-info/SOURCES.txt'
+[0.773s] adding license file 'LICENSE'
+[0.773s] writing manifest file '../../build/sim/sim.egg-info/SOURCES.txt'
+[0.773s] running build
+[0.773s] running build_py
+[0.773s] creating /home/arepo/vsss_sim/bullet_ws/build/sim/build
+[0.774s] creating /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib
+[0.774s] creating /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[0.774s] copying sim/sim.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[0.774s] copying sim/strat.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[0.774s] copying sim/vision.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[0.774s] copying sim/__init__.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[0.774s] copying sim/comms.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[0.774s] running install
+[0.774s] running install_lib
+[0.775s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[0.775s] copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/sim.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[0.775s] copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/strat.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[0.775s] copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/vision.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[0.775s] copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/__init__.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[0.775s] copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/comms.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[0.775s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/sim.py to sim.cpython-310.pyc
+[0.778s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/strat.py to strat.cpython-310.pyc
+[0.778s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/vision.py to vision.cpython-310.pyc
+[0.781s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/__init__.py to __init__.cpython-310.pyc
+[0.781s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/comms.py to comms.cpython-310.pyc
+[0.782s] running install_data
+[0.782s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/ament_index
+[0.782s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/ament_index/resource_index
+[0.782s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/ament_index/resource_index/packages
+[0.782s] copying resource/sim -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/ament_index/resource_index/packages
+[0.782s] copying package.xml -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim
+[0.782s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/launch
+[0.782s] copying launch/launch_strat.launch.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/launch
+[0.782s] copying launch/launch_all.launch.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/launch
+[0.782s] copying launch/launch_sim.launch.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/launch
+[0.782s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/urdf
+[0.782s] copying urdf/field.urdf -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/urdf
+[0.782s] copying urdf/ball.urdf -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/urdf
+[0.783s] copying urdf/robot.urdf -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/urdf
+[0.783s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_017.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_007.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_012.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_004.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_011.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_001.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_008.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_014.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_009.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_015.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_003.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_013.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_005.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.783s] copying meshes/fieldPlane_006.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.784s] copying meshes/fieldPlane_002.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.784s] copying meshes/fieldPlane_016.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.784s] copying meshes/fieldPlane_010.stl -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/meshes
+[0.784s] creating /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/imgs
+[0.784s] copying imgs/dst.png -> /home/arepo/vsss_sim/bullet_ws/install/sim/share/sim/imgs
+[0.784s] running install_egg_info
+[0.785s] Copying ../../build/sim/sim.egg-info to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim-0.0.0-py3.10.egg-info
+[0.786s] running install_scripts
+[0.800s] Installing comms script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[0.801s] Installing sim script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[0.801s] Installing strat script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[0.801s] Installing vision script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[0.801s] writing list of installed files to '/home/arepo/vsss_sim/bullet_ws/build/sim/install.log'
+[0.820s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/src/sim' returned '0': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sim build --build-base /home/arepo/vsss_sim/bullet_ws/build/sim/build install --record /home/arepo/vsss_sim/bullet_ws/build/sim/install.log --single-version-externally-managed install_data
