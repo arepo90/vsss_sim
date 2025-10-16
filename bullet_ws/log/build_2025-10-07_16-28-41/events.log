@@ -1,0 +1,293 @@
+[0.000000] (-) TimerEvent: {}
+[0.000178] (sim_msgs) JobQueued: {'identifier': 'sim_msgs', 'dependencies': OrderedDict()}
+[0.000257] (sim) JobQueued: {'identifier': 'sim', 'dependencies': OrderedDict([('sim_msgs', '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs')])}
+[0.000363] (sim_msgs) JobStarted: {'identifier': 'sim_msgs'}
+[0.007184] (sim_msgs) JobProgress: {'identifier': 'sim_msgs', 'progress': 'cmake'}
+[0.007821] (sim_msgs) JobProgress: {'identifier': 'sim_msgs', 'progress': 'build'}
+[0.008236] (sim_msgs) Command: {'cmd': ['/home/arepo/.local/bin/cmake', '--build', '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs', '--', '-j16', '-l16'], 'cwd': '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'arepo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/arepo'), ('OLDPWD', '/home/arepo/vsss_sim'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1778'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/arepo/vsss_sim/bullet_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'arepo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'arepo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify'), ('SESSION_MANAGER', 'local/arepo-Legion:@/tmp/.ICE-unix/1750,unix/arepo-Legion:/tmp/.ICE-unix/1750'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/498c6424_404b_4f25_a1ed_a2590c4c1c3b'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.117'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/arepo/vsss_sim/bullet_ws/install/sim:/home/arepo/vsss_sim/bullet_ws/install/sim_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs:/home/arepo/vsss_sim/bullet_ws/install/sim:/opt/ros/humble')]), 'shell': False}
+[0.088686] (sim_msgs) StdoutLine: {'line': b'[ 11%] \x1b[0mBuilt target sim_msgs__rosidl_generator_c\x1b[0m\n'}
+[0.089034] (sim_msgs) StdoutLine: {'line': b'[ 12%] \x1b[0mBuilt target sim_msgs__cpp\x1b[0m\n'}
+[0.091474] (sim_msgs) StdoutLine: {'line': b'[ 12%] \x1b[0mBuilt target ament_cmake_python_copy_sim_msgs\x1b[0m\n'}
+[0.098033] (sim_msgs) StdoutLine: {'line': b'[ 23%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_introspection_c\x1b[0m\n'}
+[0.098273] (sim_msgs) StdoutLine: {'line': b'[ 34%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_c\x1b[0m\n'}
+[0.099298] (-) TimerEvent: {}
+[0.100360] (sim_msgs) StdoutLine: {'line': b'[ 46%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_fastrtps_c\x1b[0m\n'}
+[0.101979] (sim_msgs) StdoutLine: {'line': b'[ 71%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_introspection_cpp\x1b[0m\n'}
+[0.102097] (sim_msgs) StdoutLine: {'line': b'[ 73%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_cpp\x1b[0m\n'}
+[0.102173] (sim_msgs) StdoutLine: {'line': b'[ 79%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_fastrtps_cpp\x1b[0m\n'}
+[0.111490] (sim_msgs) StdoutLine: {'line': b'[ 79%] \x1b[0mBuilt target sim_msgs\x1b[0m\n'}
+[0.122279] (sim_msgs) StdoutLine: {'line': b'[ 80%] \x1b[0mBuilt target sim_msgs__py\x1b[0m\n'}
+[0.137096] (sim_msgs) StdoutLine: {'line': b'[ 90%] \x1b[0mBuilt target sim_msgs__rosidl_generator_py\x1b[0m\n'}
+[0.147328] (sim_msgs) StdoutLine: {'line': b'[ 95%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_introspection_c__pyext\x1b[0m\n'}
+[0.147511] (sim_msgs) StdoutLine: {'line': b'[ 96%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_fastrtps_c__pyext\x1b[0m\n'}
+[0.148116] (sim_msgs) StdoutLine: {'line': b'[100%] \x1b[0mBuilt target sim_msgs__rosidl_typesupport_c__pyext\x1b[0m\n'}
+[0.199400] (-) TimerEvent: {}
+[0.294153] (sim_msgs) StdoutLine: {'line': b'running egg_info\n'}
+[0.294716] (sim_msgs) StdoutLine: {'line': b'writing sim_msgs.egg-info/PKG-INFO\n'}
+[0.294918] (sim_msgs) StdoutLine: {'line': b'writing dependency_links to sim_msgs.egg-info/dependency_links.txt\n'}
+[0.295053] (sim_msgs) StdoutLine: {'line': b'writing top-level names to sim_msgs.egg-info/top_level.txt\n'}
+[0.296716] (sim_msgs) StdoutLine: {'line': b"reading manifest file 'sim_msgs.egg-info/SOURCES.txt'\n"}
+[0.297168] (sim_msgs) StdoutLine: {'line': b"writing manifest file 'sim_msgs.egg-info/SOURCES.txt'\n"}
+[0.299480] (-) TimerEvent: {}
+[0.316784] (sim_msgs) StdoutLine: {'line': b'[100%] \x1b[0mBuilt target ament_cmake_python_build_sim_msgs_egg\x1b[0m\n'}
+[0.324248] (sim_msgs) CommandEnded: {'returncode': 0}
+[0.324792] (sim_msgs) JobProgress: {'identifier': 'sim_msgs', 'progress': 'install'}
+[0.386345] (sim_msgs) Command: {'cmd': ['/home/arepo/.local/bin/cmake', '--install', '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs'], 'cwd': '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs', 'env': OrderedDict([('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'arepo'), ('LC_TIME', 'es_MX.UTF-8'), ('XDG_SESSION_TYPE', 'x11'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib'), ('HOME', '/home/arepo'), ('OLDPWD', '/home/arepo/vsss_sim'), ('DESKTOP_SESSION', 'ubuntu'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('LC_MONETARY', 'es_MX.UTF-8'), ('SYSTEMD_EXEC_PID', '1778'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('COLCON_PREFIX_PATH', '/home/arepo/vsss_sim/bullet_ws/install'), ('ROS_DISTRO', 'humble'), ('GTK_IM_MODULE', 'ibus'), ('LOGNAME', 'arepo'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('USERNAME', 'arepo'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify'), ('SESSION_MANAGER', 'local/arepo-Legion:@/tmp/.ICE-unix/1750,unix/arepo-Legion:/tmp/.ICE-unix/1750'), ('XDG_MENU_PREFIX', 'gnome-'), ('LC_ADDRESS', 'es_MX.UTF-8'), ('GNOME_TERMINAL_SCREEN', '/org/gnome/Terminal/screen/498c6424_404b_4f25_a1ed_a2590c4c1c3b'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':1'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('LC_TELEPHONE', 'es_MX.UTF-8'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('GNOME_TERMINAL_SERVICE', ':1.117'), ('SSH_AGENT_LAUNCHER', 'gnome-keyring'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('AMENT_PREFIX_PATH', '/home/arepo/vsss_sim/bullet_ws/install/sim:/home/arepo/vsss_sim/bullet_ws/install/sim_msgs:/opt/ros/humble'), ('SHELL', '/bin/bash'), ('LC_NAME', 'es_MX.UTF-8'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('LC_MEASUREMENT', 'es_MX.UTF-8'), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('LC_IDENTIFICATION', 'es_MX.UTF-8'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages'), ('LC_NUMERIC', 'es_MX.UTF-8'), ('LC_PAPER', 'es_MX.UTF-8'), ('COLCON', '1'), ('VTE_VERSION', '6800'), ('CMAKE_PREFIX_PATH', '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs:/home/arepo/vsss_sim/bullet_ws/install/sim:/opt/ros/humble')]), 'shell': False}
+[0.399579] (-) TimerEvent: {}
+[0.447244] (sim_msgs) StdoutLine: {'line': b'-- Install configuration: ""\n'}
+[0.447663] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/rosidl_interfaces/sim_msgs\n'}
+[0.447806] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs\n'}
+[0.447947] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv\n'}
+[0.448035] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail\n'}
+[0.448108] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__functions.c\n'}
+[0.448190] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__functions.h\n'}
+[0.448290] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.h\n'}
+[0.448330] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__struct.h\n'}
+[0.448367] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/controller.h\n'}
+[0.448404] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg\n'}
+[0.448461] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/high_cmd.h\n'}
+[0.448524] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/field_data.h\n'}
+[0.448597] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/low_cmd.h\n'}
+[0.448662] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail\n'}
+[0.448739] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__functions.h\n'}
+[0.448828] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__functions.h\n'}
+[0.448908] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__struct.h\n'}
+[0.448977] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__functions.h\n'}
+[0.449023] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.h\n'}
+[0.449093] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__struct.h\n'}
+[0.449161] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__functions.c\n'}
+[0.449262] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__functions.c\n'}
+[0.449327] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__struct.h\n'}
+[0.449436] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.h\n'}
+[0.449490] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.h\n'}
+[0.449622] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__struct.h\n'}
+[0.449669] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__functions.c\n'}
+[0.449711] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.h\n'}
+[0.449771] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__functions.h\n'}
+[0.449848] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__functions.c\n'}
+[0.449891] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/obj_data.h\n'}
+[0.449934] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_generator_c__visibility_control.h\n'}
+[0.450004] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/library_path.sh\n'}
+[0.450074] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/library_path.dsv\n'}
+[0.450146] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_generator_c.so\n'}
+[0.450213] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs\n'}
+[0.450287] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv\n'}
+[0.450364] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail\n'}
+[0.450447] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_fastrtps_c.h\n'}
+[0.450522] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg\n'}
+[0.450570] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h\n'}
+[0.450616] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail\n'}
+[0.450702] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_fastrtps_c.h\n'}
+[0.450788] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_fastrtps_c.h\n'}
+[0.450858] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_fastrtps_c.h\n'}
+[0.450918] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_fastrtps_c.h\n'}
+[0.451002] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_fastrtps_c.so\n'}
+[0.451072] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs\n'}
+[0.451128] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv\n'}
+[0.451175] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail\n'}
+[0.451220] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.c\n'}
+[0.451261] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_introspection_c.h\n'}
+[0.451306] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg\n'}
+[0.451350] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h\n'}
+[0.451392] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail\n'}
+[0.451437] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_introspection_c.h\n'}
+[0.451484] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.c\n'}
+[0.451532] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.c\n'}
+[0.451659] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_introspection_c.h\n'}
+[0.451764] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.c\n'}
+[0.451862] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_introspection_c.h\n'}
+[0.451927] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.c\n'}
+[0.452008] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_introspection_c.h\n'}
+[0.452074] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_introspection_c.so\n'}
+[0.452140] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_c.so\n'}
+[0.452218] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs\n'}
+[0.452281] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv\n'}
+[0.452348] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail\n'}
+[0.452418] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__struct.hpp\n'}
+[0.452487] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__traits.hpp\n'}
+[0.452579] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.hpp\n'}
+[0.452655] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__builder.hpp\n'}
+[0.452719] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/controller.hpp\n'}
+[0.452825] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg\n'}
+[0.452898] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/low_cmd.hpp\n'}
+[0.452968] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail\n'}
+[0.453036] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.hpp\n'}
+[0.453107] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.hpp\n'}
+[0.453177] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__traits.hpp\n'}
+[0.453245] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__traits.hpp\n'}
+[0.453378] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__struct.hpp\n'}
+[0.453470] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__traits.hpp\n'}
+[0.453542] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__builder.hpp\n'}
+[0.453606] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.hpp\n'}
+[0.453664] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__struct.hpp\n'}
+[0.453781] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__struct.hpp\n'}
+[0.453870] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__builder.hpp\n'}
+[0.453931] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.hpp\n'}
+[0.453982] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__builder.hpp\n'}
+[0.454033] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__traits.hpp\n'}
+[0.454088] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__builder.hpp\n'}
+[0.454135] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__struct.hpp\n'}
+[0.454179] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/high_cmd.hpp\n'}
+[0.454226] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_generator_cpp__visibility_control.hpp\n'}
+[0.454372] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/field_data.hpp\n'}
+[0.454424] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/obj_data.hpp\n'}
+[0.454476] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs\n'}
+[0.454526] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv\n'}
+[0.454568] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail\n'}
+[0.454610] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/dds_fastrtps\n'}
+[0.454651] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.454694] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg\n'}
+[0.454764] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail\n'}
+[0.454831] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/dds_fastrtps\n'}
+[0.454927] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.455021] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.455085] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.455146] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_fastrtps_cpp.hpp\n'}
+[0.455206] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h\n'}
+[0.455260] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_fastrtps_cpp.so\n'}
+[0.455327] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs\n'}
+[0.455395] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv\n'}
+[0.455442] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail\n'}
+[0.455487] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.455535] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.cpp\n'}
+[0.455604] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg\n'}
+[0.455676] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail\n'}
+[0.455766] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.cpp\n'}
+[0.455834] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.455898] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.455945] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.cpp\n'}
+[0.455993] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.cpp\n'}
+[0.456035] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.456080] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_introspection_cpp.hpp\n'}
+[0.456123] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.cpp\n'}
+[0.456166] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_introspection_cpp.so\n'}
+[0.456208] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_cpp.so\n'}
+[0.456263] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/pythonpath.sh\n'}
+[0.456307] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/pythonpath.dsv\n'}
+[0.456354] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info\n'}
+[0.456402] (sim_msgs) StdoutLine: {'line': b'-- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/PKG-INFO\n'}
+[0.456445] (sim_msgs) StdoutLine: {'line': b'-- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/dependency_links.txt\n'}
+[0.456488] (sim_msgs) StdoutLine: {'line': b'-- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/top_level.txt\n'}
+[0.456528] (sim_msgs) StdoutLine: {'line': b'-- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/SOURCES.txt\n'}
+[0.456567] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs\n'}
+[0.456606] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/libsim_msgs__rosidl_generator_py.so\n'}
+[0.456645] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv\n'}
+[0.456685] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_controller_s.c\n'}
+[0.456724] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/__init__.py\n'}
+[0.456784] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_controller.py\n'}
+[0.456823] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg\n'}
+[0.456860] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_low_cmd.py\n'}
+[0.456911] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_obj_data.py\n'}
+[0.456950] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_obj_data_s.c\n'}
+[0.456986] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/__init__.py\n'}
+[0.457021] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_low_cmd_s.c\n'}
+[0.457057] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_field_data_s.c\n'}
+[0.457093] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_high_cmd.py\n'}
+[0.457131] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_field_data.py\n'}
+[0.457167] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_high_cmd_s.c\n'}
+[0.457204] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.457242] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_c.c\n'}
+[0.457279] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/__init__.py\n'}
+[0.457321] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_fastrtps_c.c\n'}
+[0.457359] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.457398] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.457435] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_introspection_c.c\n'}
+[0.480329] (sim_msgs) StdoutLine: {'line': b"Listing '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs'...\n"}
+[0.480578] (sim_msgs) StdoutLine: {'line': b"Listing '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg'...\n"}
+[0.480635] (sim_msgs) StdoutLine: {'line': b"Listing '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv'...\n"}
+[0.484325] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.484776] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.485255] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so\n'}
+[0.485548] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_generator_py.so\n'}
+[0.485671] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/LowCmd.idl\n'}
+[0.485797] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/HighCmd.idl\n'}
+[0.485875] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/ObjData.idl\n'}
+[0.485959] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/FieldData.idl\n'}
+[0.486042] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller.idl\n'}
+[0.486111] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/LowCmd.msg\n'}
+[0.486164] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/HighCmd.msg\n'}
+[0.486228] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/ObjData.msg\n'}
+[0.486319] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/FieldData.msg\n'}
+[0.486386] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller.srv\n'}
+[0.486451] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller_Request.msg\n'}
+[0.486491] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller_Response.msg\n'}
+[0.486528] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/package_run_dependencies/sim_msgs\n'}
+[0.486565] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/parent_prefix_path/sim_msgs\n'}
+[0.486601] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/ament_prefix_path.sh\n'}
+[0.486638] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/ament_prefix_path.dsv\n'}
+[0.486677] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/path.sh\n'}
+[0.486718] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/path.dsv\n'}
+[0.486786] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.bash\n'}
+[0.486830] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.sh\n'}
+[0.486874] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.zsh\n'}
+[0.486918] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.dsv\n'}
+[0.486958] (sim_msgs) StdoutLine: {'line': b'-- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/package.dsv\n'}
+[0.486997] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/packages/sim_msgs\n'}
+[0.487036] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_cExport.cmake\n'}
+[0.487101] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_cExport-noconfig.cmake\n'}
+[0.487153] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cExport.cmake\n'}
+[0.487191] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake\n'}
+[0.487266] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cExport.cmake\n'}
+[0.487338] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake\n'}
+[0.487487] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cExport.cmake\n'}
+[0.487557] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cExport-noconfig.cmake\n'}
+[0.487698] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_cppExport.cmake\n'}
+[0.487775] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cppExport.cmake\n'}
+[0.487846] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake\n'}
+[0.487933] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cppExport.cmake\n'}
+[0.488016] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake\n'}
+[0.488104] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cppExport.cmake\n'}
+[0.488163] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cppExport-noconfig.cmake\n'}
+[0.488276] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_pyExport.cmake\n'}
+[0.488387] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_pyExport-noconfig.cmake\n'}
+[0.488477] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/rosidl_cmake-extras.cmake\n'}
+[0.488529] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_include_directories-extras.cmake\n'}
+[0.488596] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_libraries-extras.cmake\n'}
+[0.488658] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_targets-extras.cmake\n'}
+[0.488702] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake\n'}
+[0.488760] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_dependencies-extras.cmake\n'}
+[0.488814] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake\n'}
+[0.488882] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgsConfig.cmake\n'}
+[0.488930] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgsConfig-version.cmake\n'}
+[0.488970] (sim_msgs) StdoutLine: {'line': b'-- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/package.xml\n'}
+[0.490385] (sim_msgs) CommandEnded: {'returncode': 0}
+[0.499832] (-) TimerEvent: {}
+[0.505768] (sim_msgs) JobEnded: {'identifier': 'sim_msgs', 'rc': 0}
+[0.506513] (sim) JobStarted: {'identifier': 'sim'}
+[0.599916] (-) TimerEvent: {}
+[0.700202] (-) TimerEvent: {}
+[0.800428] (-) TimerEvent: {}
+[0.900696] (-) TimerEvent: {}
+[1.000967] (-) TimerEvent: {}
+[1.028280] (sim) Command: {'cmd': ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', 'egg_info', '--egg-base', '../../build/sim', 'build', '--build-base', '/home/arepo/vsss_sim/bullet_ws/build/sim/build', 'install', '--record', '/home/arepo/vsss_sim/bullet_ws/build/sim/install.log', '--single-version-externally-managed', 'install_data'], 'cwd': '/home/arepo/vsss_sim/bullet_ws/src/sim', 'env': {'LESSOPEN': '| /usr/bin/lesspipe %s', 'USER': 'arepo', 'LC_TIME': 'es_MX.UTF-8', 'XDG_SESSION_TYPE': 'x11', 'SHLVL': '1', 'LD_LIBRARY_PATH': '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib:/usr/lib/x86_64-linux-gnu/gazebo-11/plugins:/opt/ros/humble/opt/rviz_ogre_vendor/lib:/opt/ros/humble/lib/x86_64-linux-gnu:/opt/ros/humble/lib', 'HOME': '/home/arepo', 'OLDPWD': '/home/arepo/vsss_sim', 'DESKTOP_SESSION': 'ubuntu', 'ROS_PYTHON_VERSION': '3', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'GTK_MODULES': 'gail:atk-bridge', 'LC_MONETARY': 'es_MX.UTF-8', 'SYSTEMD_EXEC_PID': '1778', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'COLORTERM': 'truecolor', 'COLCON_PREFIX_PATH': '/home/arepo/vsss_sim/bullet_ws/install', 'ROS_DISTRO': 'humble', 'GTK_IM_MODULE': 'ibus', 'LOGNAME': 'arepo', '_': '/usr/bin/colcon', 'ROS_VERSION': '2', 'XDG_SESSION_CLASS': 'user', 'USERNAME': 'arepo', 'TERM': 'xterm-256color', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'ROS_LOCALHOST_ONLY': '0', 'WINDOWPATH': '2', 'PATH': '/opt/ros/humble/bin:/home/arepo/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/arepo/.spicetify', 'SESSION_MANAGER': 'local/arepo-Legion:@/tmp/.ICE-unix/1750,unix/arepo-Legion:/tmp/.ICE-unix/1750', 'XDG_MENU_PREFIX': 'gnome-', 'LC_ADDRESS': 'es_MX.UTF-8', 'GNOME_TERMINAL_SCREEN': '/org/gnome/Terminal/screen/498c6424_404b_4f25_a1ed_a2590c4c1c3b', 'XDG_RUNTIME_DIR': '/run/user/1000', 'DISPLAY': ':1', 'LANG': 'en_US.UTF-8', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'LC_TELEPHONE': 'es_MX.UTF-8', 'XMODIFIERS': '@im=ibus', 'XDG_SESSION_DESKTOP': 'ubuntu', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_TERMINAL_SERVICE': ':1.117', 'SSH_AGENT_LAUNCHER': 'gnome-keyring', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'AMENT_PREFIX_PATH': '/home/arepo/vsss_sim/bullet_ws/install/sim:/home/arepo/vsss_sim/bullet_ws/install/sim_msgs:/opt/ros/humble', 'SHELL': '/bin/bash', 'LC_NAME': 'es_MX.UTF-8', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'ubuntu', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MEASUREMENT': 'es_MX.UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'LC_IDENTIFICATION': 'es_MX.UTF-8', 'QT_IM_MODULE': 'ibus', 'PWD': '/home/arepo/vsss_sim/bullet_ws/build/sim', 'LC_ALL': 'en_US.UTF-8', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/usr/share/gnome:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop', 'PYTHONPATH': '/home/arepo/vsss_sim/bullet_ws/build/sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages:/opt/ros/humble/lib/python3.10/site-packages:/opt/ros/humble/local/lib/python3.10/dist-packages', 'LC_NUMERIC': 'es_MX.UTF-8', 'LC_PAPER': 'es_MX.UTF-8', 'COLCON': '1', 'VTE_VERSION': '6800', 'CMAKE_PREFIX_PATH': '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs'}, 'shell': False}
+[1.101057] (-) TimerEvent: {}
+[1.201326] (-) TimerEvent: {}
+[1.229378] (sim) StdoutLine: {'line': b'running egg_info\n'}
+[1.229916] (sim) StdoutLine: {'line': b'writing ../../build/sim/sim.egg-info/PKG-INFO\n'}
+[1.230201] (sim) StdoutLine: {'line': b'writing dependency_links to ../../build/sim/sim.egg-info/dependency_links.txt\n'}
+[1.230402] (sim) StdoutLine: {'line': b'writing entry points to ../../build/sim/sim.egg-info/entry_points.txt\n'}
+[1.230548] (sim) StdoutLine: {'line': b'writing requirements to ../../build/sim/sim.egg-info/requires.txt\n'}
+[1.230624] (sim) StdoutLine: {'line': b'writing top-level names to ../../build/sim/sim.egg-info/top_level.txt\n'}
+[1.232000] (sim) StdoutLine: {'line': b"reading manifest file '../../build/sim/sim.egg-info/SOURCES.txt'\n"}
+[1.232218] (sim) StdoutLine: {'line': b"adding license file 'LICENSE'\n"}
+[1.232812] (sim) StdoutLine: {'line': b"writing manifest file '../../build/sim/sim.egg-info/SOURCES.txt'\n"}
+[1.232911] (sim) StdoutLine: {'line': b'running build\n'}
+[1.232963] (sim) StdoutLine: {'line': b'running build_py\n'}
+[1.233088] (sim) StdoutLine: {'line': b'copying sim/vision.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim\n'}
+[1.233380] (sim) StdoutLine: {'line': b'running install\n'}
+[1.233620] (sim) StdoutLine: {'line': b'running install_lib\n'}
+[1.234191] (sim) StdoutLine: {'line': b'copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/vision.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim\n'}
+[1.234716] (sim) StdoutLine: {'line': b'byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/vision.py to vision.cpython-310.pyc\n'}
+[1.238127] (sim) StdoutLine: {'line': b'running install_data\n'}
+[1.238628] (sim) StdoutLine: {'line': b'running install_egg_info\n'}
+[1.239820] (sim) StdoutLine: {'line': b"removing '/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim-0.0.0-py3.10.egg-info' (and everything under it)\n"}
+[1.240128] (sim) StdoutLine: {'line': b'Copying ../../build/sim/sim.egg-info to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim-0.0.0-py3.10.egg-info\n'}
+[1.240889] (sim) StdoutLine: {'line': b'running install_scripts\n'}
+[1.255329] (sim) StdoutLine: {'line': b'Installing comms script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim\n'}
+[1.255669] (sim) StdoutLine: {'line': b'Installing sim script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim\n'}
+[1.255873] (sim) StdoutLine: {'line': b'Installing strat script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim\n'}
+[1.256111] (sim) StdoutLine: {'line': b'Installing vision script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim\n'}
+[1.256259] (sim) StdoutLine: {'line': b"writing list of installed files to '/home/arepo/vsss_sim/bullet_ws/build/sim/install.log'\n"}
+[1.276203] (sim) CommandEnded: {'returncode': 0}
+[1.280908] (sim) JobEnded: {'identifier': 'sim', 'rc': 0}
+[1.281474] (-) EventReactorShutdown: {}

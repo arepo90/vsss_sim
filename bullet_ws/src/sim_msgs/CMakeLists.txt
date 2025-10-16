@@ -14,6 +14,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/HighCmd.msg"
   "msg/ObjData.msg"
   "msg/FieldData.msg"
+  "msg/Settings.msg"
   "srv/Controller.srv"
 )
 # uncomment the following section in order to fill in

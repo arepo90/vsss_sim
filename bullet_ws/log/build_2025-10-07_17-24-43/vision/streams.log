@@ -1,0 +1,69 @@
+[0.519s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/src/vision': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/arepo/vsss_sim/bullet_ws/build/vision/build install --record /home/arepo/vsss_sim/bullet_ws/build/vision/install.log --single-version-externally-managed install_data
+[0.721s] running egg_info
+[0.721s] creating ../../build/vision/vision.egg-info
+[0.722s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[0.722s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[0.722s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[0.722s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[0.722s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[0.722s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[0.724s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[0.724s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[0.724s] running build
+[0.725s] running build_py
+[0.725s] creating /home/arepo/vsss_sim/bullet_ws/build/vision/build
+[0.725s] creating /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib
+[0.725s] creating /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/vision_general.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/__init__.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/vision_constants.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/camera_ball.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/camera_input.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/robot.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.725s] copying vision/imageWarp.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+[0.726s] running install
+[0.726s] running install_lib
+[0.726s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.726s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/vision_general.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.726s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/__init__.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.726s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/vision_constants.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.726s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/camera_ball.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.727s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/camera_input.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.727s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/robot.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.727s] copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/imageWarp.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+[0.727s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/vision_general.py to vision_general.cpython-310.pyc
+[0.730s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/__init__.py to __init__.cpython-310.pyc
+[0.730s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/vision_constants.py to vision_constants.cpython-310.pyc
+[0.731s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/camera_ball.py to camera_ball.cpython-310.pyc
+[0.731s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/camera_input.py to camera_input.cpython-310.pyc
+[0.732s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/robot.py to robot.cpython-310.pyc
+[0.732s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/imageWarp.py to imageWarp.cpython-310.pyc
+[0.732s] running install_data
+[0.732s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index
+[0.732s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index/resource_index
+[0.732s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index/resource_index/packages
+[0.732s] copying resource/vision -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index/resource_index/packages
+[0.733s] copying package.xml -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision
+[0.733s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils
+[0.733s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.733s] copying utils/LUTs/lut_darkblue.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.733s] copying utils/LUTs/lut_blue.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.733s] copying utils/LUTs/lut_red.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.733s] copying utils/LUTs/lut_orange.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.733s] copying utils/LUTs/lut_pink.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.733s] copying utils/LUTs/lut_green.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.734s] copying utils/LUTs/lut_yellow.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+[0.734s] copying utils/persMatrix.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils
+[0.734s] copying utils/homography.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils
+[0.734s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/models
+[0.734s] creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/models/yolov8m(v1)
+[0.734s] copying utils/models/yolov8m(v1)/best.pt -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/models/yolov8m(v1)
+[0.774s] running install_egg_info
+[0.775s] Copying ../../build/vision/vision.egg-info to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+[0.776s] running install_scripts
+[0.790s] Installing ball_detect script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[0.791s] Installing camera_input script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[0.791s] Installing image_warp script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[0.791s] Installing vision_general script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[0.791s] writing list of installed files to '/home/arepo/vsss_sim/bullet_ws/build/vision/install.log'
+[0.810s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/src/vision' returned '0': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/arepo/vsss_sim/bullet_ws/build/vision/build install --record /home/arepo/vsss_sim/bullet_ws/build/vision/install.log --single-version-externally-managed install_data

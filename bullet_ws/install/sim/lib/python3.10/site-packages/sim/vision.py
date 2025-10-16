@@ -3,7 +3,7 @@ from rclpy.node import Node
 from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
-from sim_msgs.msg import FieldData, ObjData
+from sim_msgs.msg import FieldData, ObjData, Settings
 from std_msgs.msg import Int32
 import cv2
 import numpy as np
@@ -11,31 +11,27 @@ import math
 from itertools import combinations
 import os
 import time
+import threading
+import torch
+from ultralytics import YOLO
+
+USE_LOCAL = True
 
 MIN_AREA = 40
 SEARCH_RADIUS = 40
-PATTERN_TOLERANCE = 0.25
+PATTERN_TOLERANCE = 0.5
 COLOR_RANGES = {
-    "red": [(0, 100, 100), (10, 255, 255)],
-    "orange": [(10, 100, 100), (20, 255, 255)],
+    "red": [(0, 100, 100), (15, 255, 255), (165, 100, 100), (180, 255, 255)],
+    "orange": [(0, 100, 100), (20, 255, 255)],
     "yellow": [(20, 25, 25), (38, 255, 255)],
-    "green": [(38, 50, 50), (85, 255, 255)],
-    "light_blue": [(85, 100, 100), (105, 255, 255)],
+    "green": [(38, 50, 50), (90, 255, 255)],
+    "light_blue": [(90, 100, 100), (105, 255, 255)],
     "blue": [(105, 50, 50), (130, 255, 255)], 
     "purple": [(130, 50, 50), (165, 255, 255)]
 }
-"""
-#original
-COLOR_RANGES = {
-    "orange": [(10, 100, 100), (20, 255, 255)],
-    "yellow": [(20, 100, 100), (30, 255, 255)],
-    "red": [(0, 100, 100), (10, 255, 255)],
-    "blue": [(100, 150, 50), (130, 255, 255)], 
-    "light_blue": [(85, 100, 100), (99, 255, 255)],
-    "green": [(40, 50, 50), (80, 255, 255)],
-    "purple": [(130, 50, 50), (160, 255, 255)]
-}
-"""
+OBJ_LABELS = ["Ball", "Robot0", "Robot1", "Robot2", "Robot3", "Robot4", "Robot5"]
+
+CAM_EXPOSURE = 400
 
 def bisectorAngle(P, A, B):
     P = np.array(P, dtype=float)
@@ -62,15 +58,120 @@ def centroid(A, B, C):
 class PatternRegistry:
     def __init__(self):
         self.patterns = {}
-        self.next_id = 1
+        self.next_id = 0
 
     def reset(self):
         self.patterns = {}
-        self.next_id = 1
+        self.next_id = 0
 
-    def parseImage(self, frame):
-        frame = frame.copy()
+    def detectBall(self, img):
+        frame = img.copy()
         blurred_frame = cv2.GaussianBlur(frame, (5, 5), 0)
+        hsv_frame = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
+        mask = cv2.inRange(hsv_frame, COLOR_RANGES["orange"][0], COLOR_RANGES["orange"][1])
+        kernel = np.ones((2, 2), np.uint8)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+        mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+        contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        filtered_contours = [cont for cont in contours if cv2.contourArea(cont) > 40]
+        if len(filtered_contours) == 0:
+            return [999, 999, 999]
+        
+        sorted_contours = sorted(filtered_contours, key=cv2.contourArea, reverse=True)
+
+        TOLERANCE = 0.2
+        options = []
+        for cont in sorted_contours[:3]:
+            if len(cont) < 5:
+                continue 
+
+            (x, y), (major_axis, minor_axis), angle = cv2.fitEllipse(cont)
+            ellipse_area = np.pi * (major_axis / 2) * (minor_axis / 2)
+            if 1.0 - TOLERANCE < ellipse_area / cv2.contourArea(cont) < 1.0 + TOLERANCE:
+                options.append([x, y])
+
+        if len(options) == 0:
+            return [999, 999, 999]
+
+        return [options[0][0], options[0][1], 0]
+
+    def parseROI(self, roi, offset):
+        roi = roi.copy()
+        blurred_frame = cv2.GaussianBlur(roi, (5, 5), 0)
+        hsv_frame = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
+        all_contours = {}
+        for color, c_range in COLOR_RANGES.items():
+            if color == "orange":
+                continue
+            elif color == "red":
+                red_mask_low = cv2.inRange(hsv_frame, c_range[0], c_range[1])
+                red_mask_high = cv2.inRange(hsv_frame, c_range[2], c_range[3])
+                mask = cv2.bitwise_or(red_mask_low, red_mask_high)
+            else:
+                mask = cv2.inRange(hsv_frame, c_range[0], c_range[1])
+
+            kernel = np.ones((2, 2), np.uint8)
+            mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+            mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+            #cv2.imshow(f"mask {color}", mask)
+            contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            filtered_contours = [c for c in contours if cv2.contourArea(c) > (200 if USE_LOCAL else 40)]
+            if len(filtered_contours) == 0:
+                continue
+        
+            all_contours[color] = filtered_contours
+
+        main_contours = [{"color": "yellow", "contour": c} for c in all_contours.get("yellow", [])] + [{"color": "blue", "contour": c} for c in all_contours.get("blue", [])]
+        secondary_contours = []
+        for color, contours in all_contours.items():
+            if color not in ["yellow", "blue"]:
+                for contour in contours:
+                    secondary_contours.append({"color": color, "contour": contour})
+
+        seen = []
+        best = []
+        for rect in main_contours:
+            M_rect = cv2.moments(rect["contour"])
+            center_rect = (int(M_rect["m10"] / M_rect["m00"]), int(M_rect["m01"] / M_rect["m00"]))
+            neighbors = []
+            for square in secondary_contours:
+                M_sq = cv2.moments(square["contour"])
+                center_sq = (int(M_sq["m10"] / M_sq["m00"]), int(M_sq["m01"] / M_sq["m00"]))
+                #if math.dist(center_rect, center_sq) < SEARCH_RADIUS:
+                neighbors.append((square, center_sq))
+
+            if len(neighbors) < 2:
+                continue
+            
+            min_dev = 999
+            for sq_1, sq_2 in combinations(neighbors, 2):
+                if sq_1[0]["color"] == sq_2[0]["color"]:
+                    continue
+
+                d1 = math.dist(center_rect, sq_1[1])
+                d2 = math.dist(sq_1[1], sq_2[1])
+                d3 = math.dist(sq_2[1], center_rect)
+                distances = np.array([d1, d2, d3])
+                avg_distance = np.mean(distances)
+                relative_deviations = np.abs(distances - avg_distance) / avg_distance
+                if np.all(relative_deviations <= PATTERN_TOLERANCE):
+                    center = centroid(center_rect, sq_1[1], sq_2[1])
+                    angle = bisectorAngle(center_rect, sq_1[1], sq_2[1])
+                    if avg_distance < min_dev:
+                        min_dev = avg_distance
+                        best = [[center[0] + offset[0], center[1] + offset[1], angle], f'Robot{self.getID([sq_1[0]["color"], sq_2[0]["color"], rect["color"]])}', avg_distance]
+
+                    seen.append([[sq_1[0]["color"], sq_2[0]["color"], rect["color"]], distances, (center, angle, self.getID([sq_1[0]["color"], sq_2[0]["color"], rect["color"]]))])
+
+        if len(best) == 0:
+            return [999, 999, 999], "", -1
+        
+        return best[0], best[1], best[2]
+
+    def parseImage(self, frame, roi, offset):
+        roi = roi.copy()
+        frame = frame.copy()
+        blurred_frame = cv2.GaussianBlur(roi, (5, 5), 0)
         hsv_frame = cv2.cvtColor(blurred_frame, cv2.COLOR_BGR2HSV)
         all_contours = {}
         for color, c_range in COLOR_RANGES.items():
@@ -81,35 +182,42 @@ class PatternRegistry:
                 mask = cv2.bitwise_or(red_mask_low, red_mask_high)
             else:
                 mask = cv2.inRange(hsv_frame, c_range[0], c_range[1])
+
+            kernel = np.ones((2, 2), np.uint8)  # you can change size
+            mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
+            mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
         
             #mask = cv2.inRange(hsv_frame, c_range[0], c_range[1])
             #cv2.imshow(f"mask {color}", mask)
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             if color == "orange":
-                filtered_contours = [c for c in contours if cv2.contourArea(c) > 40]
+                filtered_contours = [c for c in contours if cv2.contourArea(c) > 20]
+                cv2.drawContours(frame, filtered_contours, -1, (255, 0, 255), 3)
+                #cv2.imshow("orange mask", mask)
+                #cv2.imshow("cont", frame)
             else:
-                filtered_contours = [c for c in contours if cv2.contourArea(c) > MIN_AREA]
+                filtered_contours = [c for c in contours if cv2.contourArea(c) > 200]
 
             if len(filtered_contours) == 0:
                 if color == "orange":
                     ball = [999, 999]
                 continue
 
-            #thing = frame.copy()
+            #thing = roi.copy()
             #cv2.drawContours(thing, filtered_contours, -1, (255, 0, 255), -1)
             #cv2.imshow(f"contour {color}", thing)
         
             if color == "orange":
                 sorted_contours = sorted(filtered_contours, key=cv2.contourArea, reverse=True)
                 M_rect = cv2.moments(sorted_contours[0])
-                center_rect = (int(M_rect["m10"] / M_rect["m00"]), int(M_rect["m01"] / M_rect["m00"]))
+                center_rect = (int(M_rect["m10"] / M_rect["m00"]) + offset[0], int(M_rect["m01"] / M_rect["m00"]) + offset[1])
                 x, y = center_rect
                 ball = [x, y]
                 w = h = 40
                 top_left = (x - w // 2, y - h // 2)
                 bottom_right = (x + w // 2, y + h // 2)
                 cv2.rectangle(frame, top_left, bottom_right, (0, 255, 0), 2)
-                cv2.putText(frame, "Ball", (center_rect[0]-15, center_rect[1]-25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+                cv2.putText(frame, "Ball", (x-15, y-25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
             else:
                 all_contours[color] = filtered_contours
 
@@ -124,11 +232,11 @@ class PatternRegistry:
         seen = []
         for rect in main_contours:
             M_rect = cv2.moments(rect["contour"])
-            center_rect = (int(M_rect["m10"] / M_rect["m00"]), int(M_rect["m01"] / M_rect["m00"]))
+            center_rect = (int(M_rect["m10"] / M_rect["m00"]) + offset[0], int(M_rect["m01"] / M_rect["m00"]) + offset[1])
             neighbors = []
             for square in secondary_contours:
                 M_sq = cv2.moments(square["contour"])
-                center_sq = (int(M_sq["m10"] / M_sq["m00"]), int(M_sq["m01"] / M_sq["m00"]))
+                center_sq = (int(M_sq["m10"] / M_sq["m00"]) + offset[0], int(M_sq["m01"] / M_sq["m00"]) + offset[1])
                 #print(f"distance between {rect['color']} at {center_rect}, and {square['color']} at {center_sq}: {math.dist(center_rect, center_sq)}")
                 if math.dist(center_rect, center_sq) < SEARCH_RADIUS:
                     neighbors.append((square, center_sq))
@@ -137,12 +245,14 @@ class PatternRegistry:
                 #print(f"Not enough neighbors: {len(neighbors)}")
                 continue
             #else:
-                #print(f"good pattern, neighbors: {len(neighbors)}")
+            #    print(f"good pattern, neighbors: {len(neighbors)}")
 
             #cv2.circle(frame, center_rect, radius=3, color=(255, 0, 255), thickness=-1)
             for sq_1, sq_2 in combinations(neighbors, 2):
                 if sq_1[0]["color"] == sq_2[0]["color"]:
                     continue
+
+                #print("checking ", sq_1[0]["color"], sq_2[0]["color"])
 
                 """
                 distance_1 = math.dist(center_rect, sq_1[1])
@@ -159,7 +269,6 @@ class PatternRegistry:
                 distances = np.array([d1, d2, d3])
                 avg_distance = np.mean(distances)
                 relative_deviations = np.abs(distances - avg_distance) / avg_distance
-                TOLERANCE = 0.15
                 if np.all(relative_deviations <= PATTERN_TOLERANCE):
                     center = centroid(center_rect, sq_1[1], sq_2[1])
                     angle = bisectorAngle(center_rect, sq_1[1], sq_2[1])
@@ -167,14 +276,11 @@ class PatternRegistry:
                     """
                     #print(f"tolerance: {relative_deviations}")
  
-                    #print(f"{sq_1[1]} {sq_2[1]} {center_rect} angle: {angle}")
-                    #cv2.circle(frame, sq_1[1], radius=3, color=(255, 0, 0), thickness=-1)
-                    #cv2.circle(frame, sq_2[1], radius=3, color=(255, 0, 0), thickness=-1)
+                    print(f"{sq_1[1]} {sq_2[1]} {center_rect} angle: {angle}")
+                    cv2.circle(frame, sq_1[1], radius=3, color=(255, 0, 0), thickness=-1)
+                    cv2.circle(frame, sq_2[1], radius=3, color=(255, 0, 0), thickness=-1)
                     cv2.line(frame, sq_1[1], center_rect, color=(0, 0, 255), thickness=2)
                     cv2.line(frame, sq_2[1], center_rect, color=(0, 0, 255), thickness=2)
-                    pattern_ID = self.getID([sq_1[0]["color"], sq_2[0]["color"], rect["color"]])
-                    if pattern_ID != -1:
-                        patterns.append((center, angle, pattern_ID))
                     """
 
         #print("=== SEEN === ", seen)
@@ -233,7 +339,7 @@ class PatternRegistry:
     def getID(self, colors):
         key = frozenset(colors)
         if key not in self.patterns:
-            if self.next_id > 6:
+            if self.next_id > 0:
                 return -1
             self.patterns[key] = self.next_id
             self.next_id += 1
@@ -253,9 +359,7 @@ class Kalman:
             [0, 0, 1, 0, 0, 0]
         ])
         
-        #Q_diag = [1e-4, 1e-4, 1e-4, 1e-2, 1e-2, 1e-2]
-        Q_diag = [3e-6, 3e-6, 1e-6, 0.002, 0.002, 0.005]
-        #R_diag = [0.05, 0.05, 0.01]
+        Q_diag = [3e-5, 3e-5, 1e-5, 0.06, 0.06, 0.1]
         R_diag = [4e-3, 4e-3, 1e-3]
             
         self.Q = np.diag(Q_diag)
@@ -287,7 +391,6 @@ class Kalman:
         x_m = (x_px - px_dims[0] / 2.0) * scale_x
         y_m = (px_dims[1] / 2.0 - y_px) * scale_y
 
-        #angle_rad_raw = (90.0 - angle_deg) * np.pi / 180.0
         angle_rad_raw = math.radians(angle_deg)
         angle_rad = np.arctan2(np.sin(angle_rad_raw), np.cos(angle_rad_raw))
 
@@ -318,8 +421,11 @@ class Kalman:
 class Vision(Node):
     def __init__(self):
         super().__init__('vision')
+        print("init")
         self.publisher = self.create_publisher(FieldData, 'field_data', 10)
-        self.cv_bridge = CvBridge()
+        device = torch.device('cuda') if torch.cuda.is_available() else torch.device('cpu')
+        self.model = YOLO(os.path.join(get_package_share_directory('sim'), 'models', 'best.pt'))
+        self.model.to(device)
         self.registry = PatternRegistry()
         self.kalman = [Kalman(i) for i in range(7)]
         self.is_calibrated = False
@@ -327,9 +433,32 @@ class Vision(Node):
         self.src_list = []
         self.dst_list = []
         self.score = [0, 0]
-        self.video_subscriber = self.create_subscription(Image, 'camera/image_raw', self.visionCB, 10)
+        self.settings_subscriber = self.create_subscription(Settings, 'settings', self.settingsCB, 10)
         self.score1_subscriber = self.create_subscription(Int32, 'score1', lambda msg: self.scoreCB(0, msg), 10)
         self.score2_subscriber = self.create_subscription(Int32, 'score2', lambda msg: self.scoreCB(1, msg), 10)
+        if USE_LOCAL:
+            self.is_running = threading.Event()
+            self.cam = cv2.VideoCapture(2)
+            self.camSetup()
+            self.cam_thread = threading.Thread(target=self.visionTCB)
+            self.cam_thread.start()
+        else:
+            self.cv_bridge = CvBridge()
+            self.video_subscriber = self.create_subscription(Image, 'camera/image_raw', self.visionCB, 10)
+
+    def settingsCB(self, msg):
+
+        if USE_LOCAL and msg.exposure != CAM_EXPOSURE:
+            CAM_EXPOSURE = msg.exposure
+            self.cam.set(cv2.CAP_PROP_EXPOSURE, CAM_EXPOSURE)
+
+        
+    
+    def camSetup(self):
+        self.cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+        self.cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+        self.cam.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1) 
+        self.cam.set(cv2.CAP_PROP_EXPOSURE, CAM_EXPOSURE) # 400
 
     def reset(self, msg, response):
         self.registry.reset()
@@ -340,8 +469,7 @@ class Vision(Node):
     def scoreCB(self, id, msg):
         self.score[id] = msg.data
 
-    def visionCB(self, msg):
-        img = self.cv_bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+    def visionProc(self, img):
         if not self.is_calibrated:
             cv2.namedWindow('src')
             cv2.namedWindow('dst')
@@ -353,28 +481,86 @@ class Vision(Node):
         
         norm = cv2.warpPerspective(img, self.H, (img.shape[1], img.shape[0]))
         norm_copy = norm.copy()
-        frame, observation = self.registry.parseImage(norm)
-        #print("=== OBSERVATION === ", observation[1])
+        
+        ball = self.registry.detectBall(norm)
+        results = self.model(norm, verbose=False)
+        accumulated = {label: [999, 999, 999, 999] for label in OBJ_LABELS}
+        accumulated["Ball"] = ball
+        for i, box in enumerate(results[0].boxes):
+            coords_tensor = box.xyxy[0]
+            coords = [int(val) for val in coords_tensor.tolist()]
+            x1, y1, x2, y2 = coords
+            confidence = box.conf.item()
+            if confidence < 0.5:
+                continue
+
+            roi = norm[y1:y2, x1:x2]
+            obs, label, avg_distance = self.registry.parseROI(roi, [x1, y1])
+            if label in accumulated and accumulated[label][3] > avg_distance:
+                accumulated[label] = obs + [avg_distance]
+
+            """
+            if obs[0] != 999:
+                accumulated.append([obs, label])
+            """
+
+        """
+        accumulated = sorted(accumulated, key=lambda x: x[1])
+        observation = []
+        current = 0
+        for i in range(7):
+            if current >= len(accumulated):
+                observation.append([999, 999, 999])
+                continue
+
+            coords = accumulated[current][0]
+            label = accumulated[current][1]
+            if i == 0:
+                if label != "Ball":
+                    observation.append([999, 999, 998])
+                else:
+                    observation.append(coords)
+                    current += 1
+            elif str(i) in label:
+                observation.append(coords) 
+                current += 1
+            else:
+                observation.append([999, 999, 999]) 
+        """
+
+        observation = [accumulated[label][:3] for label in OBJ_LABELS]
+        
         states = []
         curr = time.time()
         dt = curr - self.prev
         for i, obs in enumerate(observation):
             self.kalman[i].predict(dt)
             if obs[0] != 999:
-                self.kalman[i].update(obs, [frame.shape[1], frame.shape[0]])
+                self.kalman[i].update(obs, [norm.shape[1], norm.shape[0]])
             
             state = self.kalman[i].getState()
-            if obs[0] != 999:
-                norm_copy = self.draw(norm_copy, state)
+            #if obs[0] != 999:
+            norm_copy = self.draw(norm_copy, state, OBJ_LABELS[i])
+
             states.append(state)
+
         self.prev = curr
-        #print("=== KALMAN === ", states[1])
         field_data = self.getMsg(states)
         self.publisher.publish(field_data)
         cv2.imshow("kalman", norm_copy)
-        cv2.imshow("frame", frame)
+        #cv2.imshow("frame", frame)
         cv2.waitKey(1)
 
+    def visionTCB(self):
+        while rclpy.ok() and not self.is_running.is_set():
+            _, img = self.cam.read()
+            self.visionProc(img)
+            cv2.waitKey(1)
+
+    def visionCB(self, msg: Image):
+        img = self.cv_bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
+        self.visionProc(img)
+        
     def getMsg(self, data):
         msg = FieldData()
         msg.ball = ObjData(
@@ -417,12 +603,21 @@ class Vision(Node):
 
     def calibrate(self, src, bypass = False):
         if bypass:
-            self.H = np.array([
-                [1.02222994e+00, -6.07657129e-03, -2.02668347e+00],
-                [-3.42416353e-03, 9.30203586e-01, 1.68165116e+01],
-                [1.11241564e-05, -3.17810579e-05, 1.00000000e+00]
-            ])
+            if USE_LOCAL:
+                self.H = np.array([
+                    [1.37815360e+00, 5.54951443e-03, -1.20929691e+02],
+                    [-2.28416795e-02, 9.55954974e-01, 5.12234601e+01],
+                    [-1.97069052e-05, -2.71718704e-05, 1.00000000e+00]
+                ])
+            else:
+                self.H = np.array([
+                    [1.02222994e+00, -6.07657129e-03, -2.02668347e+00],
+                    [-3.42416353e-03, 9.30203586e-01, 1.68165116e+01],
+                    [1.11241564e-05, -3.17810579e-05, 1.00000000e+00]
+                ])
+            
             return True
+        
         self.src = src
         self.dst = cv2.imread(os.path.join(get_package_share_directory('sim'), 'imgs', 'dst.png'))
         self.dst = cv2.resize(self.dst, (self.src.shape[1], self.src.shape[0]))
@@ -456,7 +651,7 @@ class Vision(Node):
             
         return True
     
-    def draw(self, frame, state, color=(255, 255, 255)):
+    def draw(self, frame, state, label, color=(255, 255, 255)):
         if abs(state["vx"]) < 0.05 and abs(state["vy"]) < 0.05:
             color = (0, 0, 255)
         else:
@@ -486,7 +681,17 @@ class Vision(Node):
         #cv2.line(frame, p[0], (end_x, end_y), color=(0, 0, 255), thickness=2)
         cv2.arrowedLine(frame, (x_px, y_px), (end_x, end_y), (0, 0, 255), 2, tipLength=0.3)
 
+        cv2.putText(frame, label, (x_px-30, y_px-25), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1, cv2.LINE_AA)
+
         return frame
+    
+    def destroyNode(self):
+        if USE_LOCAL:
+            self.is_running.set()
+            self.cam_thread.join()
+            self.cam.release()
+        
+        super().destroy_node()
 
 def main(args=None):
     rclpy.init(args=args)
@@ -496,7 +701,7 @@ def main(args=None):
     except KeyboardInterrupt:
         pass
     finally:
-        node.destroy_node()
+        node.destroyNode()
         rclpy.shutdown()
         cv2.destroyAllWindows()
 

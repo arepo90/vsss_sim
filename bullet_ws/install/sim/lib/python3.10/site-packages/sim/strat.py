@@ -15,8 +15,8 @@ class Obstacle:
 # esta clase realmente no es la Skill Library de la que hablamos, por ahora ignorenla jaja
 class SkillLib:
     def __init__(self):
-        self.ATTRACTIVE_GAIN = 8
-        self.DAMPING_GAIN = 0.5
+        self.ATTRACTIVE_GAIN = 0.5 # 8
+        self.DAMPING_GAIN = 1
         self.REPULSIVE_GAIN = 5
         self.REPULSION_RADIUS = 4
         self.MAX_LINEAR_SPEED = 3.0
@@ -38,7 +38,12 @@ class SkillLib:
         cmd.vx = vx_capped
         cmd.vy = vy_capped
         #cmd.theta = target_theta + 180
-        cmd.dtheta = -robot.theta + target_theta
+        if abs(-robot.theta + target_theta) < (360 -robot.theta + target_theta) % 360:
+            cmd.dtheta = -robot.theta + target_theta
+        else:
+            cmd.dtheta = (360 - robot.theta + target_theta) % 360
+
+        #cmd.dtheta =  -robot.theta + target_theta
         return cmd
     
     def strikeBall(self, robot: ObjData, ball: ObjData, strike_target_pos: np.ndarray) -> LowCmd:
@@ -52,9 +57,9 @@ class SkillLib:
         return cmd
 
     def _calculate_potential_field_vector(self, robot_pos: np.ndarray, robot_vel: np.ndarray, target_pos: np.ndarray, obstacles: list[Obstacle]) -> np.ndarray:
-        attractive_vector = (target_pos - robot_pos)
-
-        attractive_vector = self.ATTRACTIVE_GAIN * (attractive_vector / np.linalg.norm(attractive_vector))
+        #attractive_vector = (target_pos - robot_pos)
+        #attractive_vector = self.ATTRACTIVE_GAIN * (attractive_vector / np.linalg.norm(attractive_vector))
+        attractive_vector = self.ATTRACTIVE_GAIN * (target_pos - robot_pos)
 
         net_repulsive_vector = np.array([0.0, 0.0])
         for obs in obstacles:
@@ -103,23 +108,21 @@ class Strat(Node):
         }
         
         self.get_logger().info("Strategist node initialized.")
+        self.cmd = None
+        self.timer = self.create_timer(0.1, self.send)
 
-    def gpCB(self, field: FieldData):  
-        # Aqui va el programa general:
+    def send(self):
+        if self.cmd is not None:
+            self.cmd_publishers[0].publish(self.cmd)
 
-        """
-        # Ejemplo 1: Mover el robot0 (en linea recta) a la coordenada (0, 0) y que gire a 45°
+    def gpCB(self, field: FieldData):       
         target_coords = np.array([0, 0])
-        target_angle = 45.0
+        target_angle = 0.0
 
-        # Para usar moveToPoint(), hay que darle de argumentos el robot a mover (robot0), el objetivo (target_coords, target_angle),
-        # y la lista de obstaculos (en este caso nada, entonces solo se movera en linea recta)
         command = self.skills.moveToPoint(field.robot0, target_coords, target_angle, [])
-
-        # Comunicar el comando al robot0
-        self.cmd_publishers[0].publish(command)
-        """
-
+        self.cmd = command
+        #self.cmd_publishers[0].publish(command)
+        
         """
         # Ejemplo 2: Mover el robot2 (evitando obstaculos) a la coordenada (3, -5) y que gire a 0°
         target_coords = np.array([3, -5])
@@ -141,7 +144,7 @@ class Strat(Node):
         self.cmd_publishers[2].publish(command)
         """
 
-        
+        """
         # Ejemplo 3: Los ejemplos 1 y 2 juntos, ademas de que el robot1 sigue la pelota
         r0_target_coords = np.array([0, 0])
         r0_target_angle = 45.0
@@ -171,7 +174,7 @@ class Strat(Node):
         self.cmd_publishers[0].publish(r0_command)
         self.cmd_publishers[1].publish(r1_command)
         self.cmd_publishers[2].publish(r2_command)
-        
+        """
 
         return
 

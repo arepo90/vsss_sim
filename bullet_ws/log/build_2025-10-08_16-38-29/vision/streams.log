@@ -1,0 +1,24 @@
+[0.706s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/src/vision': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/arepo/vsss_sim/bullet_ws/build/vision/build install --record /home/arepo/vsss_sim/bullet_ws/build/vision/install.log --single-version-externally-managed install_data
+[0.905s] running egg_info
+[0.919s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[0.920s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[0.920s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[0.920s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[0.920s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[0.949s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[0.950s] writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[0.950s] running build
+[0.950s] running build_py
+[0.951s] running install
+[0.954s] running install_lib
+[0.970s] running install_data
+[0.970s] running install_egg_info
+[0.985s] removing '/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info' (and everything under it)
+[0.986s] Copying ../../build/vision/vision.egg-info to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+[0.986s] running install_scripts
+[1.142s] Installing ball_detect script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[1.143s] Installing camera_input script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[1.143s] Installing image_warp script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[1.143s] Installing vision_general script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+[1.143s] writing list of installed files to '/home/arepo/vsss_sim/bullet_ws/build/vision/install.log'
+[1.180s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/src/vision' returned '0': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/arepo/vsss_sim/bullet_ws/build/vision/build install --record /home/arepo/vsss_sim/bullet_ws/build/vision/install.log --single-version-externally-managed install_data

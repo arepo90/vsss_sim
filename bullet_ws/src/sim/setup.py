@@ -13,8 +13,10 @@ setup(
         ('share/' + package_name, ['package.xml']),
         (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf')),
+        (os.path.join('share', package_name, 'models'), glob('models/*.pt')),
         (os.path.join('share', package_name, 'meshes'), glob('meshes/*.stl')),
         (os.path.join('share', package_name, 'imgs'), glob('imgs/*.png')),
+        (os.path.join('share', package_name, 'imgs'), glob('imgs/*.npy')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -28,7 +30,9 @@ setup(
             'sim = sim.sim:main',
             'vision = sim.vision:main',
             'strat = sim.strat:main',
-            'comms = sim.comms:main'
+            'comms = sim.comms:main',
+            'gui = sim.gui:main',
+            'tests = sim.tests:main',
         ],
     },
 )
