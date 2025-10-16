@@ -1,0 +1,3 @@
+bool friendly_color
+bool friendly_side
+int32 exposure

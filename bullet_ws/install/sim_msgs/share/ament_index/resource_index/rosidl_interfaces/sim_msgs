@@ -6,6 +6,8 @@ msg/LowCmd.idl
 msg/LowCmd.msg
 msg/ObjData.idl
 msg/ObjData.msg
+msg/Settings.idl
+msg/Settings.msg
 srv/Controller.idl
 srv/Controller.srv
 srv/Controller_Request.msg

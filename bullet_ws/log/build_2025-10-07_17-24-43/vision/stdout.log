@@ -1,0 +1,67 @@
+running egg_info
+creating ../../build/vision/vision.egg-info
+writing ../../build/vision/vision.egg-info/PKG-INFO
+writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+writing requirements to ../../build/vision/vision.egg-info/requires.txt
+writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+writing manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/arepo/vsss_sim/bullet_ws/build/vision/build
+creating /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib
+creating /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/vision_general.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/__init__.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/vision_constants.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/camera_ball.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/camera_input.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/robot.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+copying vision/imageWarp.py -> /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision
+running install
+running install_lib
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/vision_general.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/__init__.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/vision_constants.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/camera_ball.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/camera_input.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/robot.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+copying /home/arepo/vsss_sim/bullet_ws/build/vision/build/lib/vision/imageWarp.py -> /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/vision_general.py to vision_general.cpython-310.pyc
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/vision_constants.py to vision_constants.cpython-310.pyc
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/camera_ball.py to camera_ball.cpython-310.pyc
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/camera_input.py to camera_input.cpython-310.pyc
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/robot.py to robot.cpython-310.pyc
+byte-compiling /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision/imageWarp.py to imageWarp.cpython-310.pyc
+running install_data
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index/resource_index
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index/resource_index/packages
+copying resource/vision -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/ament_index/resource_index/packages
+copying package.xml -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_darkblue.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_blue.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_red.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_orange.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_pink.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_green.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/LUTs/lut_yellow.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/LUTs
+copying utils/persMatrix.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils
+copying utils/homography.npy -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/models
+creating /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/models/yolov8m(v1)
+copying utils/models/yolov8m(v1)/best.pt -> /home/arepo/vsss_sim/bullet_ws/install/vision/share/vision/utils/models/yolov8m(v1)
+running install_egg_info
+Copying ../../build/vision/vision.egg-info to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages/vision-0.0.0-py3.10.egg-info
+running install_scripts
+Installing ball_detect script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+Installing camera_input script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+Installing image_warp script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+Installing vision_general script to /home/arepo/vsss_sim/bullet_ws/install/vision/lib/vision
+writing list of installed files to '/home/arepo/vsss_sim/bullet_ws/build/vision/install.log'

@@ -9,5 +9,6 @@ sim_msgs/msg/_field_data.py
 sim_msgs/msg/_high_cmd.py
 sim_msgs/msg/_low_cmd.py
 sim_msgs/msg/_obj_data.py
+sim_msgs/msg/_settings.py
 sim_msgs/srv/__init__.py
 sim_msgs/srv/_controller.py

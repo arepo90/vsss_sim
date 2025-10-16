@@ -1,0 +1,41 @@
+[0.664s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/src/vision': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/arepo/vsss_sim/bullet_ws/build/vision/build install --record /home/arepo/vsss_sim/bullet_ws/build/vision/install.log --single-version-externally-managed install_data
+[0.836s] /home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py:289: UserWarning: Unknown distribution option: 'tests_require'
+[0.837s]   warnings.warn(msg)
+[0.946s] running egg_info
+[0.966s] writing ../../build/vision/vision.egg-info/PKG-INFO
+[0.966s] writing dependency_links to ../../build/vision/vision.egg-info/dependency_links.txt
+[0.967s] writing entry points to ../../build/vision/vision.egg-info/entry_points.txt
+[0.967s] writing requirements to ../../build/vision/vision.egg-info/requires.txt
+[0.967s] writing top-level names to ../../build/vision/vision.egg-info/top_level.txt
+[1.008s] reading manifest file '../../build/vision/vision.egg-info/SOURCES.txt'
+[1.008s] Traceback (most recent call last):
+[1.008s]   File "/home/arepo/vsss_sim/bullet_ws/src/vision/setup.py", line 7, in <module>
+[1.008s]     setup(
+[1.008s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 115, in setup
+[1.009s]     return distutils.core.setup(**attrs)
+[1.009s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 186, in setup
+[1.009s]     return run_commands(dist)
+[1.009s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 202, in run_commands
+[1.009s]     dist.run_commands()
+[1.009s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1002, in run_commands
+[1.009s]     self.run_command(cmd)
+[1.009s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 1102, in run_command
+[1.009s]     super().run_command(command)
+[1.009s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/dist.py", line 1021, in run_command
+[1.009s]     cmd_obj.run()
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 312, in run
+[1.010s]     self.find_sources()
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 320, in find_sources
+[1.010s]     mm.run()
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/command/egg_info.py", line 548, in run
+[1.010s]     self.prune_file_list()
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/command/sdist.py", line 162, in prune_file_list
+[1.010s]     super().prune_file_list()
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/command/sdist.py", line 386, in prune_file_list
+[1.010s]     base_dir = self.distribution.get_fullname()
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 275, in get_fullname
+[1.010s]     return _distribution_fullname(self.get_name(), self.get_version())
+[1.010s]   File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_core_metadata.py", line 293, in _distribution_fullname
+[1.010s]     canonicalize_version(version, strip_trailing_zero=False),
+[1.010s] TypeError: canonicalize_version() got an unexpected keyword argument 'strip_trailing_zero'
+[1.041s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/src/vision' returned '1': PS1=\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/vision/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/vision/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/vision build --build-base /home/arepo/vsss_sim/bullet_ws/build/vision/build install --record /home/arepo/vsss_sim/bullet_ws/build/vision/install.log --single-version-externally-managed install_data
