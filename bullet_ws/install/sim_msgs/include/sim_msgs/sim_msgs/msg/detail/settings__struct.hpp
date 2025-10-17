@@ -38,9 +38,16 @@ struct Settings_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->friendly_color = false;
-      this->friendly_side = false;
+      this->team_color = false;
+      this->team_side = false;
+      this->local = false;
+      this->reset = false;
       this->exposure = 0l;
+      this->attractive_gain = 0.0;
+      this->repulsive_gain = 0.0;
+      this->repulsion_radius = 0.0;
+      this->goal_tolerance = 0.0;
+      this->tangential_gain = 0.0;
     }
   }
 
@@ -50,40 +57,110 @@ struct Settings_
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
     {
-      this->friendly_color = false;
-      this->friendly_side = false;
+      this->team_color = false;
+      this->team_side = false;
+      this->local = false;
+      this->reset = false;
       this->exposure = 0l;
+      this->attractive_gain = 0.0;
+      this->repulsive_gain = 0.0;
+      this->repulsion_radius = 0.0;
+      this->goal_tolerance = 0.0;
+      this->tangential_gain = 0.0;
     }
   }
 
   // field types and members
-  using _friendly_color_type =
+  using _team_color_type =
     bool;
-  _friendly_color_type friendly_color;
-  using _friendly_side_type =
+  _team_color_type team_color;
+  using _team_side_type =
     bool;
-  _friendly_side_type friendly_side;
+  _team_side_type team_side;
+  using _local_type =
+    bool;
+  _local_type local;
+  using _reset_type =
+    bool;
+  _reset_type reset;
   using _exposure_type =
     int32_t;
   _exposure_type exposure;
+  using _attractive_gain_type =
+    double;
+  _attractive_gain_type attractive_gain;
+  using _repulsive_gain_type =
+    double;
+  _repulsive_gain_type repulsive_gain;
+  using _repulsion_radius_type =
+    double;
+  _repulsion_radius_type repulsion_radius;
+  using _goal_tolerance_type =
+    double;
+  _goal_tolerance_type goal_tolerance;
+  using _tangential_gain_type =
+    double;
+  _tangential_gain_type tangential_gain;
 
   // setters for named parameter idiom
-  Type & set__friendly_color(
+  Type & set__team_color(
     const bool & _arg)
   {
-    this->friendly_color = _arg;
+    this->team_color = _arg;
     return *this;
   }
-  Type & set__friendly_side(
+  Type & set__team_side(
     const bool & _arg)
   {
-    this->friendly_side = _arg;
+    this->team_side = _arg;
+    return *this;
+  }
+  Type & set__local(
+    const bool & _arg)
+  {
+    this->local = _arg;
+    return *this;
+  }
+  Type & set__reset(
+    const bool & _arg)
+  {
+    this->reset = _arg;
     return *this;
   }
   Type & set__exposure(
     const int32_t & _arg)
   {
     this->exposure = _arg;
+    return *this;
+  }
+  Type & set__attractive_gain(
+    const double & _arg)
+  {
+    this->attractive_gain = _arg;
+    return *this;
+  }
+  Type & set__repulsive_gain(
+    const double & _arg)
+  {
+    this->repulsive_gain = _arg;
+    return *this;
+  }
+  Type & set__repulsion_radius(
+    const double & _arg)
+  {
+    this->repulsion_radius = _arg;
+    return *this;
+  }
+  Type & set__goal_tolerance(
+    const double & _arg)
+  {
+    this->goal_tolerance = _arg;
+    return *this;
+  }
+  Type & set__tangential_gain(
+    const double & _arg)
+  {
+    this->tangential_gain = _arg;
     return *this;
   }
 
@@ -129,13 +206,34 @@ struct Settings_
   // comparison operators
   bool operator==(const Settings_ & other) const
   {
-    if (this->friendly_color != other.friendly_color) {
+    if (this->team_color != other.team_color) {
       return false;
     }
-    if (this->friendly_side != other.friendly_side) {
+    if (this->team_side != other.team_side) {
+      return false;
+    }
+    if (this->local != other.local) {
+      return false;
+    }
+    if (this->reset != other.reset) {
       return false;
     }
     if (this->exposure != other.exposure) {
+      return false;
+    }
+    if (this->attractive_gain != other.attractive_gain) {
+      return false;
+    }
+    if (this->repulsive_gain != other.repulsive_gain) {
+      return false;
+    }
+    if (this->repulsion_radius != other.repulsion_radius) {
+      return false;
+    }
+    if (this->goal_tolerance != other.goal_tolerance) {
+      return false;
+    }
+    if (this->tangential_gain != other.tangential_gain) {
       return false;
     }
     return true;

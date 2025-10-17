@@ -1,10 +1,9 @@
-/*
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiUdp.h>
 
 // === Comms ===
-#define ROBOT_ID 0
+#define ROBOT_ID 1
 #define RECV_START_PORT 8000
 #define SEND_START_PORT 9000
 #define HEARTBEAT_INVERVAL 500
@@ -53,7 +52,7 @@ constexpr int M4_CHANNEL = 3;
 // === Movement settings ===
 
 constexpr int MIN_PWM = 80;
-constexpr int MAX_PWM = 255;
+constexpr int MAX_PWM = 250;
 constexpr int CORRECTION_FACTOR = 1;
 
 // === Functions ===
@@ -202,8 +201,8 @@ void loop(){
     recvPacket();
     sendPacket();
 }
-*/
 
+/*
 #include <Arduino.h>
 #include <WiFi.h>
 #include <WiFiUdp.h>
@@ -454,3 +453,4 @@ void loop(){
     recvPacket();
     sendPacket();
 }
+*/

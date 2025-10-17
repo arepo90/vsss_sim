@@ -9,17 +9,17 @@ module sim_msgs {
     struct FieldData {
       sim_msgs::msg::ObjData ball;
 
-      sim_msgs::msg::ObjData robot0;
+      sim_msgs::msg::ObjData team0;
 
-      sim_msgs::msg::ObjData robot1;
+      sim_msgs::msg::ObjData team1;
 
-      sim_msgs::msg::ObjData robot2;
+      sim_msgs::msg::ObjData team2;
 
-      sim_msgs::msg::ObjData robot3;
+      sim_msgs::msg::ObjData op0;
 
-      sim_msgs::msg::ObjData robot4;
+      sim_msgs::msg::ObjData op1;
 
-      sim_msgs::msg::ObjData robot5;
+      sim_msgs::msg::ObjData op2;
 
       int32 score1;
 

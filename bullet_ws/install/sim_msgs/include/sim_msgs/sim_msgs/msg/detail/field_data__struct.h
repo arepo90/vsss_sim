@@ -19,24 +19,24 @@ extern "C"
 
 // Include directives for member types
 // Member 'ball'
-// Member 'robot0'
-// Member 'robot1'
-// Member 'robot2'
-// Member 'robot3'
-// Member 'robot4'
-// Member 'robot5'
+// Member 'team0'
+// Member 'team1'
+// Member 'team2'
+// Member 'op0'
+// Member 'op1'
+// Member 'op2'
 #include "sim_msgs/msg/detail/obj_data__struct.h"
 
 /// Struct defined in msg/FieldData in the package sim_msgs.
 typedef struct sim_msgs__msg__FieldData
 {
   sim_msgs__msg__ObjData ball;
-  sim_msgs__msg__ObjData robot0;
-  sim_msgs__msg__ObjData robot1;
-  sim_msgs__msg__ObjData robot2;
-  sim_msgs__msg__ObjData robot3;
-  sim_msgs__msg__ObjData robot4;
-  sim_msgs__msg__ObjData robot5;
+  sim_msgs__msg__ObjData team0;
+  sim_msgs__msg__ObjData team1;
+  sim_msgs__msg__ObjData team2;
+  sim_msgs__msg__ObjData op0;
+  sim_msgs__msg__ObjData op1;
+  sim_msgs__msg__ObjData op2;
   int32_t score1;
   int32_t score2;
 } sim_msgs__msg__FieldData;

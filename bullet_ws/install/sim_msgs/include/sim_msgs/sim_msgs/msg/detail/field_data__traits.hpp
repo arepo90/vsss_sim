@@ -16,12 +16,12 @@
 
 // Include directives for member types
 // Member 'ball'
-// Member 'robot0'
-// Member 'robot1'
-// Member 'robot2'
-// Member 'robot3'
-// Member 'robot4'
-// Member 'robot5'
+// Member 'team0'
+// Member 'team1'
+// Member 'team2'
+// Member 'op0'
+// Member 'op1'
+// Member 'op2'
 #include "sim_msgs/msg/detail/obj_data__traits.hpp"
 
 namespace sim_msgs
@@ -42,45 +42,45 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
-  // member: robot0
+  // member: team0
   {
-    out << "robot0: ";
-    to_flow_style_yaml(msg.robot0, out);
+    out << "team0: ";
+    to_flow_style_yaml(msg.team0, out);
     out << ", ";
   }
 
-  // member: robot1
+  // member: team1
   {
-    out << "robot1: ";
-    to_flow_style_yaml(msg.robot1, out);
+    out << "team1: ";
+    to_flow_style_yaml(msg.team1, out);
     out << ", ";
   }
 
-  // member: robot2
+  // member: team2
   {
-    out << "robot2: ";
-    to_flow_style_yaml(msg.robot2, out);
+    out << "team2: ";
+    to_flow_style_yaml(msg.team2, out);
     out << ", ";
   }
 
-  // member: robot3
+  // member: op0
   {
-    out << "robot3: ";
-    to_flow_style_yaml(msg.robot3, out);
+    out << "op0: ";
+    to_flow_style_yaml(msg.op0, out);
     out << ", ";
   }
 
-  // member: robot4
+  // member: op1
   {
-    out << "robot4: ";
-    to_flow_style_yaml(msg.robot4, out);
+    out << "op1: ";
+    to_flow_style_yaml(msg.op1, out);
     out << ", ";
   }
 
-  // member: robot5
+  // member: op2
   {
-    out << "robot5: ";
-    to_flow_style_yaml(msg.robot5, out);
+    out << "op2: ";
+    to_flow_style_yaml(msg.op2, out);
     out << ", ";
   }
 
@@ -112,58 +112,58 @@ inline void to_block_style_yaml(
     to_block_style_yaml(msg.ball, out, indentation + 2);
   }
 
-  // member: robot0
+  // member: team0
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "robot0:\n";
-    to_block_style_yaml(msg.robot0, out, indentation + 2);
+    out << "team0:\n";
+    to_block_style_yaml(msg.team0, out, indentation + 2);
   }
 
-  // member: robot1
+  // member: team1
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "robot1:\n";
-    to_block_style_yaml(msg.robot1, out, indentation + 2);
+    out << "team1:\n";
+    to_block_style_yaml(msg.team1, out, indentation + 2);
   }
 
-  // member: robot2
+  // member: team2
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "robot2:\n";
-    to_block_style_yaml(msg.robot2, out, indentation + 2);
+    out << "team2:\n";
+    to_block_style_yaml(msg.team2, out, indentation + 2);
   }
 
-  // member: robot3
+  // member: op0
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "robot3:\n";
-    to_block_style_yaml(msg.robot3, out, indentation + 2);
+    out << "op0:\n";
+    to_block_style_yaml(msg.op0, out, indentation + 2);
   }
 
-  // member: robot4
+  // member: op1
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "robot4:\n";
-    to_block_style_yaml(msg.robot4, out, indentation + 2);
+    out << "op1:\n";
+    to_block_style_yaml(msg.op1, out, indentation + 2);
   }
 
-  // member: robot5
+  // member: op2
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "robot5:\n";
-    to_block_style_yaml(msg.robot5, out, indentation + 2);
+    out << "op2:\n";
+    to_block_style_yaml(msg.op2, out, indentation + 2);
   }
 
   // member: score1

@@ -1,0 +1,10 @@
+  File "/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/gui.py", line 85
+    exposure_label.pack(anchor=tk.CENTER)x
+                                         ^
+SyntaxError: invalid syntax
+
+  File "/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/vision.py", line 545
+    "y": 999.
+         ^^
+SyntaxError: invalid syntax. Perhaps you forgot a comma?
+

@@ -25,17 +25,31 @@ inline void to_flow_style_yaml(
   std::ostream & out)
 {
   out << "{";
-  // member: friendly_color
+  // member: team_color
   {
-    out << "friendly_color: ";
-    rosidl_generator_traits::value_to_yaml(msg.friendly_color, out);
+    out << "team_color: ";
+    rosidl_generator_traits::value_to_yaml(msg.team_color, out);
     out << ", ";
   }
 
-  // member: friendly_side
+  // member: team_side
   {
-    out << "friendly_side: ";
-    rosidl_generator_traits::value_to_yaml(msg.friendly_side, out);
+    out << "team_side: ";
+    rosidl_generator_traits::value_to_yaml(msg.team_side, out);
+    out << ", ";
+  }
+
+  // member: local
+  {
+    out << "local: ";
+    rosidl_generator_traits::value_to_yaml(msg.local, out);
+    out << ", ";
+  }
+
+  // member: reset
+  {
+    out << "reset: ";
+    rosidl_generator_traits::value_to_yaml(msg.reset, out);
     out << ", ";
   }
 
@@ -43,6 +57,41 @@ inline void to_flow_style_yaml(
   {
     out << "exposure: ";
     rosidl_generator_traits::value_to_yaml(msg.exposure, out);
+    out << ", ";
+  }
+
+  // member: attractive_gain
+  {
+    out << "attractive_gain: ";
+    rosidl_generator_traits::value_to_yaml(msg.attractive_gain, out);
+    out << ", ";
+  }
+
+  // member: repulsive_gain
+  {
+    out << "repulsive_gain: ";
+    rosidl_generator_traits::value_to_yaml(msg.repulsive_gain, out);
+    out << ", ";
+  }
+
+  // member: repulsion_radius
+  {
+    out << "repulsion_radius: ";
+    rosidl_generator_traits::value_to_yaml(msg.repulsion_radius, out);
+    out << ", ";
+  }
+
+  // member: goal_tolerance
+  {
+    out << "goal_tolerance: ";
+    rosidl_generator_traits::value_to_yaml(msg.goal_tolerance, out);
+    out << ", ";
+  }
+
+  // member: tangential_gain
+  {
+    out << "tangential_gain: ";
+    rosidl_generator_traits::value_to_yaml(msg.tangential_gain, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -51,23 +100,43 @@ inline void to_block_style_yaml(
   const Settings & msg,
   std::ostream & out, size_t indentation = 0)
 {
-  // member: friendly_color
+  // member: team_color
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "friendly_color: ";
-    rosidl_generator_traits::value_to_yaml(msg.friendly_color, out);
+    out << "team_color: ";
+    rosidl_generator_traits::value_to_yaml(msg.team_color, out);
     out << "\n";
   }
 
-  // member: friendly_side
+  // member: team_side
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "friendly_side: ";
-    rosidl_generator_traits::value_to_yaml(msg.friendly_side, out);
+    out << "team_side: ";
+    rosidl_generator_traits::value_to_yaml(msg.team_side, out);
+    out << "\n";
+  }
+
+  // member: local
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "local: ";
+    rosidl_generator_traits::value_to_yaml(msg.local, out);
+    out << "\n";
+  }
+
+  // member: reset
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "reset: ";
+    rosidl_generator_traits::value_to_yaml(msg.reset, out);
     out << "\n";
   }
 
@@ -78,6 +147,56 @@ inline void to_block_style_yaml(
     }
     out << "exposure: ";
     rosidl_generator_traits::value_to_yaml(msg.exposure, out);
+    out << "\n";
+  }
+
+  // member: attractive_gain
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "attractive_gain: ";
+    rosidl_generator_traits::value_to_yaml(msg.attractive_gain, out);
+    out << "\n";
+  }
+
+  // member: repulsive_gain
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "repulsive_gain: ";
+    rosidl_generator_traits::value_to_yaml(msg.repulsive_gain, out);
+    out << "\n";
+  }
+
+  // member: repulsion_radius
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "repulsion_radius: ";
+    rosidl_generator_traits::value_to_yaml(msg.repulsion_radius, out);
+    out << "\n";
+  }
+
+  // member: goal_tolerance
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "goal_tolerance: ";
+    rosidl_generator_traits::value_to_yaml(msg.goal_tolerance, out);
+    out << "\n";
+  }
+
+  // member: tangential_gain
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "tangential_gain: ";
+    rosidl_generator_traits::value_to_yaml(msg.tangential_gain, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

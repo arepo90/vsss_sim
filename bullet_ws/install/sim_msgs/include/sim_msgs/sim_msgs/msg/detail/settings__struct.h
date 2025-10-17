@@ -20,9 +20,16 @@ extern "C"
 /// Struct defined in msg/Settings in the package sim_msgs.
 typedef struct sim_msgs__msg__Settings
 {
-  bool friendly_color;
-  bool friendly_side;
+  bool team_color;
+  bool team_side;
+  bool local;
+  bool reset;
   int32_t exposure;
+  double attractive_gain;
+  double repulsive_gain;
+  double repulsion_radius;
+  double goal_tolerance;
+  double tangential_gain;
 } sim_msgs__msg__Settings;
 
 // Struct for a sequence of sim_msgs__msg__Settings.
