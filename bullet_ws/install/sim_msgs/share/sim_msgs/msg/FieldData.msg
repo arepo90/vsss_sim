@@ -1,9 +1,9 @@
 ObjData ball
-ObjData robot0
-ObjData robot1
-ObjData robot2
-ObjData robot3
-ObjData robot4
-ObjData robot5
+ObjData team0
+ObjData team1
+ObjData team2
+ObjData op0
+ObjData op1
+ObjData op2
 int32 score1
 int32 score2

@@ -24,7 +24,7 @@ KP = 5
 FRICTION = 0.6
 MAX_FORCE = 5
 MAX_TORQUE = 5
-NUM_ROBOTS = 3
+NUM_ROBOTS = 5
 COLORS = {
     "red": [204/255, 0/255, 1/255],
     "green": [0/255, 204/255, 8/255],
@@ -186,7 +186,7 @@ class Camera:
 class Sim(Node):
     def __init__(self):
         super().__init__('sim')
-        self.img_publisher = self.create_publisher(Image, 'camera/image_raw', 10)
+        self.img_publisher = self.create_publisher(Image, 'sim_cam/image_raw', 10)
         self.cv_bridge = CvBridge()
         for i in range(NUM_ROBOTS):
             self.create_subscription(LowCmd, f'/low{i}', lambda msg, id=i: self.cmdCB(msg, id), 10)

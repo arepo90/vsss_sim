@@ -1,3 +1,10 @@
-bool friendly_color
-bool friendly_side
+bool team_color
+bool team_side
+bool local
+bool reset
 int32 exposure
+float64 attractive_gain
+float64 repulsive_gain
+float64 repulsion_radius
+float64 goal_tolerance
+float64 tangential_gain

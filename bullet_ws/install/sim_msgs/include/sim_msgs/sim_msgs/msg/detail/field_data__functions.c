@@ -13,12 +13,12 @@
 
 // Include directives for member types
 // Member `ball`
-// Member `robot0`
-// Member `robot1`
-// Member `robot2`
-// Member `robot3`
-// Member `robot4`
-// Member `robot5`
+// Member `team0`
+// Member `team1`
+// Member `team2`
+// Member `op0`
+// Member `op1`
+// Member `op2`
 #include "sim_msgs/msg/detail/obj_data__functions.h"
 
 bool
@@ -32,33 +32,33 @@ sim_msgs__msg__FieldData__init(sim_msgs__msg__FieldData * msg)
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
-  // robot0
-  if (!sim_msgs__msg__ObjData__init(&msg->robot0)) {
+  // team0
+  if (!sim_msgs__msg__ObjData__init(&msg->team0)) {
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
-  // robot1
-  if (!sim_msgs__msg__ObjData__init(&msg->robot1)) {
+  // team1
+  if (!sim_msgs__msg__ObjData__init(&msg->team1)) {
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
-  // robot2
-  if (!sim_msgs__msg__ObjData__init(&msg->robot2)) {
+  // team2
+  if (!sim_msgs__msg__ObjData__init(&msg->team2)) {
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
-  // robot3
-  if (!sim_msgs__msg__ObjData__init(&msg->robot3)) {
+  // op0
+  if (!sim_msgs__msg__ObjData__init(&msg->op0)) {
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
-  // robot4
-  if (!sim_msgs__msg__ObjData__init(&msg->robot4)) {
+  // op1
+  if (!sim_msgs__msg__ObjData__init(&msg->op1)) {
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
-  // robot5
-  if (!sim_msgs__msg__ObjData__init(&msg->robot5)) {
+  // op2
+  if (!sim_msgs__msg__ObjData__init(&msg->op2)) {
     sim_msgs__msg__FieldData__fini(msg);
     return false;
   }
@@ -75,18 +75,18 @@ sim_msgs__msg__FieldData__fini(sim_msgs__msg__FieldData * msg)
   }
   // ball
   sim_msgs__msg__ObjData__fini(&msg->ball);
-  // robot0
-  sim_msgs__msg__ObjData__fini(&msg->robot0);
-  // robot1
-  sim_msgs__msg__ObjData__fini(&msg->robot1);
-  // robot2
-  sim_msgs__msg__ObjData__fini(&msg->robot2);
-  // robot3
-  sim_msgs__msg__ObjData__fini(&msg->robot3);
-  // robot4
-  sim_msgs__msg__ObjData__fini(&msg->robot4);
-  // robot5
-  sim_msgs__msg__ObjData__fini(&msg->robot5);
+  // team0
+  sim_msgs__msg__ObjData__fini(&msg->team0);
+  // team1
+  sim_msgs__msg__ObjData__fini(&msg->team1);
+  // team2
+  sim_msgs__msg__ObjData__fini(&msg->team2);
+  // op0
+  sim_msgs__msg__ObjData__fini(&msg->op0);
+  // op1
+  sim_msgs__msg__ObjData__fini(&msg->op1);
+  // op2
+  sim_msgs__msg__ObjData__fini(&msg->op2);
   // score1
   // score2
 }
@@ -103,39 +103,39 @@ sim_msgs__msg__FieldData__are_equal(const sim_msgs__msg__FieldData * lhs, const 
   {
     return false;
   }
-  // robot0
+  // team0
   if (!sim_msgs__msg__ObjData__are_equal(
-      &(lhs->robot0), &(rhs->robot0)))
+      &(lhs->team0), &(rhs->team0)))
   {
     return false;
   }
-  // robot1
+  // team1
   if (!sim_msgs__msg__ObjData__are_equal(
-      &(lhs->robot1), &(rhs->robot1)))
+      &(lhs->team1), &(rhs->team1)))
   {
     return false;
   }
-  // robot2
+  // team2
   if (!sim_msgs__msg__ObjData__are_equal(
-      &(lhs->robot2), &(rhs->robot2)))
+      &(lhs->team2), &(rhs->team2)))
   {
     return false;
   }
-  // robot3
+  // op0
   if (!sim_msgs__msg__ObjData__are_equal(
-      &(lhs->robot3), &(rhs->robot3)))
+      &(lhs->op0), &(rhs->op0)))
   {
     return false;
   }
-  // robot4
+  // op1
   if (!sim_msgs__msg__ObjData__are_equal(
-      &(lhs->robot4), &(rhs->robot4)))
+      &(lhs->op1), &(rhs->op1)))
   {
     return false;
   }
-  // robot5
+  // op2
   if (!sim_msgs__msg__ObjData__are_equal(
-      &(lhs->robot5), &(rhs->robot5)))
+      &(lhs->op2), &(rhs->op2)))
   {
     return false;
   }
@@ -164,39 +164,39 @@ sim_msgs__msg__FieldData__copy(
   {
     return false;
   }
-  // robot0
+  // team0
   if (!sim_msgs__msg__ObjData__copy(
-      &(input->robot0), &(output->robot0)))
+      &(input->team0), &(output->team0)))
   {
     return false;
   }
-  // robot1
+  // team1
   if (!sim_msgs__msg__ObjData__copy(
-      &(input->robot1), &(output->robot1)))
+      &(input->team1), &(output->team1)))
   {
     return false;
   }
-  // robot2
+  // team2
   if (!sim_msgs__msg__ObjData__copy(
-      &(input->robot2), &(output->robot2)))
+      &(input->team2), &(output->team2)))
   {
     return false;
   }
-  // robot3
+  // op0
   if (!sim_msgs__msg__ObjData__copy(
-      &(input->robot3), &(output->robot3)))
+      &(input->op0), &(output->op0)))
   {
     return false;
   }
-  // robot4
+  // op1
   if (!sim_msgs__msg__ObjData__copy(
-      &(input->robot4), &(output->robot4)))
+      &(input->op1), &(output->op1)))
   {
     return false;
   }
-  // robot5
+  // op2
   if (!sim_msgs__msg__ObjData__copy(
-      &(input->robot5), &(output->robot5)))
+      &(input->op2), &(output->op2)))
   {
     return false;
   }

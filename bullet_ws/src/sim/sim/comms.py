@@ -7,16 +7,15 @@ import threading
 import struct
 import time
 
-NUM_ROBOTS = 1
 HEARTBEAT_TIMEOUT_S = 2.0 
 LAPTOP_IP = "0.0.0.0"
 HEARTBEAT_BASE_PORT = 9000
-MAX_LINEAR_SPEED = 5
-ANGLE_DAMP_FACTOR = 3.5
+ANGLE_DAMP_FACTOR = 3
 ROBOT_CONFIG = [
-    {"ip": "192.168.0.123", "port": 8000},
-    #{"ip": "192.168.0.217", "port": 8000},
+    {"ip": "192.168.0.123", "port": 8000, "max_speed": 5},
+    {"ip": "192.168.0.216", "port": 8001, "max_speed": 3},
 ]
+NUM_ROBOTS = len(ROBOT_CONFIG)
 
 class Comms(Node):
     def __init__(self):
@@ -62,22 +61,11 @@ class Comms(Node):
         self.kd = 0.5
 
     def lowCB(self, msg: LowCmd, id: int):
-        """
-        payload = struct.pack('iii', 0, 200 if self.flag else -200, 0)
-        self.send_sockets[id].sendto(payload, (ROBOT_CONFIG[id]["ip"], ROBOT_CONFIG[id]["port"]))
-        self.flag = not self.flag
-        return
-        """
-        clamped_vx = int(msg.vx / MAX_LINEAR_SPEED * 255)
-        clamped_vy = int(msg.vy / MAX_LINEAR_SPEED * 255)
+        clamped_vx = int(msg.vx / ROBOT_CONFIG[id]["max_speed"] * 255)
+        clamped_vy = int(msg.vy / ROBOT_CONFIG[id]["max_speed"] * 255)
         clamped_dtheta = int(msg.dtheta / ANGLE_DAMP_FACTOR)
 
-        #derivative = msg.dtheta - self.prev_dtheta
-        #correction = int((self.kp * msg.dtheta) + (self.kd * derivative))
-        #self.prev_dtheta = msg.dtheta
-
         payload = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta)
-        #payload = struct.pack('fff', msg.vx, msg.vy, msg.dtheta)
         self.send_sockets[id].sendto(payload, (ROBOT_CONFIG[id]["ip"], ROBOT_CONFIG[id]["port"]))
 
     def hbCB(self, id: int):

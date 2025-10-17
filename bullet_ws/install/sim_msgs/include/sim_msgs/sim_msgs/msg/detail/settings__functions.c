@@ -17,9 +17,16 @@ sim_msgs__msg__Settings__init(sim_msgs__msg__Settings * msg)
   if (!msg) {
     return false;
   }
-  // friendly_color
-  // friendly_side
+  // team_color
+  // team_side
+  // local
+  // reset
   // exposure
+  // attractive_gain
+  // repulsive_gain
+  // repulsion_radius
+  // goal_tolerance
+  // tangential_gain
   return true;
 }
 
@@ -29,9 +36,16 @@ sim_msgs__msg__Settings__fini(sim_msgs__msg__Settings * msg)
   if (!msg) {
     return;
   }
-  // friendly_color
-  // friendly_side
+  // team_color
+  // team_side
+  // local
+  // reset
   // exposure
+  // attractive_gain
+  // repulsive_gain
+  // repulsion_radius
+  // goal_tolerance
+  // tangential_gain
 }
 
 bool
@@ -40,16 +54,44 @@ sim_msgs__msg__Settings__are_equal(const sim_msgs__msg__Settings * lhs, const si
   if (!lhs || !rhs) {
     return false;
   }
-  // friendly_color
-  if (lhs->friendly_color != rhs->friendly_color) {
+  // team_color
+  if (lhs->team_color != rhs->team_color) {
     return false;
   }
-  // friendly_side
-  if (lhs->friendly_side != rhs->friendly_side) {
+  // team_side
+  if (lhs->team_side != rhs->team_side) {
+    return false;
+  }
+  // local
+  if (lhs->local != rhs->local) {
+    return false;
+  }
+  // reset
+  if (lhs->reset != rhs->reset) {
     return false;
   }
   // exposure
   if (lhs->exposure != rhs->exposure) {
+    return false;
+  }
+  // attractive_gain
+  if (lhs->attractive_gain != rhs->attractive_gain) {
+    return false;
+  }
+  // repulsive_gain
+  if (lhs->repulsive_gain != rhs->repulsive_gain) {
+    return false;
+  }
+  // repulsion_radius
+  if (lhs->repulsion_radius != rhs->repulsion_radius) {
+    return false;
+  }
+  // goal_tolerance
+  if (lhs->goal_tolerance != rhs->goal_tolerance) {
+    return false;
+  }
+  // tangential_gain
+  if (lhs->tangential_gain != rhs->tangential_gain) {
     return false;
   }
   return true;
@@ -63,12 +105,26 @@ sim_msgs__msg__Settings__copy(
   if (!input || !output) {
     return false;
   }
-  // friendly_color
-  output->friendly_color = input->friendly_color;
-  // friendly_side
-  output->friendly_side = input->friendly_side;
+  // team_color
+  output->team_color = input->team_color;
+  // team_side
+  output->team_side = input->team_side;
+  // local
+  output->local = input->local;
+  // reset
+  output->reset = input->reset;
   // exposure
   output->exposure = input->exposure;
+  // attractive_gain
+  output->attractive_gain = input->attractive_gain;
+  // repulsive_gain
+  output->repulsive_gain = input->repulsive_gain;
+  // repulsion_radius
+  output->repulsion_radius = input->repulsion_radius;
+  // goal_tolerance
+  output->goal_tolerance = input->goal_tolerance;
+  // tangential_gain
+  output->tangential_gain = input->tangential_gain;
   return true;
 }
 

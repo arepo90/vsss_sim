@@ -6,11 +6,25 @@
 module sim_msgs {
   module msg {
     struct Settings {
-      boolean friendly_color;
+      boolean team_color;
 
-      boolean friendly_side;
+      boolean team_side;
+
+      boolean local;
+
+      boolean reset;
 
       int32 exposure;
+
+      double attractive_gain;
+
+      double repulsive_gain;
+
+      double repulsion_radius;
+
+      double goal_tolerance;
+
+      double tangential_gain;
     };
   };
 };

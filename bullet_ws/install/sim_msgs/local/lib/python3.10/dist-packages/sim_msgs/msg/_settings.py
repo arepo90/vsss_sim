@@ -7,6 +7,8 @@
 
 import builtins  # noqa: E402, I100
 
+import math  # noqa: E402, I100
+
 import rosidl_parser.definition  # noqa: E402, I100
 
 
@@ -55,30 +57,58 @@ class Settings(metaclass=Metaclass_Settings):
     """Message class 'Settings'."""
 
     __slots__ = [
-        '_friendly_color',
-        '_friendly_side',
+        '_team_color',
+        '_team_side',
+        '_local',
+        '_reset',
         '_exposure',
+        '_attractive_gain',
+        '_repulsive_gain',
+        '_repulsion_radius',
+        '_goal_tolerance',
+        '_tangential_gain',
     ]
 
     _fields_and_field_types = {
-        'friendly_color': 'boolean',
-        'friendly_side': 'boolean',
+        'team_color': 'boolean',
+        'team_side': 'boolean',
+        'local': 'boolean',
+        'reset': 'boolean',
         'exposure': 'int32',
+        'attractive_gain': 'double',
+        'repulsive_gain': 'double',
+        'repulsion_radius': 'double',
+        'goal_tolerance': 'double',
+        'tangential_gain': 'double',
     }
 
     SLOT_TYPES = (
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
+        rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        self.friendly_color = kwargs.get('friendly_color', bool())
-        self.friendly_side = kwargs.get('friendly_side', bool())
+        self.team_color = kwargs.get('team_color', bool())
+        self.team_side = kwargs.get('team_side', bool())
+        self.local = kwargs.get('local', bool())
+        self.reset = kwargs.get('reset', bool())
         self.exposure = kwargs.get('exposure', int())
+        self.attractive_gain = kwargs.get('attractive_gain', float())
+        self.repulsive_gain = kwargs.get('repulsive_gain', float())
+        self.repulsion_radius = kwargs.get('repulsion_radius', float())
+        self.goal_tolerance = kwargs.get('goal_tolerance', float())
+        self.tangential_gain = kwargs.get('tangential_gain', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -109,11 +139,25 @@ class Settings(metaclass=Metaclass_Settings):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.friendly_color != other.friendly_color:
+        if self.team_color != other.team_color:
             return False
-        if self.friendly_side != other.friendly_side:
+        if self.team_side != other.team_side:
+            return False
+        if self.local != other.local:
+            return False
+        if self.reset != other.reset:
             return False
         if self.exposure != other.exposure:
+            return False
+        if self.attractive_gain != other.attractive_gain:
+            return False
+        if self.repulsive_gain != other.repulsive_gain:
+            return False
+        if self.repulsion_radius != other.repulsion_radius:
+            return False
+        if self.goal_tolerance != other.goal_tolerance:
+            return False
+        if self.tangential_gain != other.tangential_gain:
             return False
         return True
 
@@ -123,30 +167,56 @@ class Settings(metaclass=Metaclass_Settings):
         return copy(cls._fields_and_field_types)
 
     @builtins.property
-    def friendly_color(self):
-        """Message field 'friendly_color'."""
-        return self._friendly_color
+    def team_color(self):
+        """Message field 'team_color'."""
+        return self._team_color
 
-    @friendly_color.setter
-    def friendly_color(self, value):
+    @team_color.setter
+    def team_color(self, value):
         if __debug__:
             assert \
                 isinstance(value, bool), \
-                "The 'friendly_color' field must be of type 'bool'"
-        self._friendly_color = value
+                "The 'team_color' field must be of type 'bool'"
+        self._team_color = value
 
     @builtins.property
-    def friendly_side(self):
-        """Message field 'friendly_side'."""
-        return self._friendly_side
+    def team_side(self):
+        """Message field 'team_side'."""
+        return self._team_side
 
-    @friendly_side.setter
-    def friendly_side(self, value):
+    @team_side.setter
+    def team_side(self, value):
         if __debug__:
             assert \
                 isinstance(value, bool), \
-                "The 'friendly_side' field must be of type 'bool'"
-        self._friendly_side = value
+                "The 'team_side' field must be of type 'bool'"
+        self._team_side = value
+
+    @builtins.property
+    def local(self):
+        """Message field 'local'."""
+        return self._local
+
+    @local.setter
+    def local(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'local' field must be of type 'bool'"
+        self._local = value
+
+    @builtins.property
+    def reset(self):
+        """Message field 'reset'."""
+        return self._reset
+
+    @reset.setter
+    def reset(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, bool), \
+                "The 'reset' field must be of type 'bool'"
+        self._reset = value
 
     @builtins.property
     def exposure(self):
@@ -162,3 +232,78 @@ class Settings(metaclass=Metaclass_Settings):
             assert value >= -2147483648 and value < 2147483648, \
                 "The 'exposure' field must be an integer in [-2147483648, 2147483647]"
         self._exposure = value
+
+    @builtins.property
+    def attractive_gain(self):
+        """Message field 'attractive_gain'."""
+        return self._attractive_gain
+
+    @attractive_gain.setter
+    def attractive_gain(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'attractive_gain' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'attractive_gain' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._attractive_gain = value
+
+    @builtins.property
+    def repulsive_gain(self):
+        """Message field 'repulsive_gain'."""
+        return self._repulsive_gain
+
+    @repulsive_gain.setter
+    def repulsive_gain(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'repulsive_gain' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'repulsive_gain' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._repulsive_gain = value
+
+    @builtins.property
+    def repulsion_radius(self):
+        """Message field 'repulsion_radius'."""
+        return self._repulsion_radius
+
+    @repulsion_radius.setter
+    def repulsion_radius(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'repulsion_radius' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'repulsion_radius' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._repulsion_radius = value
+
+    @builtins.property
+    def goal_tolerance(self):
+        """Message field 'goal_tolerance'."""
+        return self._goal_tolerance
+
+    @goal_tolerance.setter
+    def goal_tolerance(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'goal_tolerance' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'goal_tolerance' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._goal_tolerance = value
+
+    @builtins.property
+    def tangential_gain(self):
+        """Message field 'tangential_gain'."""
+        return self._tangential_gain
+
+    @tangential_gain.setter
+    def tangential_gain(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'tangential_gain' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'tangential_gain' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._tangential_gain = value

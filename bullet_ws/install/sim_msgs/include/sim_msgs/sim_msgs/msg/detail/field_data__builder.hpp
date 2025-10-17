@@ -53,15 +53,15 @@ private:
   ::sim_msgs::msg::FieldData msg_;
 };
 
-class Init_FieldData_robot5
+class Init_FieldData_op2
 {
 public:
-  explicit Init_FieldData_robot5(::sim_msgs::msg::FieldData & msg)
+  explicit Init_FieldData_op2(::sim_msgs::msg::FieldData & msg)
   : msg_(msg)
   {}
-  Init_FieldData_score1 robot5(::sim_msgs::msg::FieldData::_robot5_type arg)
+  Init_FieldData_score1 op2(::sim_msgs::msg::FieldData::_op2_type arg)
   {
-    msg_.robot5 = std::move(arg);
+    msg_.op2 = std::move(arg);
     return Init_FieldData_score1(msg_);
   }
 
@@ -69,80 +69,80 @@ private:
   ::sim_msgs::msg::FieldData msg_;
 };
 
-class Init_FieldData_robot4
+class Init_FieldData_op1
 {
 public:
-  explicit Init_FieldData_robot4(::sim_msgs::msg::FieldData & msg)
+  explicit Init_FieldData_op1(::sim_msgs::msg::FieldData & msg)
   : msg_(msg)
   {}
-  Init_FieldData_robot5 robot4(::sim_msgs::msg::FieldData::_robot4_type arg)
+  Init_FieldData_op2 op1(::sim_msgs::msg::FieldData::_op1_type arg)
   {
-    msg_.robot4 = std::move(arg);
-    return Init_FieldData_robot5(msg_);
+    msg_.op1 = std::move(arg);
+    return Init_FieldData_op2(msg_);
   }
 
 private:
   ::sim_msgs::msg::FieldData msg_;
 };
 
-class Init_FieldData_robot3
+class Init_FieldData_op0
 {
 public:
-  explicit Init_FieldData_robot3(::sim_msgs::msg::FieldData & msg)
+  explicit Init_FieldData_op0(::sim_msgs::msg::FieldData & msg)
   : msg_(msg)
   {}
-  Init_FieldData_robot4 robot3(::sim_msgs::msg::FieldData::_robot3_type arg)
+  Init_FieldData_op1 op0(::sim_msgs::msg::FieldData::_op0_type arg)
   {
-    msg_.robot3 = std::move(arg);
-    return Init_FieldData_robot4(msg_);
+    msg_.op0 = std::move(arg);
+    return Init_FieldData_op1(msg_);
   }
 
 private:
   ::sim_msgs::msg::FieldData msg_;
 };
 
-class Init_FieldData_robot2
+class Init_FieldData_team2
 {
 public:
-  explicit Init_FieldData_robot2(::sim_msgs::msg::FieldData & msg)
+  explicit Init_FieldData_team2(::sim_msgs::msg::FieldData & msg)
   : msg_(msg)
   {}
-  Init_FieldData_robot3 robot2(::sim_msgs::msg::FieldData::_robot2_type arg)
+  Init_FieldData_op0 team2(::sim_msgs::msg::FieldData::_team2_type arg)
   {
-    msg_.robot2 = std::move(arg);
-    return Init_FieldData_robot3(msg_);
+    msg_.team2 = std::move(arg);
+    return Init_FieldData_op0(msg_);
   }
 
 private:
   ::sim_msgs::msg::FieldData msg_;
 };
 
-class Init_FieldData_robot1
+class Init_FieldData_team1
 {
 public:
-  explicit Init_FieldData_robot1(::sim_msgs::msg::FieldData & msg)
+  explicit Init_FieldData_team1(::sim_msgs::msg::FieldData & msg)
   : msg_(msg)
   {}
-  Init_FieldData_robot2 robot1(::sim_msgs::msg::FieldData::_robot1_type arg)
+  Init_FieldData_team2 team1(::sim_msgs::msg::FieldData::_team1_type arg)
   {
-    msg_.robot1 = std::move(arg);
-    return Init_FieldData_robot2(msg_);
+    msg_.team1 = std::move(arg);
+    return Init_FieldData_team2(msg_);
   }
 
 private:
   ::sim_msgs::msg::FieldData msg_;
 };
 
-class Init_FieldData_robot0
+class Init_FieldData_team0
 {
 public:
-  explicit Init_FieldData_robot0(::sim_msgs::msg::FieldData & msg)
+  explicit Init_FieldData_team0(::sim_msgs::msg::FieldData & msg)
   : msg_(msg)
   {}
-  Init_FieldData_robot1 robot0(::sim_msgs::msg::FieldData::_robot0_type arg)
+  Init_FieldData_team1 team0(::sim_msgs::msg::FieldData::_team0_type arg)
   {
-    msg_.robot0 = std::move(arg);
-    return Init_FieldData_robot1(msg_);
+    msg_.team0 = std::move(arg);
+    return Init_FieldData_team1(msg_);
   }
 
 private:
@@ -155,10 +155,10 @@ public:
   Init_FieldData_ball()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  Init_FieldData_robot0 ball(::sim_msgs::msg::FieldData::_ball_type arg)
+  Init_FieldData_team0 ball(::sim_msgs::msg::FieldData::_ball_type arg)
   {
     msg_.ball = std::move(arg);
-    return Init_FieldData_robot0(msg_);
+    return Init_FieldData_team0(msg_);
   }
 
 private:

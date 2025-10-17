@@ -56,14 +56,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember FieldData_mes
     nullptr  // resize(index) function pointer
   },
   {
-    "robot0",  // name
+    "team0",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sim_msgs::msg::ObjData>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs::msg::FieldData, robot0),  // bytes offset in struct
+    offsetof(sim_msgs::msg::FieldData, team0),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -73,14 +73,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember FieldData_mes
     nullptr  // resize(index) function pointer
   },
   {
-    "robot1",  // name
+    "team1",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sim_msgs::msg::ObjData>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs::msg::FieldData, robot1),  // bytes offset in struct
+    offsetof(sim_msgs::msg::FieldData, team1),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -90,14 +90,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember FieldData_mes
     nullptr  // resize(index) function pointer
   },
   {
-    "robot2",  // name
+    "team2",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sim_msgs::msg::ObjData>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs::msg::FieldData, robot2),  // bytes offset in struct
+    offsetof(sim_msgs::msg::FieldData, team2),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -107,14 +107,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember FieldData_mes
     nullptr  // resize(index) function pointer
   },
   {
-    "robot3",  // name
+    "op0",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sim_msgs::msg::ObjData>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs::msg::FieldData, robot3),  // bytes offset in struct
+    offsetof(sim_msgs::msg::FieldData, op0),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -124,14 +124,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember FieldData_mes
     nullptr  // resize(index) function pointer
   },
   {
-    "robot4",  // name
+    "op1",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sim_msgs::msg::ObjData>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs::msg::FieldData, robot4),  // bytes offset in struct
+    offsetof(sim_msgs::msg::FieldData, op1),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -141,14 +141,14 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember FieldData_mes
     nullptr  // resize(index) function pointer
   },
   {
-    "robot5",  // name
+    "op2",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     ::rosidl_typesupport_introspection_cpp::get_message_type_support_handle<sim_msgs::msg::ObjData>(),  // members of sub message
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs::msg::FieldData, robot5),  // bytes offset in struct
+    offsetof(sim_msgs::msg::FieldData, op2),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer

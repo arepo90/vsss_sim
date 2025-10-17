@@ -75,67 +75,67 @@ bool sim_msgs__msg__field_data__convert_from_py(PyObject * _pymsg, void * _ros_m
     }
     Py_DECREF(field);
   }
-  {  // robot0
-    PyObject * field = PyObject_GetAttrString(_pymsg, "robot0");
+  {  // team0
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team0");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->robot0)) {
+    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->team0)) {
       Py_DECREF(field);
       return false;
     }
     Py_DECREF(field);
   }
-  {  // robot1
-    PyObject * field = PyObject_GetAttrString(_pymsg, "robot1");
+  {  // team1
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team1");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->robot1)) {
+    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->team1)) {
       Py_DECREF(field);
       return false;
     }
     Py_DECREF(field);
   }
-  {  // robot2
-    PyObject * field = PyObject_GetAttrString(_pymsg, "robot2");
+  {  // team2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team2");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->robot2)) {
+    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->team2)) {
       Py_DECREF(field);
       return false;
     }
     Py_DECREF(field);
   }
-  {  // robot3
-    PyObject * field = PyObject_GetAttrString(_pymsg, "robot3");
+  {  // op0
+    PyObject * field = PyObject_GetAttrString(_pymsg, "op0");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->robot3)) {
+    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->op0)) {
       Py_DECREF(field);
       return false;
     }
     Py_DECREF(field);
   }
-  {  // robot4
-    PyObject * field = PyObject_GetAttrString(_pymsg, "robot4");
+  {  // op1
+    PyObject * field = PyObject_GetAttrString(_pymsg, "op1");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->robot4)) {
+    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->op1)) {
       Py_DECREF(field);
       return false;
     }
     Py_DECREF(field);
   }
-  {  // robot5
-    PyObject * field = PyObject_GetAttrString(_pymsg, "robot5");
+  {  // op2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "op2");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->robot5)) {
+    if (!sim_msgs__msg__obj_data__convert_from_py(field, &ros_message->op2)) {
       Py_DECREF(field);
       return false;
     }
@@ -195,84 +195,84 @@ PyObject * sim_msgs__msg__field_data__convert_to_py(void * raw_ros_message)
       }
     }
   }
-  {  // robot0
+  {  // team0
     PyObject * field = NULL;
-    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->robot0);
+    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->team0);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "robot0", field);
+      int rc = PyObject_SetAttrString(_pymessage, "team0", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // robot1
+  {  // team1
     PyObject * field = NULL;
-    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->robot1);
+    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->team1);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "robot1", field);
+      int rc = PyObject_SetAttrString(_pymessage, "team1", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // robot2
+  {  // team2
     PyObject * field = NULL;
-    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->robot2);
+    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->team2);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "robot2", field);
+      int rc = PyObject_SetAttrString(_pymessage, "team2", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // robot3
+  {  // op0
     PyObject * field = NULL;
-    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->robot3);
+    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->op0);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "robot3", field);
+      int rc = PyObject_SetAttrString(_pymessage, "op0", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // robot4
+  {  // op1
     PyObject * field = NULL;
-    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->robot4);
+    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->op1);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "robot4", field);
+      int rc = PyObject_SetAttrString(_pymessage, "op1", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // robot5
+  {  // op2
     PyObject * field = NULL;
-    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->robot5);
+    field = sim_msgs__msg__obj_data__convert_to_py(&ros_message->op2);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "robot5", field);
+      int rc = PyObject_SetAttrString(_pymessage, "op2", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

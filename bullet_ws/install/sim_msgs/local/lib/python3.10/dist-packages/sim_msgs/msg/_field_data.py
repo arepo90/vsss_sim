@@ -60,24 +60,24 @@ class FieldData(metaclass=Metaclass_FieldData):
 
     __slots__ = [
         '_ball',
-        '_robot0',
-        '_robot1',
-        '_robot2',
-        '_robot3',
-        '_robot4',
-        '_robot5',
+        '_team0',
+        '_team1',
+        '_team2',
+        '_op0',
+        '_op1',
+        '_op2',
         '_score1',
         '_score2',
     ]
 
     _fields_and_field_types = {
         'ball': 'sim_msgs/ObjData',
-        'robot0': 'sim_msgs/ObjData',
-        'robot1': 'sim_msgs/ObjData',
-        'robot2': 'sim_msgs/ObjData',
-        'robot3': 'sim_msgs/ObjData',
-        'robot4': 'sim_msgs/ObjData',
-        'robot5': 'sim_msgs/ObjData',
+        'team0': 'sim_msgs/ObjData',
+        'team1': 'sim_msgs/ObjData',
+        'team2': 'sim_msgs/ObjData',
+        'op0': 'sim_msgs/ObjData',
+        'op1': 'sim_msgs/ObjData',
+        'op2': 'sim_msgs/ObjData',
         'score1': 'int32',
         'score2': 'int32',
     }
@@ -101,17 +101,17 @@ class FieldData(metaclass=Metaclass_FieldData):
         from sim_msgs.msg import ObjData
         self.ball = kwargs.get('ball', ObjData())
         from sim_msgs.msg import ObjData
-        self.robot0 = kwargs.get('robot0', ObjData())
+        self.team0 = kwargs.get('team0', ObjData())
         from sim_msgs.msg import ObjData
-        self.robot1 = kwargs.get('robot1', ObjData())
+        self.team1 = kwargs.get('team1', ObjData())
         from sim_msgs.msg import ObjData
-        self.robot2 = kwargs.get('robot2', ObjData())
+        self.team2 = kwargs.get('team2', ObjData())
         from sim_msgs.msg import ObjData
-        self.robot3 = kwargs.get('robot3', ObjData())
+        self.op0 = kwargs.get('op0', ObjData())
         from sim_msgs.msg import ObjData
-        self.robot4 = kwargs.get('robot4', ObjData())
+        self.op1 = kwargs.get('op1', ObjData())
         from sim_msgs.msg import ObjData
-        self.robot5 = kwargs.get('robot5', ObjData())
+        self.op2 = kwargs.get('op2', ObjData())
         self.score1 = kwargs.get('score1', int())
         self.score2 = kwargs.get('score2', int())
 
@@ -146,17 +146,17 @@ class FieldData(metaclass=Metaclass_FieldData):
             return False
         if self.ball != other.ball:
             return False
-        if self.robot0 != other.robot0:
+        if self.team0 != other.team0:
             return False
-        if self.robot1 != other.robot1:
+        if self.team1 != other.team1:
             return False
-        if self.robot2 != other.robot2:
+        if self.team2 != other.team2:
             return False
-        if self.robot3 != other.robot3:
+        if self.op0 != other.op0:
             return False
-        if self.robot4 != other.robot4:
+        if self.op1 != other.op1:
             return False
-        if self.robot5 != other.robot5:
+        if self.op2 != other.op2:
             return False
         if self.score1 != other.score1:
             return False
@@ -184,88 +184,88 @@ class FieldData(metaclass=Metaclass_FieldData):
         self._ball = value
 
     @builtins.property
-    def robot0(self):
-        """Message field 'robot0'."""
-        return self._robot0
+    def team0(self):
+        """Message field 'team0'."""
+        return self._team0
 
-    @robot0.setter
-    def robot0(self, value):
+    @team0.setter
+    def team0(self, value):
         if __debug__:
             from sim_msgs.msg import ObjData
             assert \
                 isinstance(value, ObjData), \
-                "The 'robot0' field must be a sub message of type 'ObjData'"
-        self._robot0 = value
+                "The 'team0' field must be a sub message of type 'ObjData'"
+        self._team0 = value
 
     @builtins.property
-    def robot1(self):
-        """Message field 'robot1'."""
-        return self._robot1
+    def team1(self):
+        """Message field 'team1'."""
+        return self._team1
 
-    @robot1.setter
-    def robot1(self, value):
+    @team1.setter
+    def team1(self, value):
         if __debug__:
             from sim_msgs.msg import ObjData
             assert \
                 isinstance(value, ObjData), \
-                "The 'robot1' field must be a sub message of type 'ObjData'"
-        self._robot1 = value
+                "The 'team1' field must be a sub message of type 'ObjData'"
+        self._team1 = value
 
     @builtins.property
-    def robot2(self):
-        """Message field 'robot2'."""
-        return self._robot2
+    def team2(self):
+        """Message field 'team2'."""
+        return self._team2
 
-    @robot2.setter
-    def robot2(self, value):
+    @team2.setter
+    def team2(self, value):
         if __debug__:
             from sim_msgs.msg import ObjData
             assert \
                 isinstance(value, ObjData), \
-                "The 'robot2' field must be a sub message of type 'ObjData'"
-        self._robot2 = value
+                "The 'team2' field must be a sub message of type 'ObjData'"
+        self._team2 = value
 
     @builtins.property
-    def robot3(self):
-        """Message field 'robot3'."""
-        return self._robot3
+    def op0(self):
+        """Message field 'op0'."""
+        return self._op0
 
-    @robot3.setter
-    def robot3(self, value):
+    @op0.setter
+    def op0(self, value):
         if __debug__:
             from sim_msgs.msg import ObjData
             assert \
                 isinstance(value, ObjData), \
-                "The 'robot3' field must be a sub message of type 'ObjData'"
-        self._robot3 = value
+                "The 'op0' field must be a sub message of type 'ObjData'"
+        self._op0 = value
 
     @builtins.property
-    def robot4(self):
-        """Message field 'robot4'."""
-        return self._robot4
+    def op1(self):
+        """Message field 'op1'."""
+        return self._op1
 
-    @robot4.setter
-    def robot4(self, value):
+    @op1.setter
+    def op1(self, value):
         if __debug__:
             from sim_msgs.msg import ObjData
             assert \
                 isinstance(value, ObjData), \
-                "The 'robot4' field must be a sub message of type 'ObjData'"
-        self._robot4 = value
+                "The 'op1' field must be a sub message of type 'ObjData'"
+        self._op1 = value
 
     @builtins.property
-    def robot5(self):
-        """Message field 'robot5'."""
-        return self._robot5
+    def op2(self):
+        """Message field 'op2'."""
+        return self._op2
 
-    @robot5.setter
-    def robot5(self, value):
+    @op2.setter
+    def op2(self, value):
         if __debug__:
             from sim_msgs.msg import ObjData
             assert \
                 isinstance(value, ObjData), \
-                "The 'robot5' field must be a sub message of type 'ObjData'"
-        self._robot5 = value
+                "The 'op2' field must be a sub message of type 'ObjData'"
+        self._op2 = value
 
     @builtins.property
     def score1(self):

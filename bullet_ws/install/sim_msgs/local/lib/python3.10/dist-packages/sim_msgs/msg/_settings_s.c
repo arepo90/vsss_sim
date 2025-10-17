@@ -50,22 +50,40 @@ bool sim_msgs__msg__settings__convert_from_py(PyObject * _pymsg, void * _ros_mes
     assert(strncmp("sim_msgs.msg._settings.Settings", full_classname_dest, 31) == 0);
   }
   sim_msgs__msg__Settings * ros_message = _ros_message;
-  {  // friendly_color
-    PyObject * field = PyObject_GetAttrString(_pymsg, "friendly_color");
+  {  // team_color
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team_color");
     if (!field) {
       return false;
     }
     assert(PyBool_Check(field));
-    ros_message->friendly_color = (Py_True == field);
+    ros_message->team_color = (Py_True == field);
     Py_DECREF(field);
   }
-  {  // friendly_side
-    PyObject * field = PyObject_GetAttrString(_pymsg, "friendly_side");
+  {  // team_side
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team_side");
     if (!field) {
       return false;
     }
     assert(PyBool_Check(field));
-    ros_message->friendly_side = (Py_True == field);
+    ros_message->team_side = (Py_True == field);
+    Py_DECREF(field);
+  }
+  {  // local
+    PyObject * field = PyObject_GetAttrString(_pymsg, "local");
+    if (!field) {
+      return false;
+    }
+    assert(PyBool_Check(field));
+    ros_message->local = (Py_True == field);
+    Py_DECREF(field);
+  }
+  {  // reset
+    PyObject * field = PyObject_GetAttrString(_pymsg, "reset");
+    if (!field) {
+      return false;
+    }
+    assert(PyBool_Check(field));
+    ros_message->reset = (Py_True == field);
     Py_DECREF(field);
   }
   {  // exposure
@@ -75,6 +93,51 @@ bool sim_msgs__msg__settings__convert_from_py(PyObject * _pymsg, void * _ros_mes
     }
     assert(PyLong_Check(field));
     ros_message->exposure = (int32_t)PyLong_AsLong(field);
+    Py_DECREF(field);
+  }
+  {  // attractive_gain
+    PyObject * field = PyObject_GetAttrString(_pymsg, "attractive_gain");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->attractive_gain = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // repulsive_gain
+    PyObject * field = PyObject_GetAttrString(_pymsg, "repulsive_gain");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->repulsive_gain = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // repulsion_radius
+    PyObject * field = PyObject_GetAttrString(_pymsg, "repulsion_radius");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->repulsion_radius = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // goal_tolerance
+    PyObject * field = PyObject_GetAttrString(_pymsg, "goal_tolerance");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->goal_tolerance = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // tangential_gain
+    PyObject * field = PyObject_GetAttrString(_pymsg, "tangential_gain");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->tangential_gain = PyFloat_AS_DOUBLE(field);
     Py_DECREF(field);
   }
 
@@ -99,22 +162,44 @@ PyObject * sim_msgs__msg__settings__convert_to_py(void * raw_ros_message)
     }
   }
   sim_msgs__msg__Settings * ros_message = (sim_msgs__msg__Settings *)raw_ros_message;
-  {  // friendly_color
+  {  // team_color
     PyObject * field = NULL;
-    field = PyBool_FromLong(ros_message->friendly_color ? 1 : 0);
+    field = PyBool_FromLong(ros_message->team_color ? 1 : 0);
     {
-      int rc = PyObject_SetAttrString(_pymessage, "friendly_color", field);
+      int rc = PyObject_SetAttrString(_pymessage, "team_color", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
       }
     }
   }
-  {  // friendly_side
+  {  // team_side
     PyObject * field = NULL;
-    field = PyBool_FromLong(ros_message->friendly_side ? 1 : 0);
+    field = PyBool_FromLong(ros_message->team_side ? 1 : 0);
     {
-      int rc = PyObject_SetAttrString(_pymessage, "friendly_side", field);
+      int rc = PyObject_SetAttrString(_pymessage, "team_side", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // local
+    PyObject * field = NULL;
+    field = PyBool_FromLong(ros_message->local ? 1 : 0);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "local", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // reset
+    PyObject * field = NULL;
+    field = PyBool_FromLong(ros_message->reset ? 1 : 0);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "reset", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;
@@ -126,6 +211,61 @@ PyObject * sim_msgs__msg__settings__convert_to_py(void * raw_ros_message)
     field = PyLong_FromLong(ros_message->exposure);
     {
       int rc = PyObject_SetAttrString(_pymessage, "exposure", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // attractive_gain
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->attractive_gain);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "attractive_gain", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // repulsive_gain
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->repulsive_gain);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "repulsive_gain", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // repulsion_radius
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->repulsion_radius);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "repulsion_radius", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // goal_tolerance
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->goal_tolerance);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "goal_tolerance", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // tangential_gain
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->tangential_gain);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "tangential_gain", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

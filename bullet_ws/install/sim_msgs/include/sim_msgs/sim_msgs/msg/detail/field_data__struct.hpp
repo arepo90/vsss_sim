@@ -17,12 +17,12 @@
 
 // Include directives for member types
 // Member 'ball'
-// Member 'robot0'
-// Member 'robot1'
-// Member 'robot2'
-// Member 'robot3'
-// Member 'robot4'
-// Member 'robot5'
+// Member 'team0'
+// Member 'team1'
+// Member 'team2'
+// Member 'op0'
+// Member 'op1'
+// Member 'op2'
 #include "sim_msgs/msg/detail/obj_data__struct.hpp"
 
 #ifndef _WIN32
@@ -45,12 +45,12 @@ struct FieldData_
 
   explicit FieldData_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   : ball(_init),
-    robot0(_init),
-    robot1(_init),
-    robot2(_init),
-    robot3(_init),
-    robot4(_init),
-    robot5(_init)
+    team0(_init),
+    team1(_init),
+    team2(_init),
+    op0(_init),
+    op1(_init),
+    op2(_init)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
@@ -62,12 +62,12 @@ struct FieldData_
 
   explicit FieldData_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
   : ball(_alloc, _init),
-    robot0(_alloc, _init),
-    robot1(_alloc, _init),
-    robot2(_alloc, _init),
-    robot3(_alloc, _init),
-    robot4(_alloc, _init),
-    robot5(_alloc, _init)
+    team0(_alloc, _init),
+    team1(_alloc, _init),
+    team2(_alloc, _init),
+    op0(_alloc, _init),
+    op1(_alloc, _init),
+    op2(_alloc, _init)
   {
     if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
       rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
@@ -81,24 +81,24 @@ struct FieldData_
   using _ball_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
   _ball_type ball;
-  using _robot0_type =
+  using _team0_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
-  _robot0_type robot0;
-  using _robot1_type =
+  _team0_type team0;
+  using _team1_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
-  _robot1_type robot1;
-  using _robot2_type =
+  _team1_type team1;
+  using _team2_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
-  _robot2_type robot2;
-  using _robot3_type =
+  _team2_type team2;
+  using _op0_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
-  _robot3_type robot3;
-  using _robot4_type =
+  _op0_type op0;
+  using _op1_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
-  _robot4_type robot4;
-  using _robot5_type =
+  _op1_type op1;
+  using _op2_type =
     sim_msgs::msg::ObjData_<ContainerAllocator>;
-  _robot5_type robot5;
+  _op2_type op2;
   using _score1_type =
     int32_t;
   _score1_type score1;
@@ -113,40 +113,40 @@ struct FieldData_
     this->ball = _arg;
     return *this;
   }
-  Type & set__robot0(
+  Type & set__team0(
     const sim_msgs::msg::ObjData_<ContainerAllocator> & _arg)
   {
-    this->robot0 = _arg;
+    this->team0 = _arg;
     return *this;
   }
-  Type & set__robot1(
+  Type & set__team1(
     const sim_msgs::msg::ObjData_<ContainerAllocator> & _arg)
   {
-    this->robot1 = _arg;
+    this->team1 = _arg;
     return *this;
   }
-  Type & set__robot2(
+  Type & set__team2(
     const sim_msgs::msg::ObjData_<ContainerAllocator> & _arg)
   {
-    this->robot2 = _arg;
+    this->team2 = _arg;
     return *this;
   }
-  Type & set__robot3(
+  Type & set__op0(
     const sim_msgs::msg::ObjData_<ContainerAllocator> & _arg)
   {
-    this->robot3 = _arg;
+    this->op0 = _arg;
     return *this;
   }
-  Type & set__robot4(
+  Type & set__op1(
     const sim_msgs::msg::ObjData_<ContainerAllocator> & _arg)
   {
-    this->robot4 = _arg;
+    this->op1 = _arg;
     return *this;
   }
-  Type & set__robot5(
+  Type & set__op2(
     const sim_msgs::msg::ObjData_<ContainerAllocator> & _arg)
   {
-    this->robot5 = _arg;
+    this->op2 = _arg;
     return *this;
   }
   Type & set__score1(
@@ -207,22 +207,22 @@ struct FieldData_
     if (this->ball != other.ball) {
       return false;
     }
-    if (this->robot0 != other.robot0) {
+    if (this->team0 != other.team0) {
       return false;
     }
-    if (this->robot1 != other.robot1) {
+    if (this->team1 != other.team1) {
       return false;
     }
-    if (this->robot2 != other.robot2) {
+    if (this->team2 != other.team2) {
       return false;
     }
-    if (this->robot3 != other.robot3) {
+    if (this->op0 != other.op0) {
       return false;
     }
-    if (this->robot4 != other.robot4) {
+    if (this->op1 != other.op1) {
       return false;
     }
-    if (this->robot5 != other.robot5) {
+    if (this->op2 != other.op2) {
       return false;
     }
     if (this->score1 != other.score1) {
