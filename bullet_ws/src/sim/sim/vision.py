@@ -593,13 +593,11 @@ class Vision(Node):
 
             """
             
-
         self.prev = curr
         field_data = self.getMsg(states)
         self.publisher.publish(field_data)
-        #cv2.imshow("kalman", norm_copy)
-        #cv2.imshow("frame", frame)
-        return norm_copy
+
+        return norm
 
     def visionTCB(self):
         while rclpy.ok() and not self.is_running.is_set() and not self.is_local.is_set():
@@ -607,6 +605,9 @@ class Vision(Node):
             if self.counter < 10:
                 self.counter += 1
                 cv2.waitKey(1)
+                continue
+
+            if img is None:
                 continue
 
             last = self.visionProc(img)

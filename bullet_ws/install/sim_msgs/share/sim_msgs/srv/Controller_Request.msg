@@ -1,1 +1,4 @@
-FieldData settings
+int32 state
+HighCmd team0
+HighCmd team1
+HighCmd team2

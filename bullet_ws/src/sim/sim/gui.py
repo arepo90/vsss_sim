@@ -3,10 +3,21 @@ from rclpy.node import Node
 import tkinter as tk
 from tkinter import ttk
 from sensor_msgs.msg import Image
-from sim_msgs.msg import Settings
+from sim_msgs.msg import Settings, HighCmd, FieldData, LowCmd, ObjData
+from sim_msgs.srv import Controller, Reset
 from cv_bridge import CvBridge
 import cv2
 from PIL import Image as PILImage, ImageTk
+from enum import IntEnum
+import math
+import numpy as np
+import threading
+
+class State(IntEnum):
+    PAUSE = 0
+    PLAY = 1
+    MIDFIELD = 2
+    PENALTY = 3
 
 # --- Default Settings ---
 TEAM_COLOR = "yellow"
@@ -15,6 +26,9 @@ USE_LOCAL = True
 CAM_EXPOSURE = 400
 VIDEO_WIDTH = 2048
 VIDEO_HEIGHT = 1080
+
+FIELD_W = 17
+FIELD_H = 13
 
 class GUI(Node):
     def __init__(self):
@@ -39,7 +53,28 @@ class GUI(Node):
         # --- ROS2 Publishers & Subscribers ---
         self.video_subscriber1 = self.create_subscription(Image, 'local_cam/image_raw', self.image_callback, 10)
         self.video_subscriber2 = self.create_subscription(Image, 'sim_cam/image_raw', self.image_callback, 10)
+        self.video_subscriber1 = self.create_subscription(FieldData, 'field_data', self.fieldCB, 10)
+        self.cmd_subscribers = []
+        for i in range(3):
+            sub = self.create_subscription(LowCmd, f'low{i}', lambda msg, i=i: self.lowCB(msg, i), 10)
+            self.cmd_subscribers.append(sub)
         self.settings_publisher = self.create_publisher(Settings, 'settings', 10)
+
+        # --- ROS2 Service Client ---
+        self.ros_clients = {
+            'controller': self.create_client(Controller, 'strat/controller'),
+            #'planner': self.create_client(Reset, 'strat/planner'),
+        }
+        self.client_ready = {name: False for name in self.ros_clients}
+        for name, client in self.ros_clients.items():
+            threading.Thread(
+                target=self._wait_for_service,
+                args=(name, client),
+                daemon=True
+            ).start()
+        #while not self.controller_client.wait_for_service(timeout_sec=1.0):
+        #    self.get_logger().info('Waiting for Controller service...')
+
         
         # --- Build the GUI ---
         self.setup_gui()
@@ -47,6 +82,88 @@ class GUI(Node):
         # --- ROS Timers for All Loops ---
         self.create_timer(0.05, self.update_gui) # 20 Hz
         self.create_timer(0.2, self.publish_settings)
+
+        self.field_data = FieldData
+        self.cmds = [None, None, None]
+
+    def _wait_for_service(self, name, client):
+        while not client.wait_for_service(timeout_sec=1.0):
+            pass
+        self.get_logger().info(f'{name} service is now available!')
+        self.client_ready[name] = True
+
+    def lowCB(self, msg, id):
+        self.cmds[id] = msg
+
+    def fieldCB(self, msg):
+        self.field_data = msg
+
+    def image_callback(self, msg):
+        name = "huh"
+        try:
+            if not self.video_label.winfo_exists():
+                return
+            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
+            resized_image = cv2.resize(cv_image, (VIDEO_WIDTH, VIDEO_HEIGHT), interpolation=cv2.INTER_AREA)
+            rgb_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)
+
+            coords = np.array(self.cvCoords((self.field_data.ball.x, self.field_data.ball.y)))
+            if self.is_paused:
+                cv2.rectangle(rgb_image, coords - 30, coords + 30, (0, 0, 255), 5)
+            else:
+                cv2.circle(rgb_image, coords, 8, (0, 0, 255), -1)
+                vx_px = self.field_data.ball.vx * VIDEO_WIDTH / FIELD_W
+                vy_px = -self.field_data.ball.vy * VIDEO_HEIGHT / FIELD_H
+                if abs(vx_px) > 3 and abs(vy_px) > 3:
+                    mag = math.sqrt(vx_px**2 + vy_px**2)
+                    min_len = 50
+                    max_len = 1000
+                    if mag > 1e-6:
+                        scale = max(min_len, min(max_len, mag)) / mag
+                        vx_px *= scale
+                        vy_px *= scale
+
+                    end_x = int(coords[0] + vx_px)
+                    end_y = int(coords[1] + vy_px)
+                    cv2.arrowedLine(rgb_image, coords, (end_x, end_y), (255, 255, 0), 5, tipLength=0.2)
+
+            for i in range(6):
+                name = "bruh"
+                name = f'{"team" if i < 3 else "op"}{i%3}'
+                robot = getattr(self.field_data, f'{"team" if i < 3 else "op"}{i%3}')
+                coords = np.array(self.cvCoords((robot.x, robot.y)))
+                cv2.putText(rgb_image, name, coords-60, cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 1, cv2.LINE_AA)
+                angle_rad = math.radians(robot.theta - 90)
+                end_x = int(coords[0] + 50 * math.cos(angle_rad))
+                end_y = int(coords[1] + 50 * math.sin(angle_rad))
+                cv2.arrowedLine(rgb_image, coords, (end_x, end_y), (0, 255, 0) if i < 3 else (255, 0, 0), 5, tipLength=0.3)
+                if self.is_paused:
+                    cv2.rectangle(rgb_image, coords - 50, coords + 50, (0, 255, 0) if i < 3 else (255, 0, 0), 5)
+                else:
+                    cv2.circle(rgb_image, coords, 8, (0, 255, 0) if i < 3 else (255, 0, 0), -1)
+                
+                if not self.is_paused and  i < 3 and not self.cmds[i] is None:
+                    vx_px = self.cmds[i].vx * VIDEO_WIDTH / FIELD_W
+                    vy_px = -self.cmds[i].vy * VIDEO_HEIGHT / FIELD_H
+                    if abs(vx_px) > 3 and abs(vy_px) > 3:
+                        mag = math.sqrt(vx_px**2 + vy_px**2)
+                        min_len = 50
+                        max_len = 1000
+                        if mag > 1e-6:
+                            scale = max(min_len, min(max_len, mag)) / mag
+                            vx_px *= scale
+                            vy_px *= scale
+
+                        end_x = int(coords[0] + vx_px)
+                        end_y = int(coords[1] + vy_px)
+                        cv2.arrowedLine(rgb_image, coords, (end_x, end_y), (255, 255, 0), 5, tipLength=0.2)
+
+            pil_image = PILImage.fromarray(rgb_image)
+            photo_image = ImageTk.PhotoImage(image=pil_image)
+            self.video_label.config(image=photo_image, text="")
+            self.video_label.image = photo_image
+        except Exception as e:
+            self.get_logger().error(f'Failed to process image: {e}, {name}')
 
     def setup_gui(self):
         # ... (Your GUI setup code is unchanged) ...
@@ -148,6 +265,92 @@ class GUI(Node):
         self.video_label.pack(fill=tk.BOTH, expand=True)
         self.video_label.config(text="Waiting for video feed...")
 
+
+        robot_frame = ttk.LabelFrame(left_frame, text="Robot Teams", padding="10")
+        robot_frame.pack(fill=tk.X, pady=5)
+
+        self.robot_team_vars = []
+        self.robot_dropdowns = []
+
+        team_options = {"None": -1, "team0": 0, "team1": 1, "team2": 2}
+
+        for i in range(3):
+            ttk.Label(robot_frame, text=f"Robot {i}").pack(anchor=tk.W)
+
+            var = tk.StringVar(value="None")
+            dropdown = ttk.Combobox(
+                robot_frame,
+                textvariable=var,
+                values=list(team_options.keys()),
+                state="readonly"
+            )
+            dropdown.pack(fill=tk.X, pady=2)
+            self.robot_team_vars.append((var, team_options))
+            self.robot_dropdowns.append(dropdown)
+
+
+        # --- Control Buttons Underneath Video ---
+        button_frame = ttk.Frame(self.right_frame)
+        button_frame.pack(fill=tk.X, pady=10)
+
+        # Toggleable Pause/Resume button
+        self.is_paused = True
+        self.pause_button = ttk.Button(button_frame, text="Resume", command=self.toggle_pause)
+        self.pause_button.pack(side=tk.LEFT, padx=10)
+
+        # MIDFIELD button
+        self.midfield_button = ttk.Button(button_frame, text="Midfield", command=lambda: self.call_controller(State.MIDFIELD))
+        self.midfield_button.pack(side=tk.LEFT, padx=10)
+
+        # PENALTY button
+        self.penalty_button = ttk.Button(button_frame, text="Penalty", command=lambda: self.call_controller(State.PENALTY))
+        self.penalty_button.pack(side=tk.LEFT, padx=10)
+
+    def toggle_pause(self):
+        """Toggle between PAUSE and PLAY states."""
+        if self.is_paused:
+            if not self.call_controller(State.PLAY):
+                return
+            self.pause_button.config(text="Pause")
+        else:
+            if not self.call_controller(State.PAUSE):
+                return
+            self.pause_button.config(text="Resume")
+        self.is_paused = not self.is_paused
+
+    def call_controller(self, state: State):
+        """Send a Controller service request."""
+        if not self.client_ready["controller"] or not self.ros_clients["controller"].service_is_ready():
+            self.get_logger().warn("Controller service not available.")
+            return False
+
+        req = Controller.Request()
+        req.state = int(state)
+
+        # Fill HighCmd placeholders
+        req.team0 = HighCmd(robot_id=0, skill=0, mod=0, tgt_x=0.0, tgt_y=0.0, tgt_theta=0.0)
+        req.team1 = HighCmd(robot_id=1, skill=0, mod=0, tgt_x=0.0, tgt_y=0.0, tgt_theta=0.0)
+        req.team2 = HighCmd(robot_id=2, skill=0, mod=0, tgt_x=0.0, tgt_y=0.0, tgt_theta=0.0)
+
+        future = self.ros_clients["controller"].call_async(req)
+        future.add_done_callback(self.controller_response)
+        return True
+
+    def controller_response(self, future):
+        try:
+            response = future.result()
+            if response.success:
+                self.get_logger().info("Controller command executed successfully.")
+                return
+            else:
+                self.get_logger().warn("Controller command failed.")
+        except Exception as e:
+            self.get_logger().error(f"Service call failed: {e}")
+
+        self.is_paused = not self.is_paused
+        self.pause_button.config(text="Pause" if self.is_paused else "Resume")
+
+
     def onVarChange(self, var, value_str):
         value = float(value_str)
         new_value = round(value / 0.5) * 0.5
@@ -157,7 +360,6 @@ class GUI(Node):
         if self.root.winfo_exists():
             self.root.update()
         else:
-            self.get_logger().info("GUI window closed by user.")
             rclpy.shutdown()
 
     def publish_settings(self):
@@ -172,21 +374,11 @@ class GUI(Node):
         msg.tangential_gain = self.tangential_gain_var.get()
         msg.goal_tolerance = self.goal_tolerance_var.get()
         msg.attractive_gain = self.attractive_gain_var.get()
-        self.settings_publisher.publish(msg)
 
-    def image_callback(self, msg):
-        try:
-            if not self.video_label.winfo_exists():
-                return
-            cv_image = self.bridge.imgmsg_to_cv2(msg, "bgr8")
-            resized_image = cv2.resize(cv_image, (VIDEO_WIDTH, VIDEO_HEIGHT), interpolation=cv2.INTER_AREA)
-            rgb_image = cv2.cvtColor(resized_image, cv2.COLOR_BGR2RGB)
-            pil_image = PILImage.fromarray(rgb_image)
-            photo_image = ImageTk.PhotoImage(image=pil_image)
-            self.video_label.config(image=photo_image, text="")
-            self.video_label.image = photo_image
-        except Exception as e:
-            self.get_logger().error(f'Failed to process image: {e}')
+        for i, (var, team_options) in enumerate(self.robot_team_vars):
+            setattr(msg, f"robot{i}", team_options[var.get()])
+
+        self.settings_publisher.publish(msg)
 
     def buttonCB(self):
         self.reset_var = not self.reset_var
@@ -195,6 +387,11 @@ class GUI(Node):
         value = float(value_str)
         new_value = int(round(value / 20.0) * 20)
         self.exposure_var.set(new_value)
+
+    def cvCoords(self, coords):
+        scale_x = VIDEO_WIDTH / FIELD_W
+        scale_y = VIDEO_HEIGHT / FIELD_H
+        return [int((coords[0] + FIELD_W / 2) * scale_x), int((FIELD_H / 2 - coords[1]) * scale_y)]
 
 def main(args=None):
     rclpy.init(args=args)

@@ -3,6 +3,9 @@ bool team_side
 bool local
 bool reset
 int32 exposure
+int32 robot0
+int32 robot1
+int32 robot2
 float64 attractive_gain
 float64 repulsive_gain
 float64 repulsion_radius

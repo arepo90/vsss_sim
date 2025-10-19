@@ -2,12 +2,18 @@
 // with input from sim_msgs/srv/Controller.srv
 // generated code does not contain a copyright notice
 
-#include "sim_msgs/msg/FieldData.idl"
+#include "sim_msgs/msg/HighCmd.idl"
 
 module sim_msgs {
   module srv {
     struct Controller_Request {
-      sim_msgs::msg::FieldData settings;
+      int32 state;
+
+      sim_msgs::msg::HighCmd team0;
+
+      sim_msgs::msg::HighCmd team1;
+
+      sim_msgs::msg::HighCmd team2;
     };
     struct Controller_Response {
       boolean success;

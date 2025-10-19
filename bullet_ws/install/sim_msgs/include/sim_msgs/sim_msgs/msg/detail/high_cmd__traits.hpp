@@ -46,27 +46,6 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
-  // member: curr_x
-  {
-    out << "curr_x: ";
-    rosidl_generator_traits::value_to_yaml(msg.curr_x, out);
-    out << ", ";
-  }
-
-  // member: curr_y
-  {
-    out << "curr_y: ";
-    rosidl_generator_traits::value_to_yaml(msg.curr_y, out);
-    out << ", ";
-  }
-
-  // member: curr_theta
-  {
-    out << "curr_theta: ";
-    rosidl_generator_traits::value_to_yaml(msg.curr_theta, out);
-    out << ", ";
-  }
-
   // member: tgt_x
   {
     out << "tgt_x: ";
@@ -120,36 +99,6 @@ inline void to_block_style_yaml(
     }
     out << "mod: ";
     rosidl_generator_traits::value_to_yaml(msg.mod, out);
-    out << "\n";
-  }
-
-  // member: curr_x
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    out << "curr_x: ";
-    rosidl_generator_traits::value_to_yaml(msg.curr_x, out);
-    out << "\n";
-  }
-
-  // member: curr_y
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    out << "curr_y: ";
-    rosidl_generator_traits::value_to_yaml(msg.curr_y, out);
-    out << "\n";
-  }
-
-  // member: curr_theta
-  {
-    if (indentation > 0) {
-      out << std::string(indentation, ' ');
-    }
-    out << "curr_theta: ";
-    rosidl_generator_traits::value_to_yaml(msg.curr_theta, out);
     out << "\n";
   }
 

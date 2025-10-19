@@ -43,6 +43,9 @@ struct Settings_
       this->local = false;
       this->reset = false;
       this->exposure = 0l;
+      this->robot0 = 0l;
+      this->robot1 = 0l;
+      this->robot2 = 0l;
       this->attractive_gain = 0.0;
       this->repulsive_gain = 0.0;
       this->repulsion_radius = 0.0;
@@ -62,6 +65,9 @@ struct Settings_
       this->local = false;
       this->reset = false;
       this->exposure = 0l;
+      this->robot0 = 0l;
+      this->robot1 = 0l;
+      this->robot2 = 0l;
       this->attractive_gain = 0.0;
       this->repulsive_gain = 0.0;
       this->repulsion_radius = 0.0;
@@ -86,6 +92,15 @@ struct Settings_
   using _exposure_type =
     int32_t;
   _exposure_type exposure;
+  using _robot0_type =
+    int32_t;
+  _robot0_type robot0;
+  using _robot1_type =
+    int32_t;
+  _robot1_type robot1;
+  using _robot2_type =
+    int32_t;
+  _robot2_type robot2;
   using _attractive_gain_type =
     double;
   _attractive_gain_type attractive_gain;
@@ -131,6 +146,24 @@ struct Settings_
     const int32_t & _arg)
   {
     this->exposure = _arg;
+    return *this;
+  }
+  Type & set__robot0(
+    const int32_t & _arg)
+  {
+    this->robot0 = _arg;
+    return *this;
+  }
+  Type & set__robot1(
+    const int32_t & _arg)
+  {
+    this->robot1 = _arg;
+    return *this;
+  }
+  Type & set__robot2(
+    const int32_t & _arg)
+  {
+    this->robot2 = _arg;
     return *this;
   }
   Type & set__attractive_gain(
@@ -219,6 +252,15 @@ struct Settings_
       return false;
     }
     if (this->exposure != other.exposure) {
+      return false;
+    }
+    if (this->robot0 != other.robot0) {
+      return false;
+    }
+    if (this->robot1 != other.robot1) {
+      return false;
+    }
+    if (this->robot2 != other.robot2) {
       return false;
     }
     if (this->attractive_gain != other.attractive_gain) {

@@ -23,9 +23,6 @@ typedef struct sim_msgs__msg__HighCmd
   int32_t robot_id;
   int32_t skill;
   int32_t mod;
-  double curr_x;
-  double curr_y;
-  double curr_theta;
   double tgt_x;
   double tgt_y;
   double tgt_theta;

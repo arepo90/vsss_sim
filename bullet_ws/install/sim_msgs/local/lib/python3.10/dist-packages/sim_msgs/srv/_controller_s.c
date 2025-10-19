@@ -16,8 +16,12 @@
 #include "sim_msgs/srv/detail/controller__struct.h"
 #include "sim_msgs/srv/detail/controller__functions.h"
 
-bool sim_msgs__msg__field_data__convert_from_py(PyObject * _pymsg, void * _ros_message);
-PyObject * sim_msgs__msg__field_data__convert_to_py(void * raw_ros_message);
+bool sim_msgs__msg__high_cmd__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * sim_msgs__msg__high_cmd__convert_to_py(void * raw_ros_message);
+bool sim_msgs__msg__high_cmd__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * sim_msgs__msg__high_cmd__convert_to_py(void * raw_ros_message);
+bool sim_msgs__msg__high_cmd__convert_from_py(PyObject * _pymsg, void * _ros_message);
+PyObject * sim_msgs__msg__high_cmd__convert_to_py(void * raw_ros_message);
 
 ROSIDL_GENERATOR_C_EXPORT
 bool sim_msgs__srv__controller__request__convert_from_py(PyObject * _pymsg, void * _ros_message)
@@ -52,12 +56,43 @@ bool sim_msgs__srv__controller__request__convert_from_py(PyObject * _pymsg, void
     assert(strncmp("sim_msgs.srv._controller.Controller_Request", full_classname_dest, 43) == 0);
   }
   sim_msgs__srv__Controller_Request * ros_message = _ros_message;
-  {  // settings
-    PyObject * field = PyObject_GetAttrString(_pymsg, "settings");
+  {  // state
+    PyObject * field = PyObject_GetAttrString(_pymsg, "state");
     if (!field) {
       return false;
     }
-    if (!sim_msgs__msg__field_data__convert_from_py(field, &ros_message->settings)) {
+    assert(PyLong_Check(field));
+    ros_message->state = (int32_t)PyLong_AsLong(field);
+    Py_DECREF(field);
+  }
+  {  // team0
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team0");
+    if (!field) {
+      return false;
+    }
+    if (!sim_msgs__msg__high_cmd__convert_from_py(field, &ros_message->team0)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // team1
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team1");
+    if (!field) {
+      return false;
+    }
+    if (!sim_msgs__msg__high_cmd__convert_from_py(field, &ros_message->team1)) {
+      Py_DECREF(field);
+      return false;
+    }
+    Py_DECREF(field);
+  }
+  {  // team2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "team2");
+    if (!field) {
+      return false;
+    }
+    if (!sim_msgs__msg__high_cmd__convert_from_py(field, &ros_message->team2)) {
       Py_DECREF(field);
       return false;
     }
@@ -85,14 +120,53 @@ PyObject * sim_msgs__srv__controller__request__convert_to_py(void * raw_ros_mess
     }
   }
   sim_msgs__srv__Controller_Request * ros_message = (sim_msgs__srv__Controller_Request *)raw_ros_message;
-  {  // settings
+  {  // state
     PyObject * field = NULL;
-    field = sim_msgs__msg__field_data__convert_to_py(&ros_message->settings);
+    field = PyLong_FromLong(ros_message->state);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "state", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // team0
+    PyObject * field = NULL;
+    field = sim_msgs__msg__high_cmd__convert_to_py(&ros_message->team0);
     if (!field) {
       return NULL;
     }
     {
-      int rc = PyObject_SetAttrString(_pymessage, "settings", field);
+      int rc = PyObject_SetAttrString(_pymessage, "team0", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // team1
+    PyObject * field = NULL;
+    field = sim_msgs__msg__high_cmd__convert_to_py(&ros_message->team1);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "team1", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // team2
+    PyObject * field = NULL;
+    field = sim_msgs__msg__high_cmd__convert_to_py(&ros_message->team2);
+    if (!field) {
+      return NULL;
+    }
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "team2", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

@@ -37,7 +37,7 @@ void Settings_fini_function(void * message_memory)
   typed_message->~Settings();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_message_member_array[10] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_message_member_array[13] = {
   {
     "team_color",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
@@ -115,6 +115,57 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_mess
     0,  // array size
     false,  // is upper bound
     offsetof(sim_msgs::msg::Settings, exposure),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "robot0",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs::msg::Settings, robot0),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "robot1",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs::msg::Settings, robot1),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "robot2",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs::msg::Settings, robot2),  // bytes offset in struct
     nullptr,  // default value
     nullptr,  // size() function pointer
     nullptr,  // get_const(index) function pointer
@@ -213,7 +264,7 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_mess
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Settings_message_members = {
   "sim_msgs::msg",  // message namespace
   "Settings",  // message name
-  10,  // number of fields
+  13,  // number of fields
   sizeof(sim_msgs::msg::Settings),
   Settings_message_member_array,  // message members
   Settings_init_function,  // function to initialize message memory (memory has to be allocated)

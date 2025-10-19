@@ -60,9 +60,6 @@ class HighCmd(metaclass=Metaclass_HighCmd):
         '_robot_id',
         '_skill',
         '_mod',
-        '_curr_x',
-        '_curr_y',
-        '_curr_theta',
         '_tgt_x',
         '_tgt_y',
         '_tgt_theta',
@@ -72,9 +69,6 @@ class HighCmd(metaclass=Metaclass_HighCmd):
         'robot_id': 'int32',
         'skill': 'int32',
         'mod': 'int32',
-        'curr_x': 'double',
-        'curr_y': 'double',
-        'curr_theta': 'double',
         'tgt_x': 'double',
         'tgt_y': 'double',
         'tgt_theta': 'double',
@@ -87,9 +81,6 @@ class HighCmd(metaclass=Metaclass_HighCmd):
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
-        rosidl_parser.definition.BasicType('double'),  # noqa: E501
-        rosidl_parser.definition.BasicType('double'),  # noqa: E501
-        rosidl_parser.definition.BasicType('double'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
@@ -99,9 +90,6 @@ class HighCmd(metaclass=Metaclass_HighCmd):
         self.robot_id = kwargs.get('robot_id', int())
         self.skill = kwargs.get('skill', int())
         self.mod = kwargs.get('mod', int())
-        self.curr_x = kwargs.get('curr_x', float())
-        self.curr_y = kwargs.get('curr_y', float())
-        self.curr_theta = kwargs.get('curr_theta', float())
         self.tgt_x = kwargs.get('tgt_x', float())
         self.tgt_y = kwargs.get('tgt_y', float())
         self.tgt_theta = kwargs.get('tgt_theta', float())
@@ -140,12 +128,6 @@ class HighCmd(metaclass=Metaclass_HighCmd):
         if self.skill != other.skill:
             return False
         if self.mod != other.mod:
-            return False
-        if self.curr_x != other.curr_x:
-            return False
-        if self.curr_y != other.curr_y:
-            return False
-        if self.curr_theta != other.curr_theta:
             return False
         if self.tgt_x != other.tgt_x:
             return False
@@ -204,51 +186,6 @@ class HighCmd(metaclass=Metaclass_HighCmd):
             assert value >= -2147483648 and value < 2147483648, \
                 "The 'mod' field must be an integer in [-2147483648, 2147483647]"
         self._mod = value
-
-    @builtins.property
-    def curr_x(self):
-        """Message field 'curr_x'."""
-        return self._curr_x
-
-    @curr_x.setter
-    def curr_x(self, value):
-        if __debug__:
-            assert \
-                isinstance(value, float), \
-                "The 'curr_x' field must be of type 'float'"
-            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
-                "The 'curr_x' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
-        self._curr_x = value
-
-    @builtins.property
-    def curr_y(self):
-        """Message field 'curr_y'."""
-        return self._curr_y
-
-    @curr_y.setter
-    def curr_y(self, value):
-        if __debug__:
-            assert \
-                isinstance(value, float), \
-                "The 'curr_y' field must be of type 'float'"
-            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
-                "The 'curr_y' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
-        self._curr_y = value
-
-    @builtins.property
-    def curr_theta(self):
-        """Message field 'curr_theta'."""
-        return self._curr_theta
-
-    @curr_theta.setter
-    def curr_theta(self, value):
-        if __debug__:
-            assert \
-                isinstance(value, float), \
-                "The 'curr_theta' field must be of type 'float'"
-            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
-                "The 'curr_theta' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
-        self._curr_theta = value
 
     @builtins.property
     def tgt_x(self):

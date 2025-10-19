@@ -11,8 +11,10 @@
 #include "rcutils/allocator.h"
 
 // Include directives for member types
-// Member `settings`
-#include "sim_msgs/msg/detail/field_data__functions.h"
+// Member `team0`
+// Member `team1`
+// Member `team2`
+#include "sim_msgs/msg/detail/high_cmd__functions.h"
 
 bool
 sim_msgs__srv__Controller_Request__init(sim_msgs__srv__Controller_Request * msg)
@@ -20,8 +22,19 @@ sim_msgs__srv__Controller_Request__init(sim_msgs__srv__Controller_Request * msg)
   if (!msg) {
     return false;
   }
-  // settings
-  if (!sim_msgs__msg__FieldData__init(&msg->settings)) {
+  // state
+  // team0
+  if (!sim_msgs__msg__HighCmd__init(&msg->team0)) {
+    sim_msgs__srv__Controller_Request__fini(msg);
+    return false;
+  }
+  // team1
+  if (!sim_msgs__msg__HighCmd__init(&msg->team1)) {
+    sim_msgs__srv__Controller_Request__fini(msg);
+    return false;
+  }
+  // team2
+  if (!sim_msgs__msg__HighCmd__init(&msg->team2)) {
     sim_msgs__srv__Controller_Request__fini(msg);
     return false;
   }
@@ -34,8 +47,13 @@ sim_msgs__srv__Controller_Request__fini(sim_msgs__srv__Controller_Request * msg)
   if (!msg) {
     return;
   }
-  // settings
-  sim_msgs__msg__FieldData__fini(&msg->settings);
+  // state
+  // team0
+  sim_msgs__msg__HighCmd__fini(&msg->team0);
+  // team1
+  sim_msgs__msg__HighCmd__fini(&msg->team1);
+  // team2
+  sim_msgs__msg__HighCmd__fini(&msg->team2);
 }
 
 bool
@@ -44,9 +62,25 @@ sim_msgs__srv__Controller_Request__are_equal(const sim_msgs__srv__Controller_Req
   if (!lhs || !rhs) {
     return false;
   }
-  // settings
-  if (!sim_msgs__msg__FieldData__are_equal(
-      &(lhs->settings), &(rhs->settings)))
+  // state
+  if (lhs->state != rhs->state) {
+    return false;
+  }
+  // team0
+  if (!sim_msgs__msg__HighCmd__are_equal(
+      &(lhs->team0), &(rhs->team0)))
+  {
+    return false;
+  }
+  // team1
+  if (!sim_msgs__msg__HighCmd__are_equal(
+      &(lhs->team1), &(rhs->team1)))
+  {
+    return false;
+  }
+  // team2
+  if (!sim_msgs__msg__HighCmd__are_equal(
+      &(lhs->team2), &(rhs->team2)))
   {
     return false;
   }
@@ -61,9 +95,23 @@ sim_msgs__srv__Controller_Request__copy(
   if (!input || !output) {
     return false;
   }
-  // settings
-  if (!sim_msgs__msg__FieldData__copy(
-      &(input->settings), &(output->settings)))
+  // state
+  output->state = input->state;
+  // team0
+  if (!sim_msgs__msg__HighCmd__copy(
+      &(input->team0), &(output->team0)))
+  {
+    return false;
+  }
+  // team1
+  if (!sim_msgs__msg__HighCmd__copy(
+      &(input->team1), &(output->team1)))
+  {
+    return false;
+  }
+  // team2
+  if (!sim_msgs__msg__HighCmd__copy(
+      &(input->team2), &(output->team2)))
   {
     return false;
   }

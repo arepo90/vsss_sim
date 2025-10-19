@@ -31,7 +31,7 @@ void sim_msgs__msg__Settings__rosidl_typesupport_introspection_c__Settings_fini_
   sim_msgs__msg__Settings__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__Settings__rosidl_typesupport_introspection_c__Settings_message_member_array[10] = {
+static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__Settings__rosidl_typesupport_introspection_c__Settings_message_member_array[13] = {
   {
     "team_color",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_BOOLEAN,  // type
@@ -109,6 +109,57 @@ static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__Settings
     0,  // array size
     false,  // is upper bound
     offsetof(sim_msgs__msg__Settings, exposure),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "robot0",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs__msg__Settings, robot0),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "robot1",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs__msg__Settings, robot1),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "robot2",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs__msg__Settings, robot2),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -207,7 +258,7 @@ static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__Settings
 static const rosidl_typesupport_introspection_c__MessageMembers sim_msgs__msg__Settings__rosidl_typesupport_introspection_c__Settings_message_members = {
   "sim_msgs__msg",  // message namespace
   "Settings",  // message name
-  10,  // number of fields
+  13,  // number of fields
   sizeof(sim_msgs__msg__Settings),
   sim_msgs__msg__Settings__rosidl_typesupport_introspection_c__Settings_message_member_array,  // message members
   sim_msgs__msg__Settings__rosidl_typesupport_introspection_c__Settings_init_function,  // function to initialize message memory (memory has to be allocated)

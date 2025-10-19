@@ -20,9 +20,6 @@ sim_msgs__msg__HighCmd__init(sim_msgs__msg__HighCmd * msg)
   // robot_id
   // skill
   // mod
-  // curr_x
-  // curr_y
-  // curr_theta
   // tgt_x
   // tgt_y
   // tgt_theta
@@ -38,9 +35,6 @@ sim_msgs__msg__HighCmd__fini(sim_msgs__msg__HighCmd * msg)
   // robot_id
   // skill
   // mod
-  // curr_x
-  // curr_y
-  // curr_theta
   // tgt_x
   // tgt_y
   // tgt_theta
@@ -62,18 +56,6 @@ sim_msgs__msg__HighCmd__are_equal(const sim_msgs__msg__HighCmd * lhs, const sim_
   }
   // mod
   if (lhs->mod != rhs->mod) {
-    return false;
-  }
-  // curr_x
-  if (lhs->curr_x != rhs->curr_x) {
-    return false;
-  }
-  // curr_y
-  if (lhs->curr_y != rhs->curr_y) {
-    return false;
-  }
-  // curr_theta
-  if (lhs->curr_theta != rhs->curr_theta) {
     return false;
   }
   // tgt_x
@@ -105,12 +87,6 @@ sim_msgs__msg__HighCmd__copy(
   output->skill = input->skill;
   // mod
   output->mod = input->mod;
-  // curr_x
-  output->curr_x = input->curr_x;
-  // curr_y
-  output->curr_y = input->curr_y;
-  // curr_theta
-  output->curr_theta = input->curr_theta;
   // tgt_x
   output->tgt_x = input->tgt_x;
   // tgt_y

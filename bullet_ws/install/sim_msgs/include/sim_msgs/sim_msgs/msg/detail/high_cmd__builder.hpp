@@ -69,64 +69,16 @@ private:
   ::sim_msgs::msg::HighCmd msg_;
 };
 
-class Init_HighCmd_curr_theta
-{
-public:
-  explicit Init_HighCmd_curr_theta(::sim_msgs::msg::HighCmd & msg)
-  : msg_(msg)
-  {}
-  Init_HighCmd_tgt_x curr_theta(::sim_msgs::msg::HighCmd::_curr_theta_type arg)
-  {
-    msg_.curr_theta = std::move(arg);
-    return Init_HighCmd_tgt_x(msg_);
-  }
-
-private:
-  ::sim_msgs::msg::HighCmd msg_;
-};
-
-class Init_HighCmd_curr_y
-{
-public:
-  explicit Init_HighCmd_curr_y(::sim_msgs::msg::HighCmd & msg)
-  : msg_(msg)
-  {}
-  Init_HighCmd_curr_theta curr_y(::sim_msgs::msg::HighCmd::_curr_y_type arg)
-  {
-    msg_.curr_y = std::move(arg);
-    return Init_HighCmd_curr_theta(msg_);
-  }
-
-private:
-  ::sim_msgs::msg::HighCmd msg_;
-};
-
-class Init_HighCmd_curr_x
-{
-public:
-  explicit Init_HighCmd_curr_x(::sim_msgs::msg::HighCmd & msg)
-  : msg_(msg)
-  {}
-  Init_HighCmd_curr_y curr_x(::sim_msgs::msg::HighCmd::_curr_x_type arg)
-  {
-    msg_.curr_x = std::move(arg);
-    return Init_HighCmd_curr_y(msg_);
-  }
-
-private:
-  ::sim_msgs::msg::HighCmd msg_;
-};
-
 class Init_HighCmd_mod
 {
 public:
   explicit Init_HighCmd_mod(::sim_msgs::msg::HighCmd & msg)
   : msg_(msg)
   {}
-  Init_HighCmd_curr_x mod(::sim_msgs::msg::HighCmd::_mod_type arg)
+  Init_HighCmd_tgt_x mod(::sim_msgs::msg::HighCmd::_mod_type arg)
   {
     msg_.mod = std::move(arg);
-    return Init_HighCmd_curr_x(msg_);
+    return Init_HighCmd_tgt_x(msg_);
   }
 
 private:

@@ -25,6 +25,9 @@ typedef struct sim_msgs__msg__Settings
   bool local;
   bool reset;
   int32_t exposure;
+  int32_t robot0;
+  int32_t robot1;
+  int32_t robot2;
   double attractive_gain;
   double repulsive_gain;
   double repulsion_radius;

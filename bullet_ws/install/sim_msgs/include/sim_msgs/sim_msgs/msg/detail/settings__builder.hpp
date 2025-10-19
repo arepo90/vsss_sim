@@ -101,16 +101,64 @@ private:
   ::sim_msgs::msg::Settings msg_;
 };
 
+class Init_Settings_robot2
+{
+public:
+  explicit Init_Settings_robot2(::sim_msgs::msg::Settings & msg)
+  : msg_(msg)
+  {}
+  Init_Settings_attractive_gain robot2(::sim_msgs::msg::Settings::_robot2_type arg)
+  {
+    msg_.robot2 = std::move(arg);
+    return Init_Settings_attractive_gain(msg_);
+  }
+
+private:
+  ::sim_msgs::msg::Settings msg_;
+};
+
+class Init_Settings_robot1
+{
+public:
+  explicit Init_Settings_robot1(::sim_msgs::msg::Settings & msg)
+  : msg_(msg)
+  {}
+  Init_Settings_robot2 robot1(::sim_msgs::msg::Settings::_robot1_type arg)
+  {
+    msg_.robot1 = std::move(arg);
+    return Init_Settings_robot2(msg_);
+  }
+
+private:
+  ::sim_msgs::msg::Settings msg_;
+};
+
+class Init_Settings_robot0
+{
+public:
+  explicit Init_Settings_robot0(::sim_msgs::msg::Settings & msg)
+  : msg_(msg)
+  {}
+  Init_Settings_robot1 robot0(::sim_msgs::msg::Settings::_robot0_type arg)
+  {
+    msg_.robot0 = std::move(arg);
+    return Init_Settings_robot1(msg_);
+  }
+
+private:
+  ::sim_msgs::msg::Settings msg_;
+};
+
 class Init_Settings_exposure
 {
 public:
   explicit Init_Settings_exposure(::sim_msgs::msg::Settings & msg)
   : msg_(msg)
   {}
-  Init_Settings_attractive_gain exposure(::sim_msgs::msg::Settings::_exposure_type arg)
+  Init_Settings_robot0 exposure(::sim_msgs::msg::Settings::_exposure_type arg)
   {
     msg_.exposure = std::move(arg);
-    return Init_Settings_attractive_gain(msg_);
+    return Init_Settings_robot0(msg_);
   }
 
 private:

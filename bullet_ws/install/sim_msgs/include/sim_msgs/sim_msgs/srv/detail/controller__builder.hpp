@@ -21,16 +21,64 @@ namespace srv
 namespace builder
 {
 
-class Init_Controller_Request_settings
+class Init_Controller_Request_team2
 {
 public:
-  Init_Controller_Request_settings()
+  explicit Init_Controller_Request_team2(::sim_msgs::srv::Controller_Request & msg)
+  : msg_(msg)
+  {}
+  ::sim_msgs::srv::Controller_Request team2(::sim_msgs::srv::Controller_Request::_team2_type arg)
+  {
+    msg_.team2 = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::sim_msgs::srv::Controller_Request msg_;
+};
+
+class Init_Controller_Request_team1
+{
+public:
+  explicit Init_Controller_Request_team1(::sim_msgs::srv::Controller_Request & msg)
+  : msg_(msg)
+  {}
+  Init_Controller_Request_team2 team1(::sim_msgs::srv::Controller_Request::_team1_type arg)
+  {
+    msg_.team1 = std::move(arg);
+    return Init_Controller_Request_team2(msg_);
+  }
+
+private:
+  ::sim_msgs::srv::Controller_Request msg_;
+};
+
+class Init_Controller_Request_team0
+{
+public:
+  explicit Init_Controller_Request_team0(::sim_msgs::srv::Controller_Request & msg)
+  : msg_(msg)
+  {}
+  Init_Controller_Request_team1 team0(::sim_msgs::srv::Controller_Request::_team0_type arg)
+  {
+    msg_.team0 = std::move(arg);
+    return Init_Controller_Request_team1(msg_);
+  }
+
+private:
+  ::sim_msgs::srv::Controller_Request msg_;
+};
+
+class Init_Controller_Request_state
+{
+public:
+  Init_Controller_Request_state()
   : msg_(::rosidl_runtime_cpp::MessageInitialization::SKIP)
   {}
-  ::sim_msgs::srv::Controller_Request settings(::sim_msgs::srv::Controller_Request::_settings_type arg)
+  Init_Controller_Request_team0 state(::sim_msgs::srv::Controller_Request::_state_type arg)
   {
-    msg_.settings = std::move(arg);
-    return std::move(msg_);
+    msg_.state = std::move(arg);
+    return Init_Controller_Request_team0(msg_);
   }
 
 private:
@@ -48,7 +96,7 @@ template<>
 inline
 auto build<::sim_msgs::srv::Controller_Request>()
 {
-  return sim_msgs::srv::builder::Init_Controller_Request_settings();
+  return sim_msgs::srv::builder::Init_Controller_Request_state();
 }
 
 }  // namespace sim_msgs

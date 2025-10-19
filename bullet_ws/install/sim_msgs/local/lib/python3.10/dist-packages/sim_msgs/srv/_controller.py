@@ -42,9 +42,9 @@ class Metaclass_Controller_Request(type):
             cls._TYPE_SUPPORT = module.type_support_msg__srv__controller__request
             cls._DESTROY_ROS_MESSAGE = module.destroy_ros_message_msg__srv__controller__request
 
-            from sim_msgs.msg import FieldData
-            if FieldData.__class__._TYPE_SUPPORT is None:
-                FieldData.__class__.__import_type_support__()
+            from sim_msgs.msg import HighCmd
+            if HighCmd.__class__._TYPE_SUPPORT is None:
+                HighCmd.__class__.__import_type_support__()
 
     @classmethod
     def __prepare__(cls, name, bases, **kwargs):
@@ -59,23 +59,37 @@ class Controller_Request(metaclass=Metaclass_Controller_Request):
     """Message class 'Controller_Request'."""
 
     __slots__ = [
-        '_settings',
+        '_state',
+        '_team0',
+        '_team1',
+        '_team2',
     ]
 
     _fields_and_field_types = {
-        'settings': 'sim_msgs/FieldData',
+        'state': 'int32',
+        'team0': 'sim_msgs/HighCmd',
+        'team1': 'sim_msgs/HighCmd',
+        'team2': 'sim_msgs/HighCmd',
     }
 
     SLOT_TYPES = (
-        rosidl_parser.definition.NamespacedType(['sim_msgs', 'msg'], 'FieldData'),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['sim_msgs', 'msg'], 'HighCmd'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['sim_msgs', 'msg'], 'HighCmd'),  # noqa: E501
+        rosidl_parser.definition.NamespacedType(['sim_msgs', 'msg'], 'HighCmd'),  # noqa: E501
     )
 
     def __init__(self, **kwargs):
         assert all('_' + key in self.__slots__ for key in kwargs.keys()), \
             'Invalid arguments passed to constructor: %s' % \
             ', '.join(sorted(k for k in kwargs.keys() if '_' + k not in self.__slots__))
-        from sim_msgs.msg import FieldData
-        self.settings = kwargs.get('settings', FieldData())
+        self.state = kwargs.get('state', int())
+        from sim_msgs.msg import HighCmd
+        self.team0 = kwargs.get('team0', HighCmd())
+        from sim_msgs.msg import HighCmd
+        self.team1 = kwargs.get('team1', HighCmd())
+        from sim_msgs.msg import HighCmd
+        self.team2 = kwargs.get('team2', HighCmd())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -106,7 +120,13 @@ class Controller_Request(metaclass=Metaclass_Controller_Request):
     def __eq__(self, other):
         if not isinstance(other, self.__class__):
             return False
-        if self.settings != other.settings:
+        if self.state != other.state:
+            return False
+        if self.team0 != other.team0:
+            return False
+        if self.team1 != other.team1:
+            return False
+        if self.team2 != other.team2:
             return False
         return True
 
@@ -116,18 +136,61 @@ class Controller_Request(metaclass=Metaclass_Controller_Request):
         return copy(cls._fields_and_field_types)
 
     @builtins.property
-    def settings(self):
-        """Message field 'settings'."""
-        return self._settings
+    def state(self):
+        """Message field 'state'."""
+        return self._state
 
-    @settings.setter
-    def settings(self, value):
+    @state.setter
+    def state(self, value):
         if __debug__:
-            from sim_msgs.msg import FieldData
             assert \
-                isinstance(value, FieldData), \
-                "The 'settings' field must be a sub message of type 'FieldData'"
-        self._settings = value
+                isinstance(value, int), \
+                "The 'state' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'state' field must be an integer in [-2147483648, 2147483647]"
+        self._state = value
+
+    @builtins.property
+    def team0(self):
+        """Message field 'team0'."""
+        return self._team0
+
+    @team0.setter
+    def team0(self, value):
+        if __debug__:
+            from sim_msgs.msg import HighCmd
+            assert \
+                isinstance(value, HighCmd), \
+                "The 'team0' field must be a sub message of type 'HighCmd'"
+        self._team0 = value
+
+    @builtins.property
+    def team1(self):
+        """Message field 'team1'."""
+        return self._team1
+
+    @team1.setter
+    def team1(self, value):
+        if __debug__:
+            from sim_msgs.msg import HighCmd
+            assert \
+                isinstance(value, HighCmd), \
+                "The 'team1' field must be a sub message of type 'HighCmd'"
+        self._team1 = value
+
+    @builtins.property
+    def team2(self):
+        """Message field 'team2'."""
+        return self._team2
+
+    @team2.setter
+    def team2(self, value):
+        if __debug__:
+            from sim_msgs.msg import HighCmd
+            assert \
+                isinstance(value, HighCmd), \
+                "The 'team2' field must be a sub message of type 'HighCmd'"
+        self._team2 = value
 
 
 # Import statements for member types

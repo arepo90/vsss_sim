@@ -15,8 +15,10 @@
 #include "rosidl_runtime_cpp/traits.hpp"
 
 // Include directives for member types
-// Member 'settings'
-#include "sim_msgs/msg/detail/field_data__traits.hpp"
+// Member 'team0'
+// Member 'team1'
+// Member 'team2'
+#include "sim_msgs/msg/detail/high_cmd__traits.hpp"
 
 namespace sim_msgs
 {
@@ -29,10 +31,31 @@ inline void to_flow_style_yaml(
   std::ostream & out)
 {
   out << "{";
-  // member: settings
+  // member: state
   {
-    out << "settings: ";
-    to_flow_style_yaml(msg.settings, out);
+    out << "state: ";
+    rosidl_generator_traits::value_to_yaml(msg.state, out);
+    out << ", ";
+  }
+
+  // member: team0
+  {
+    out << "team0: ";
+    to_flow_style_yaml(msg.team0, out);
+    out << ", ";
+  }
+
+  // member: team1
+  {
+    out << "team1: ";
+    to_flow_style_yaml(msg.team1, out);
+    out << ", ";
+  }
+
+  // member: team2
+  {
+    out << "team2: ";
+    to_flow_style_yaml(msg.team2, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -41,13 +64,41 @@ inline void to_block_style_yaml(
   const Controller_Request & msg,
   std::ostream & out, size_t indentation = 0)
 {
-  // member: settings
+  // member: state
   {
     if (indentation > 0) {
       out << std::string(indentation, ' ');
     }
-    out << "settings:\n";
-    to_block_style_yaml(msg.settings, out, indentation + 2);
+    out << "state: ";
+    rosidl_generator_traits::value_to_yaml(msg.state, out);
+    out << "\n";
+  }
+
+  // member: team0
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "team0:\n";
+    to_block_style_yaml(msg.team0, out, indentation + 2);
+  }
+
+  // member: team1
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "team1:\n";
+    to_block_style_yaml(msg.team1, out, indentation + 2);
+  }
+
+  // member: team2
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "team2:\n";
+    to_block_style_yaml(msg.team2, out, indentation + 2);
   }
 }  // NOLINT(readability/fn_size)
 
@@ -97,11 +148,11 @@ inline const char * name<sim_msgs::srv::Controller_Request>()
 
 template<>
 struct has_fixed_size<sim_msgs::srv::Controller_Request>
-  : std::integral_constant<bool, has_fixed_size<sim_msgs::msg::FieldData>::value> {};
+  : std::integral_constant<bool, has_fixed_size<sim_msgs::msg::HighCmd>::value> {};
 
 template<>
 struct has_bounded_size<sim_msgs::srv::Controller_Request>
-  : std::integral_constant<bool, has_bounded_size<sim_msgs::msg::FieldData>::value> {};
+  : std::integral_constant<bool, has_bounded_size<sim_msgs::msg::HighCmd>::value> {};
 
 template<>
 struct is_message<sim_msgs::srv::Controller_Request>

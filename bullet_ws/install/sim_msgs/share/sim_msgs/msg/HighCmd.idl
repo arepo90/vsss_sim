@@ -12,12 +12,6 @@ module sim_msgs {
 
       int32 mod;
 
-      double curr_x;
-
-      double curr_y;
-
-      double curr_theta;
-
       double tgt_x;
 
       double tgt_y;

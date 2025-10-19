@@ -77,33 +77,6 @@ bool sim_msgs__msg__high_cmd__convert_from_py(PyObject * _pymsg, void * _ros_mes
     ros_message->mod = (int32_t)PyLong_AsLong(field);
     Py_DECREF(field);
   }
-  {  // curr_x
-    PyObject * field = PyObject_GetAttrString(_pymsg, "curr_x");
-    if (!field) {
-      return false;
-    }
-    assert(PyFloat_Check(field));
-    ros_message->curr_x = PyFloat_AS_DOUBLE(field);
-    Py_DECREF(field);
-  }
-  {  // curr_y
-    PyObject * field = PyObject_GetAttrString(_pymsg, "curr_y");
-    if (!field) {
-      return false;
-    }
-    assert(PyFloat_Check(field));
-    ros_message->curr_y = PyFloat_AS_DOUBLE(field);
-    Py_DECREF(field);
-  }
-  {  // curr_theta
-    PyObject * field = PyObject_GetAttrString(_pymsg, "curr_theta");
-    if (!field) {
-      return false;
-    }
-    assert(PyFloat_Check(field));
-    ros_message->curr_theta = PyFloat_AS_DOUBLE(field);
-    Py_DECREF(field);
-  }
   {  // tgt_x
     PyObject * field = PyObject_GetAttrString(_pymsg, "tgt_x");
     if (!field) {
@@ -180,39 +153,6 @@ PyObject * sim_msgs__msg__high_cmd__convert_to_py(void * raw_ros_message)
     field = PyLong_FromLong(ros_message->mod);
     {
       int rc = PyObject_SetAttrString(_pymessage, "mod", field);
-      Py_DECREF(field);
-      if (rc) {
-        return NULL;
-      }
-    }
-  }
-  {  // curr_x
-    PyObject * field = NULL;
-    field = PyFloat_FromDouble(ros_message->curr_x);
-    {
-      int rc = PyObject_SetAttrString(_pymessage, "curr_x", field);
-      Py_DECREF(field);
-      if (rc) {
-        return NULL;
-      }
-    }
-  }
-  {  // curr_y
-    PyObject * field = NULL;
-    field = PyFloat_FromDouble(ros_message->curr_y);
-    {
-      int rc = PyObject_SetAttrString(_pymessage, "curr_y", field);
-      Py_DECREF(field);
-      if (rc) {
-        return NULL;
-      }
-    }
-  }
-  {  // curr_theta
-    PyObject * field = NULL;
-    field = PyFloat_FromDouble(ros_message->curr_theta);
-    {
-      int rc = PyObject_SetAttrString(_pymessage, "curr_theta", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

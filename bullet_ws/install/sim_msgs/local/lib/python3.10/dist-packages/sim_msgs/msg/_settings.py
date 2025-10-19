@@ -62,6 +62,9 @@ class Settings(metaclass=Metaclass_Settings):
         '_local',
         '_reset',
         '_exposure',
+        '_robot0',
+        '_robot1',
+        '_robot2',
         '_attractive_gain',
         '_repulsive_gain',
         '_repulsion_radius',
@@ -75,6 +78,9 @@ class Settings(metaclass=Metaclass_Settings):
         'local': 'boolean',
         'reset': 'boolean',
         'exposure': 'int32',
+        'robot0': 'int32',
+        'robot1': 'int32',
+        'robot2': 'int32',
         'attractive_gain': 'double',
         'repulsive_gain': 'double',
         'repulsion_radius': 'double',
@@ -87,6 +93,9 @@ class Settings(metaclass=Metaclass_Settings):
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
         rosidl_parser.definition.BasicType('boolean'),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('int32'),  # noqa: E501
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
@@ -104,6 +113,9 @@ class Settings(metaclass=Metaclass_Settings):
         self.local = kwargs.get('local', bool())
         self.reset = kwargs.get('reset', bool())
         self.exposure = kwargs.get('exposure', int())
+        self.robot0 = kwargs.get('robot0', int())
+        self.robot1 = kwargs.get('robot1', int())
+        self.robot2 = kwargs.get('robot2', int())
         self.attractive_gain = kwargs.get('attractive_gain', float())
         self.repulsive_gain = kwargs.get('repulsive_gain', float())
         self.repulsion_radius = kwargs.get('repulsion_radius', float())
@@ -148,6 +160,12 @@ class Settings(metaclass=Metaclass_Settings):
         if self.reset != other.reset:
             return False
         if self.exposure != other.exposure:
+            return False
+        if self.robot0 != other.robot0:
+            return False
+        if self.robot1 != other.robot1:
+            return False
+        if self.robot2 != other.robot2:
             return False
         if self.attractive_gain != other.attractive_gain:
             return False
@@ -232,6 +250,51 @@ class Settings(metaclass=Metaclass_Settings):
             assert value >= -2147483648 and value < 2147483648, \
                 "The 'exposure' field must be an integer in [-2147483648, 2147483647]"
         self._exposure = value
+
+    @builtins.property
+    def robot0(self):
+        """Message field 'robot0'."""
+        return self._robot0
+
+    @robot0.setter
+    def robot0(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, int), \
+                "The 'robot0' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'robot0' field must be an integer in [-2147483648, 2147483647]"
+        self._robot0 = value
+
+    @builtins.property
+    def robot1(self):
+        """Message field 'robot1'."""
+        return self._robot1
+
+    @robot1.setter
+    def robot1(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, int), \
+                "The 'robot1' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'robot1' field must be an integer in [-2147483648, 2147483647]"
+        self._robot1 = value
+
+    @builtins.property
+    def robot2(self):
+        """Message field 'robot2'."""
+        return self._robot2
+
+    @robot2.setter
+    def robot2(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, int), \
+                "The 'robot2' field must be of type 'int'"
+            assert value >= -2147483648 and value < 2147483648, \
+                "The 'robot2' field must be an integer in [-2147483648, 2147483647]"
+        self._robot2 = value
 
     @builtins.property
     def attractive_gain(self):

@@ -13,10 +13,14 @@
 
 
 // Include directives for member types
-// Member `settings`
-#include "sim_msgs/msg/field_data.h"
-// Member `settings`
-#include "sim_msgs/msg/detail/field_data__rosidl_typesupport_introspection_c.h"
+// Member `team0`
+// Member `team1`
+// Member `team2`
+#include "sim_msgs/msg/high_cmd.h"
+// Member `team0`
+// Member `team1`
+// Member `team2`
+#include "sim_msgs/msg/detail/high_cmd__rosidl_typesupport_introspection_c.h"
 
 #ifdef __cplusplus
 extern "C"
@@ -37,16 +41,67 @@ void sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Cont
   sim_msgs__srv__Controller_Request__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array[1] = {
+static rosidl_typesupport_introspection_c__MessageMember sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array[4] = {
   {
-    "settings",  // name
+    "state",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs__srv__Controller_Request, state),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "team0",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
     0,  // upper bound of string
     NULL,  // members of sub message (initialized later)
     false,  // is array
     0,  // array size
     false,  // is upper bound
-    offsetof(sim_msgs__srv__Controller_Request, settings),  // bytes offset in struct
+    offsetof(sim_msgs__srv__Controller_Request, team0),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "team1",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs__srv__Controller_Request, team1),  // bytes offset in struct
+    NULL,  // default value
+    NULL,  // size() function pointer
+    NULL,  // get_const(index) function pointer
+    NULL,  // get(index) function pointer
+    NULL,  // fetch(index, &value) function pointer
+    NULL,  // assign(index, value) function pointer
+    NULL  // resize(index) function pointer
+  },
+  {
+    "team2",  // name
+    rosidl_typesupport_introspection_c__ROS_TYPE_MESSAGE,  // type
+    0,  // upper bound of string
+    NULL,  // members of sub message (initialized later)
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs__srv__Controller_Request, team2),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -60,7 +115,7 @@ static rosidl_typesupport_introspection_c__MessageMember sim_msgs__srv__Controll
 static const rosidl_typesupport_introspection_c__MessageMembers sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_members = {
   "sim_msgs__srv",  // message namespace
   "Controller_Request",  // message name
-  1,  // number of fields
+  4,  // number of fields
   sizeof(sim_msgs__srv__Controller_Request),
   sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array,  // message members
   sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_init_function,  // function to initialize message memory (memory has to be allocated)
@@ -78,8 +133,12 @@ static rosidl_message_type_support_t sim_msgs__srv__Controller_Request__rosidl_t
 ROSIDL_TYPESUPPORT_INTROSPECTION_C_EXPORT_sim_msgs
 const rosidl_message_type_support_t *
 ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sim_msgs, srv, Controller_Request)() {
-  sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array[0].members_ =
-    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sim_msgs, msg, FieldData)();
+  sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array[1].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sim_msgs, msg, HighCmd)();
+  sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array[2].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sim_msgs, msg, HighCmd)();
+  sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_member_array[3].members_ =
+    ROSIDL_TYPESUPPORT_INTERFACE__MESSAGE_SYMBOL_NAME(rosidl_typesupport_introspection_c, sim_msgs, msg, HighCmd)();
   if (!sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_type_support_handle.typesupport_identifier) {
     sim_msgs__srv__Controller_Request__rosidl_typesupport_introspection_c__Controller_Request_message_type_support_handle.typesupport_identifier =
       rosidl_typesupport_introspection_c__identifier;

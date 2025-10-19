@@ -31,7 +31,7 @@ void sim_msgs__msg__HighCmd__rosidl_typesupport_introspection_c__HighCmd_fini_fu
   sim_msgs__msg__HighCmd__fini(message_memory);
 }
 
-static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__HighCmd__rosidl_typesupport_introspection_c__HighCmd_message_member_array[9] = {
+static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__HighCmd__rosidl_typesupport_introspection_c__HighCmd_message_member_array[6] = {
   {
     "robot_id",  // name
     rosidl_typesupport_introspection_c__ROS_TYPE_INT32,  // type
@@ -75,57 +75,6 @@ static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__HighCmd_
     0,  // array size
     false,  // is upper bound
     offsetof(sim_msgs__msg__HighCmd, mod),  // bytes offset in struct
-    NULL,  // default value
-    NULL,  // size() function pointer
-    NULL,  // get_const(index) function pointer
-    NULL,  // get(index) function pointer
-    NULL,  // fetch(index, &value) function pointer
-    NULL,  // assign(index, value) function pointer
-    NULL  // resize(index) function pointer
-  },
-  {
-    "curr_x",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
-    0,  // upper bound of string
-    NULL,  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(sim_msgs__msg__HighCmd, curr_x),  // bytes offset in struct
-    NULL,  // default value
-    NULL,  // size() function pointer
-    NULL,  // get_const(index) function pointer
-    NULL,  // get(index) function pointer
-    NULL,  // fetch(index, &value) function pointer
-    NULL,  // assign(index, value) function pointer
-    NULL  // resize(index) function pointer
-  },
-  {
-    "curr_y",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
-    0,  // upper bound of string
-    NULL,  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(sim_msgs__msg__HighCmd, curr_y),  // bytes offset in struct
-    NULL,  // default value
-    NULL,  // size() function pointer
-    NULL,  // get_const(index) function pointer
-    NULL,  // get(index) function pointer
-    NULL,  // fetch(index, &value) function pointer
-    NULL,  // assign(index, value) function pointer
-    NULL  // resize(index) function pointer
-  },
-  {
-    "curr_theta",  // name
-    rosidl_typesupport_introspection_c__ROS_TYPE_DOUBLE,  // type
-    0,  // upper bound of string
-    NULL,  // members of sub message
-    false,  // is array
-    0,  // array size
-    false,  // is upper bound
-    offsetof(sim_msgs__msg__HighCmd, curr_theta),  // bytes offset in struct
     NULL,  // default value
     NULL,  // size() function pointer
     NULL,  // get_const(index) function pointer
@@ -190,7 +139,7 @@ static rosidl_typesupport_introspection_c__MessageMember sim_msgs__msg__HighCmd_
 static const rosidl_typesupport_introspection_c__MessageMembers sim_msgs__msg__HighCmd__rosidl_typesupport_introspection_c__HighCmd_message_members = {
   "sim_msgs__msg",  // message namespace
   "HighCmd",  // message name
-  9,  // number of fields
+  6,  // number of fields
   sizeof(sim_msgs__msg__HighCmd),
   sim_msgs__msg__HighCmd__rosidl_typesupport_introspection_c__HighCmd_message_member_array,  // message members
   sim_msgs__msg__HighCmd__rosidl_typesupport_introspection_c__HighCmd_init_function,  // function to initialize message memory (memory has to be allocated)

@@ -18,13 +18,18 @@ extern "C"
 // Constants defined in the message
 
 // Include directives for member types
-// Member 'settings'
-#include "sim_msgs/msg/detail/field_data__struct.h"
+// Member 'team0'
+// Member 'team1'
+// Member 'team2'
+#include "sim_msgs/msg/detail/high_cmd__struct.h"
 
 /// Struct defined in srv/Controller in the package sim_msgs.
 typedef struct sim_msgs__srv__Controller_Request
 {
-  sim_msgs__msg__FieldData settings;
+  int32_t state;
+  sim_msgs__msg__HighCmd team0;
+  sim_msgs__msg__HighCmd team1;
+  sim_msgs__msg__HighCmd team2;
 } sim_msgs__srv__Controller_Request;
 
 // Struct for a sequence of sim_msgs__srv__Controller_Request.

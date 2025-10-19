@@ -1,0 +1,16 @@
+// generated from rosidl_adapter/resource/srv.idl.em
+// with input from sim_msgs/srv/Reset.srv
+// generated code does not contain a copyright notice
+
+#include "sim_msgs/msg/FieldData.idl"
+
+module sim_msgs {
+  module srv {
+    struct Reset_Request {
+      sim_msgs::msg::FieldData settings;
+    };
+    struct Reset_Response {
+      boolean success;
+    };
+  };
+};

@@ -12,3 +12,7 @@ srv/Controller.idl
 srv/Controller.srv
 srv/Controller_Request.msg
 srv/Controller_Response.msg
+srv/Reset.idl
+srv/Reset.srv
+srv/Reset_Request.msg
+srv/Reset_Response.msg

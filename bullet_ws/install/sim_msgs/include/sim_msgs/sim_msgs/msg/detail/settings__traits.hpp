@@ -60,6 +60,27 @@ inline void to_flow_style_yaml(
     out << ", ";
   }
 
+  // member: robot0
+  {
+    out << "robot0: ";
+    rosidl_generator_traits::value_to_yaml(msg.robot0, out);
+    out << ", ";
+  }
+
+  // member: robot1
+  {
+    out << "robot1: ";
+    rosidl_generator_traits::value_to_yaml(msg.robot1, out);
+    out << ", ";
+  }
+
+  // member: robot2
+  {
+    out << "robot2: ";
+    rosidl_generator_traits::value_to_yaml(msg.robot2, out);
+    out << ", ";
+  }
+
   // member: attractive_gain
   {
     out << "attractive_gain: ";
@@ -147,6 +168,36 @@ inline void to_block_style_yaml(
     }
     out << "exposure: ";
     rosidl_generator_traits::value_to_yaml(msg.exposure, out);
+    out << "\n";
+  }
+
+  // member: robot0
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "robot0: ";
+    rosidl_generator_traits::value_to_yaml(msg.robot0, out);
+    out << "\n";
+  }
+
+  // member: robot1
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "robot1: ";
+    rosidl_generator_traits::value_to_yaml(msg.robot1, out);
+    out << "\n";
+  }
+
+  // member: robot2
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "robot2: ";
+    rosidl_generator_traits::value_to_yaml(msg.robot2, out);
     out << "\n";
   }
 

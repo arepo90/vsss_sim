@@ -41,9 +41,6 @@ struct HighCmd_
       this->robot_id = 0l;
       this->skill = 0l;
       this->mod = 0l;
-      this->curr_x = 0.0;
-      this->curr_y = 0.0;
-      this->curr_theta = 0.0;
       this->tgt_x = 0.0;
       this->tgt_y = 0.0;
       this->tgt_theta = 0.0;
@@ -59,9 +56,6 @@ struct HighCmd_
       this->robot_id = 0l;
       this->skill = 0l;
       this->mod = 0l;
-      this->curr_x = 0.0;
-      this->curr_y = 0.0;
-      this->curr_theta = 0.0;
       this->tgt_x = 0.0;
       this->tgt_y = 0.0;
       this->tgt_theta = 0.0;
@@ -78,15 +72,6 @@ struct HighCmd_
   using _mod_type =
     int32_t;
   _mod_type mod;
-  using _curr_x_type =
-    double;
-  _curr_x_type curr_x;
-  using _curr_y_type =
-    double;
-  _curr_y_type curr_y;
-  using _curr_theta_type =
-    double;
-  _curr_theta_type curr_theta;
   using _tgt_x_type =
     double;
   _tgt_x_type tgt_x;
@@ -114,24 +99,6 @@ struct HighCmd_
     const int32_t & _arg)
   {
     this->mod = _arg;
-    return *this;
-  }
-  Type & set__curr_x(
-    const double & _arg)
-  {
-    this->curr_x = _arg;
-    return *this;
-  }
-  Type & set__curr_y(
-    const double & _arg)
-  {
-    this->curr_y = _arg;
-    return *this;
-  }
-  Type & set__curr_theta(
-    const double & _arg)
-  {
-    this->curr_theta = _arg;
     return *this;
   }
   Type & set__tgt_x(
@@ -202,15 +169,6 @@ struct HighCmd_
       return false;
     }
     if (this->mod != other.mod) {
-      return false;
-    }
-    if (this->curr_x != other.curr_x) {
-      return false;
-    }
-    if (this->curr_y != other.curr_y) {
-      return false;
-    }
-    if (this->curr_theta != other.curr_theta) {
       return false;
     }
     if (this->tgt_x != other.tgt_x) {

@@ -12,3 +12,4 @@ sim_msgs/msg/_obj_data.py
 sim_msgs/msg/_settings.py
 sim_msgs/srv/__init__.py
 sim_msgs/srv/_controller.py
+sim_msgs/srv/_reset.py

@@ -1,7 +1,16 @@
 import rclpy
 import numpy as np
 from rclpy.node import Node
-from sim_msgs.msg import FieldData, LowCmd, ObjData, Settings
+from sim_msgs.msg import FieldData, LowCmd, HighCmd, ObjData, Settings
+from sim_msgs.srv import Controller
+from enum import IntEnum
+import threading
+
+class State(IntEnum):
+    PAUSE = 0
+    PLAY = 1
+    MIDFIELD = 2
+    PENALTY = 3
 
 FIELD_LENGTH = 17
 TEAM_GOAL = np.array([FIELD_LENGTH / 2, 0.0])
@@ -14,12 +23,18 @@ GOAL_TOLERANCE = 1
 TANGENTIAL_GAIN = 3
 MAX_LINEAR_SPEED = 3
 
+USE_LOCAL = True
+
 class SkillLib:
     def moveToPoint(self, robot: ObjData, target_pos: np.ndarray, target_theta: float, obstacles: list[ObjData]) -> LowCmd:
         robot_pos = np.array([robot.x, robot.y])
         robot_vel = np.array([robot.vx, robot.vy])
         net_vector = self._calculate_potential_field_vector(robot_pos, robot_vel, target_pos, obstacles)
-        vx_robot, vy_robot = self._world_to_robot_frame(net_vector, robot.theta)
+        if USE_LOCAL:
+            vx_robot, vy_robot = self._world_to_robot_frame(net_vector, robot.theta)
+        else:
+            vx_robot, vy_robot = net_vector
+
         vx_capped, vy_capped = self._cap_speed(vx_robot, vy_robot)
         cmd = LowCmd()
         cmd.robot_id = robot.obj_id
@@ -88,6 +103,7 @@ class Strat(Node):
         
         self.field_subscriber = self.create_subscription(FieldData, 'field_data', self.gpCB, 10)
         self.settings_subscriver = self.create_subscription(Settings, 'settings', self.settingsCB, 10)
+        self.controller_service = self.create_service(Controller, 'strat/controller', self.controllerCB)
         
         self.cmd_publishers = {
             0: self.create_publisher(LowCmd, '/low0', 10),
@@ -98,64 +114,117 @@ class Strat(Node):
         self.get_logger().info("Strategist node initialized.")
         self.cmds = [None, None, None]
         self.timer = self.create_timer(0.1, self.send)
+
+        self.state = 0
+        self.mod = 0
+        self.params = [HighCmd, HighCmd, HighCmd]
+        self.mapping = [-1, -1, -1]
+
+        self.mutex = threading.Lock()
+        
+    
+    def controllerCB(self, msg, response):
+        try:
+            with self.mutex:
+                self.state = msg.state
+                print(f"recv: {self.state}")
+                for i in range(3):
+                    self.params[i] = getattr(msg, f"team{i}")
+
+            response.success = True       
+        except Exception as e:
+            print(f"Error: {str(e)}")
+            response.success = False   
+
+        return response
  
     def settingsCB(self, msg: Settings):
-        global TEAM_GOAL, OP_GOAL, ATTRACTIVE_GAIN, REPULSIVE_GAIN, REPULSION_RADIUS, TANGENTIAL_GAIN, GOAL_TOLERANCE
+        global TEAM_GOAL, OP_GOAL, ATTRACTIVE_GAIN, REPULSIVE_GAIN, REPULSION_RADIUS, TANGENTIAL_GAIN, GOAL_TOLERANCE, USE_LOCAL
         if msg.team_side:
-            TEAM_GOAL = np.array([-FIELD_LENGTH / 2, 0.0])
-            OP_GOAL = np.array([FIELD_LENGTH / 2, 0.0])
-        else:
             TEAM_GOAL = np.array([FIELD_LENGTH / 2, 0.0])
             OP_GOAL = np.array([-FIELD_LENGTH / 2, 0.0])
+        else:
+            TEAM_GOAL = np.array([-FIELD_LENGTH / 2, 0.0])
+            OP_GOAL = np.array([FIELD_LENGTH / 2, 0.0])
 
         ATTRACTIVE_GAIN = msg.attractive_gain
         REPULSIVE_GAIN = msg.repulsive_gain
-        REPULSION_RADIUS = msg.repulsion_gain
+        REPULSION_RADIUS = msg.repulsive_gain
         TANGENTIAL_GAIN = msg.tangential_gain
         GOAL_TOLERANCE = msg.goal_tolerance
+
+        USE_LOCAL = msg.local
+
+        self.mapping = [msg.robot0, msg.robot1, msg.robot2]
 
     def send(self):
         for i, cmd in enumerate(self.cmds):
             if cmd is not None:
                 self.cmd_publishers[i].publish(cmd)
 
-    def gpCB(self, field: FieldData):       
-        self.cmds[0] = self.skills.moveToPoint(field.team0, np.array([0, 0]), 0., [])
-        self.cmds[1] = self.skills.moveToPoint(field.team1, np.array([3, -3]), 90., [])
+    def gpCB(self, field: FieldData): 
+        with self.mutex:
+            state = self.state
+            mod = self.mod
+            params = list(self.params)
+        
+        match state:
+            case State.PAUSE:
+                cmd = LowCmd(robot_id=0, vx=0., vy=0., dtheta=0.)
+                for i in range(3):
+                    self.cmds[i] = cmd
 
-        """
-        # Ejemplo 3: Los ejemplos 1 y 2 juntos, ademas de que el robot1 sigue la pelota
-        r0_target_coords = np.array([0, 0])
-        r0_target_angle = 45.0
-        r0_command = self.skills.moveToPoint(field.robot0, r0_target_coords , r0_target_angle, [])
+            case State.PLAY:
+                for i, team_index in enumerate(self.mapping):
+                    if team_index == -1:
+                        self.cmds[i] = None
+                        continue
 
-        r2_target_coords = np.array([3, -5])
-        r2_target_angle = 0.0
-        all_robots = [field.robot0, field.robot1, field.robot2, field.robot3, field.robot4, field.robot5]
-        obstacles = []
-        for robot in all_robots:
-            if robot != field.robot2:
-                obstacle = Obstacle(robot.x, robot.y)
-                obstacles.append(obstacle)
-        r2_command = self.skills.moveToPoint(field.robot2, r2_target_coords, r2_target_angle, obstacles)
+                    team_obj = getattr(field, f"team{team_index}")
 
-        # El objetivo es donde sea que este la pelota
-        r1_target_coords = np.array([field.ball.x+1, field.ball.y])
-        r1_target_angle = -90.0
-        obstacles = []
-        for robot in all_robots:
-            if robot != field.robot1:
-                obstacle = Obstacle(robot.x, robot.y)
-                obstacles.append(obstacle)
-        r1_command = self.skills.moveToPoint(field.robot1, r1_target_coords, r1_target_angle, obstacles)
+                    target = [
+                        np.array([0, 0]),
+                        np.array([0, 0]),
+                        np.array([0, 0]),
+                    ][i]
 
-        # Comunicar los comandos a los 3 robots
-        self.cmd_publishers[0].publish(r0_command)
-        self.cmd_publishers[1].publish(r1_command)
-        self.cmd_publishers[2].publish(r2_command)
-        """
+                    self.cmds[i] = self.skills.moveToPoint(team_obj, target, 0., [])
 
-        return
+                #self.cmds[0] = self.skills.moveToPoint(field.team0, np.array([3, 3]), 0., [])
+                #self.cmds[1] = self.skills.moveToPoint(field.team1, np.array([0, 0]), 0., [])
+                #self.cmds[2] = self.skills.moveToPoint(field.team2, np.array([3, -3]), 0., [])
+
+            case State.MIDFIELD:
+                for i, team_index in enumerate(self.mapping):
+                    if team_index == -1:
+                        self.cmds[i] = None
+                        continue
+
+                    team_obj = getattr(field, f"team{team_index}")
+
+                    target = [
+                        np.array([3, 2]),
+                        np.array([3, -2]),
+                        TEAM_GOAL,
+                    ][i]
+
+                    self.cmds[i] = self.skills.moveToPoint(team_obj, target, 0., [])
+
+            case State.PENALTY:
+                for i, team_index in enumerate(self.mapping):
+                    if team_index == -1:
+                        self.cmds[i] = None
+                        continue
+
+                    team_obj = getattr(field, f"team{team_index}")
+
+                    target = [
+                        np.array([-1, 2]),
+                        np.array([-1, -2]),
+                        TEAM_GOAL,
+                    ][i]
+
+                    self.cmds[i] = self.skills.moveToPoint(team_obj, target, 0., [])
 
 def main(args=None):
     rclpy.init(args=args)

@@ -16,8 +16,10 @@
 
 
 // Include directives for member types
-// Member 'settings'
-#include "sim_msgs/msg/detail/field_data__struct.hpp"
+// Member 'team0'
+// Member 'team1'
+// Member 'team2'
+#include "sim_msgs/msg/detail/high_cmd__struct.hpp"
 
 #ifndef _WIN32
 # define DEPRECATED__sim_msgs__srv__Controller_Request __attribute__((deprecated))
@@ -38,27 +40,66 @@ struct Controller_Request_
   using Type = Controller_Request_<ContainerAllocator>;
 
   explicit Controller_Request_(rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
-  : settings(_init)
+  : team0(_init),
+    team1(_init),
+    team2(_init)
   {
-    (void)_init;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->state = 0l;
+    }
   }
 
   explicit Controller_Request_(const ContainerAllocator & _alloc, rosidl_runtime_cpp::MessageInitialization _init = rosidl_runtime_cpp::MessageInitialization::ALL)
-  : settings(_alloc, _init)
+  : team0(_alloc, _init),
+    team1(_alloc, _init),
+    team2(_alloc, _init)
   {
-    (void)_init;
+    if (rosidl_runtime_cpp::MessageInitialization::ALL == _init ||
+      rosidl_runtime_cpp::MessageInitialization::ZERO == _init)
+    {
+      this->state = 0l;
+    }
   }
 
   // field types and members
-  using _settings_type =
-    sim_msgs::msg::FieldData_<ContainerAllocator>;
-  _settings_type settings;
+  using _state_type =
+    int32_t;
+  _state_type state;
+  using _team0_type =
+    sim_msgs::msg::HighCmd_<ContainerAllocator>;
+  _team0_type team0;
+  using _team1_type =
+    sim_msgs::msg::HighCmd_<ContainerAllocator>;
+  _team1_type team1;
+  using _team2_type =
+    sim_msgs::msg::HighCmd_<ContainerAllocator>;
+  _team2_type team2;
 
   // setters for named parameter idiom
-  Type & set__settings(
-    const sim_msgs::msg::FieldData_<ContainerAllocator> & _arg)
+  Type & set__state(
+    const int32_t & _arg)
   {
-    this->settings = _arg;
+    this->state = _arg;
+    return *this;
+  }
+  Type & set__team0(
+    const sim_msgs::msg::HighCmd_<ContainerAllocator> & _arg)
+  {
+    this->team0 = _arg;
+    return *this;
+  }
+  Type & set__team1(
+    const sim_msgs::msg::HighCmd_<ContainerAllocator> & _arg)
+  {
+    this->team1 = _arg;
+    return *this;
+  }
+  Type & set__team2(
+    const sim_msgs::msg::HighCmd_<ContainerAllocator> & _arg)
+  {
+    this->team2 = _arg;
     return *this;
   }
 
@@ -104,7 +145,16 @@ struct Controller_Request_
   // comparison operators
   bool operator==(const Controller_Request_ & other) const
   {
-    if (this->settings != other.settings) {
+    if (this->state != other.state) {
+      return false;
+    }
+    if (this->team0 != other.team0) {
+      return false;
+    }
+    if (this->team1 != other.team1) {
+      return false;
+    }
+    if (this->team2 != other.team2) {
       return false;
     }
     return true;

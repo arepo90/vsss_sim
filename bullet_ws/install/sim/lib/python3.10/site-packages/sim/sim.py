@@ -3,7 +3,7 @@ from rclpy.node import Node
 from ament_index_python.packages import get_package_share_directory
 #from geometry_msgs.msg import Twist
 from sim_msgs.msg import LowCmd, ObjData, FieldData
-from sim_msgs.srv import Controller
+from sim_msgs.srv import Reset
 from sensor_msgs.msg import Image
 from std_msgs.msg import Int32
 from cv_bridge import CvBridge
@@ -193,7 +193,7 @@ class Sim(Node):
             
         self.score1_publisher = self.create_publisher(Int32, 'score1', 10)
         self.score2_publisher = self.create_publisher(Int32, 'score2', 10)
-        self.reset_service = self.create_service(Controller, 'sim/controller', self.resetCB)
+        self.reset_service = self.create_service(Reset, 'sim/reset', self.resetCB)
         self.settings = DEFAULT_SETTINGS
 
         p.connect(p.GUI)

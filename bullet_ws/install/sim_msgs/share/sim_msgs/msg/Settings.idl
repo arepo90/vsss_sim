@@ -16,6 +16,12 @@ module sim_msgs {
 
       int32 exposure;
 
+      int32 robot0;
+
+      int32 robot1;
+
+      int32 robot2;
+
       double attractive_gain;
 
       double repulsive_gain;

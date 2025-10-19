@@ -22,6 +22,9 @@ sim_msgs__msg__Settings__init(sim_msgs__msg__Settings * msg)
   // local
   // reset
   // exposure
+  // robot0
+  // robot1
+  // robot2
   // attractive_gain
   // repulsive_gain
   // repulsion_radius
@@ -41,6 +44,9 @@ sim_msgs__msg__Settings__fini(sim_msgs__msg__Settings * msg)
   // local
   // reset
   // exposure
+  // robot0
+  // robot1
+  // robot2
   // attractive_gain
   // repulsive_gain
   // repulsion_radius
@@ -72,6 +78,18 @@ sim_msgs__msg__Settings__are_equal(const sim_msgs__msg__Settings * lhs, const si
   }
   // exposure
   if (lhs->exposure != rhs->exposure) {
+    return false;
+  }
+  // robot0
+  if (lhs->robot0 != rhs->robot0) {
+    return false;
+  }
+  // robot1
+  if (lhs->robot1 != rhs->robot1) {
+    return false;
+  }
+  // robot2
+  if (lhs->robot2 != rhs->robot2) {
     return false;
   }
   // attractive_gain
@@ -115,6 +133,12 @@ sim_msgs__msg__Settings__copy(
   output->reset = input->reset;
   // exposure
   output->exposure = input->exposure;
+  // robot0
+  output->robot0 = input->robot0;
+  // robot1
+  output->robot1 = input->robot1;
+  // robot2
+  output->robot2 = input->robot2;
   // attractive_gain
   output->attractive_gain = input->attractive_gain;
   // repulsive_gain

@@ -95,6 +95,33 @@ bool sim_msgs__msg__settings__convert_from_py(PyObject * _pymsg, void * _ros_mes
     ros_message->exposure = (int32_t)PyLong_AsLong(field);
     Py_DECREF(field);
   }
+  {  // robot0
+    PyObject * field = PyObject_GetAttrString(_pymsg, "robot0");
+    if (!field) {
+      return false;
+    }
+    assert(PyLong_Check(field));
+    ros_message->robot0 = (int32_t)PyLong_AsLong(field);
+    Py_DECREF(field);
+  }
+  {  // robot1
+    PyObject * field = PyObject_GetAttrString(_pymsg, "robot1");
+    if (!field) {
+      return false;
+    }
+    assert(PyLong_Check(field));
+    ros_message->robot1 = (int32_t)PyLong_AsLong(field);
+    Py_DECREF(field);
+  }
+  {  // robot2
+    PyObject * field = PyObject_GetAttrString(_pymsg, "robot2");
+    if (!field) {
+      return false;
+    }
+    assert(PyLong_Check(field));
+    ros_message->robot2 = (int32_t)PyLong_AsLong(field);
+    Py_DECREF(field);
+  }
   {  // attractive_gain
     PyObject * field = PyObject_GetAttrString(_pymsg, "attractive_gain");
     if (!field) {
@@ -211,6 +238,39 @@ PyObject * sim_msgs__msg__settings__convert_to_py(void * raw_ros_message)
     field = PyLong_FromLong(ros_message->exposure);
     {
       int rc = PyObject_SetAttrString(_pymessage, "exposure", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // robot0
+    PyObject * field = NULL;
+    field = PyLong_FromLong(ros_message->robot0);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "robot0", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // robot1
+    PyObject * field = NULL;
+    field = PyLong_FromLong(ros_message->robot1);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "robot1", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // robot2
+    PyObject * field = NULL;
+    field = PyLong_FromLong(ros_message->robot2);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "robot2", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

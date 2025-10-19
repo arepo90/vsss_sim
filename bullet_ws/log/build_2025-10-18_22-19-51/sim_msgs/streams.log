@@ -1,0 +1,446 @@
+[0.014s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/vsss_sim/bullet_ws/install/vision:/home/arepo/vsss_sim/bullet_ws/install/sim:/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/vsss_sim/bullet_ws/build/sim_msgs -- -j16 -l16
+[0.129s] [0mCMake Deprecation Warning at CMakeLists.txt:1 (cmake_minimum_required):
+[0.129s]   Compatibility with CMake < 3.10 will be removed from a future version of
+[0.129s]   CMake.
+[0.129s] 
+[0.129s]   Update the VERSION argument <min> value.  Or, use the <min>...<max> syntax
+[0.129s]   to tell CMake that the project requires at least <min> but has been updated
+[0.129s]   to work with policies introduced by <max> or earlier.
+[0.130s] 
+[0.130s] [0m
+[0.152s] -- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+[0.425s] -- Found rosidl_default_generators: 1.2.0 (/opt/ros/humble/share/rosidl_default_generators/cmake)
+[0.427s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.433s] -- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+[0.487s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.927s] -- Found ament_cmake_ros: 0.10.0 (/opt/ros/humble/share/ament_cmake_ros/cmake)
+[1.323s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.798s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[1.801s] [33mCMake Warning (dev) at /opt/ros/humble/share/rosidl_generator_py/cmake/rosidl_generator_py_generate_interfaces.cmake:20 (find_package):
+[1.801s]   Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+[1.801s]   are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+[1.801s]   the cmake_policy command to set the policy and suppress this warning.
+[1.801s] 
+[1.801s] Call Stack (most recent call first):
+[1.801s]   /opt/ros/humble/share/ament_cmake_core/cmake/core/ament_execute_extensions.cmake:48 (include)
+[1.801s]   /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:286 (ament_execute_extensions)
+[1.801s]   CMakeLists.txt:12 (rosidl_generate_interfaces)
+[1.801s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[1.801s] [0m
+[1.819s] -- Found python_cmake_module: 0.10.0 (/opt/ros/humble/share/python_cmake_module/cmake)
+[1.820s] [33mCMake Warning (dev) at /opt/ros/humble/share/python_cmake_module/cmake/Modules/FindPythonExtra.cmake:52 (find_package):
+[1.820s]   Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+[1.820s]   are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+[1.820s]   the cmake_policy command to set the policy and suppress this warning.
+[1.820s] 
+[1.820s] Call Stack (most recent call first):
+[1.820s]   /opt/ros/humble/share/rosidl_generator_py/cmake/rosidl_generator_py_generate_interfaces.cmake:23 (find_package)
+[1.820s]   /opt/ros/humble/share/ament_cmake_core/cmake/core/ament_execute_extensions.cmake:48 (include)
+[1.820s]   /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:286 (ament_execute_extensions)
+[1.821s]   CMakeLists.txt:12 (rosidl_generate_interfaces)
+[1.821s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[1.821s] [0m
+[1.837s] [33mCMake Warning (dev) at /opt/ros/humble/share/python_cmake_module/cmake/Modules/FindPythonExtra.cmake:140 (find_package):
+[1.837s]   Policy CMP0148 is not set: The FindPythonInterp and FindPythonLibs modules
+[1.838s]   are removed.  Run "cmake --help-policy CMP0148" for policy details.  Use
+[1.838s]   the cmake_policy command to set the policy and suppress this warning.
+[1.838s] 
+[1.838s] Call Stack (most recent call first):
+[1.838s]   /opt/ros/humble/share/rosidl_generator_py/cmake/rosidl_generator_py_generate_interfaces.cmake:23 (find_package)
+[1.838s]   /opt/ros/humble/share/ament_cmake_core/cmake/core/ament_execute_extensions.cmake:48 (include)
+[1.838s]   /opt/ros/humble/share/rosidl_cmake/cmake/rosidl_generate_interfaces.cmake:286 (ament_execute_extensions)
+[1.838s]   CMakeLists.txt:12 (rosidl_generate_interfaces)
+[1.838s] This warning is for project developers.  Use -Wno-dev to suppress it.
+[1.838s] [0m
+[1.840s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.840s] -- Using PYTHON_INCLUDE_DIRS: /usr/include/python3.10
+[1.840s] -- Using PYTHON_LIBRARIES: /usr/lib/x86_64-linux-gnu/libpython3.10.so
+[1.851s] -- Found ament_lint_auto: 0.12.14 (/opt/ros/humble/share/ament_lint_auto/cmake)
+[1.864s] -- Added test 'lint_cmake' to check CMake code style
+[1.866s] -- Added test 'xmllint' to check XML markup files
+[1.868s] -- Configuring done (1.7s)
+[1.933s] -- Generating done (0.1s)
+[1.939s] -- Build files have been written to: /home/arepo/vsss_sim/bullet_ws/build/sim_msgs
+[1.955s] [  1%] [1m[34mGenerating C code for ROS interfaces[0m
+[1.959s] [  2%] [1m[34mGenerating C++ code for ROS interfaces[0m
+[1.972s] [  2%] [0mBuilt target ament_cmake_python_copy_sim_msgs[0m
+[2.177s] running egg_info
+[2.194s] writing sim_msgs.egg-info/PKG-INFO
+[2.195s] writing dependency_links to sim_msgs.egg-info/dependency_links.txt
+[2.195s] writing top-level names to sim_msgs.egg-info/top_level.txt
+[2.241s] reading manifest file 'sim_msgs.egg-info/SOURCES.txt'
+[2.243s] writing manifest file 'sim_msgs.egg-info/SOURCES.txt'
+[2.264s] [  2%] [0mBuilt target ament_cmake_python_build_sim_msgs_egg[0m
+[2.464s] [  2%] [0mBuilt target sim_msgs__cpp[0m
+[2.468s] [  6%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/msg/detail/low_cmd__functions.c.o[0m
+[2.468s] [  6%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/msg/detail/obj_data__functions.c.o[0m
+[2.468s] [  6%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/msg/detail/high_cmd__functions.c.o[0m
+[2.468s] [  8%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/msg/detail/field_data__functions.c.o[0m
+[2.468s] [  8%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/msg/detail/settings__functions.c.o[0m
+[2.469s] [ 10%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/srv/detail/controller__functions.c.o[0m
+[2.469s] [ 11%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_c.dir/rosidl_generator_c/sim_msgs/srv/detail/reset__functions.c.o[0m
+[2.470s] [ 13%] [1m[34mGenerating C++ type support for eProsima Fast-RTPS[0m
+[2.470s] [ 13%] [1m[34mGenerating C++ type support dispatch for ROS interfaces[0m
+[2.470s] [ 15%] [1m[34mGenerating C++ introspection for ROS interfaces[0m
+[2.578s] [ 16%] [1m[32mLinking C shared library libsim_msgs__rosidl_generator_c.so[0m
+[2.611s] [ 16%] [0mBuilt target sim_msgs__rosidl_generator_c[0m
+[2.616s] [ 20%] [1m[34mGenerating C type support dispatch for ROS interfaces[0m
+[2.616s] [ 20%] [1m[34mGenerating C type support for eProsima Fast-RTPS[0m
+[2.616s] [ 20%] [1m[34mGenerating C introspection for ROS interfaces[0m
+[2.859s] [ 22%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/msg/high_cmd__type_support.cpp.o[0m
+[2.859s] [ 22%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/msg/low_cmd__type_support.cpp.o[0m
+[2.860s] [ 24%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/msg/obj_data__type_support.cpp.o[0m
+[2.860s] [ 25%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/msg/field_data__type_support.cpp.o[0m
+[2.860s] [ 26%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/msg/settings__type_support.cpp.o[0m
+[2.861s] [ 27%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/srv/controller__type_support.cpp.o[0m
+[2.862s] [ 29%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_cpp.dir/rosidl_typesupport_cpp/sim_msgs/srv/reset__type_support.cpp.o[0m
+[2.943s] [ 32%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/msg/detail/high_cmd__type_support.cpp.o[0m
+[2.943s] [ 32%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/msg/detail/low_cmd__type_support.cpp.o[0m
+[2.943s] [ 32%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/msg/detail/obj_data__type_support.cpp.o[0m
+[2.945s] [ 34%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/msg/detail/settings__type_support.cpp.o[0m
+[2.946s] [ 35%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/msg/detail/field_data__type_support.cpp.o[0m
+[3.151s] [ 36%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/msg/detail/dds_fastrtps/low_cmd__type_support.cpp.o[0m
+[3.160s] [ 37%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/msg/low_cmd__type_support.cpp.o[0m
+[3.238s] [ 39%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/msg/high_cmd__type_support.cpp.o[0m
+[3.288s] [ 40%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/msg/obj_data__type_support.cpp.o[0m
+[3.330s] [ 41%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/msg/detail/low_cmd__type_support.c.o[0m
+[3.330s] [ 43%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/msg/field_data__type_support.cpp.o[0m
+[3.336s] [ 44%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/srv/detail/controller__type_support.cpp.o[0m
+[3.342s] [ 45%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/msg/detail/dds_fastrtps/high_cmd__type_support.cpp.o[0m
+[3.345s] [ 46%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_cpp.dir/rosidl_typesupport_introspection_cpp/sim_msgs/srv/detail/reset__type_support.cpp.o[0m
+[3.345s] [ 48%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/msg/detail/dds_fastrtps/obj_data__type_support.cpp.o[0m
+[3.351s] [ 50%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/msg/detail/dds_fastrtps/field_data__type_support.cpp.o[0m
+[3.351s] [ 50%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/msg/detail/high_cmd__type_support.c.o[0m
+[3.368s] [ 51%] [1m[32mLinking CXX shared library libsim_msgs__rosidl_typesupport_cpp.so[0m
+[3.399s] [ 53%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/msg/settings__type_support.cpp.o[0m
+[3.423s] [ 54%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/msg/detail/low_cmd__type_support_c.cpp.o[0m
+[3.427s] [ 55%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/srv/controller__type_support.cpp.o[0m
+[3.446s] [ 56%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/msg/detail/obj_data__type_support.c.o[0m
+[3.464s] [ 56%] [0mBuilt target sim_msgs__rosidl_typesupport_cpp[0m
+[3.480s] [ 58%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/msg/detail/obj_data__type_support_c.cpp.o[0m
+[3.480s] [ 59%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/msg/detail/high_cmd__type_support_c.cpp.o[0m
+[3.488s] [ 60%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_c.dir/rosidl_typesupport_c/sim_msgs/srv/reset__type_support.cpp.o[0m
+[3.517s] [ 62%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/msg/detail/field_data__type_support.c.o[0m
+[3.543s] [ 63%] [1m[32mLinking CXX shared library libsim_msgs__rosidl_typesupport_c.so[0m
+[3.573s] [ 64%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/msg/detail/field_data__type_support_c.cpp.o[0m
+[3.578s] [ 65%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/msg/detail/dds_fastrtps/settings__type_support.cpp.o[0m
+[3.590s] [ 67%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/msg/detail/settings__type_support.c.o[0m
+[3.598s] [ 67%] [0mBuilt target sim_msgs__rosidl_typesupport_c[0m
+[3.603s] [ 68%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/srv/detail/dds_fastrtps/controller__type_support.cpp.o[0m
+[3.617s] [ 69%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/msg/detail/settings__type_support_c.cpp.o[0m
+[3.628s] [ 70%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/srv/detail/controller__type_support.c.o[0m
+[3.629s] [ 72%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_cpp.dir/rosidl_typesupport_fastrtps_cpp/sim_msgs/srv/detail/dds_fastrtps/reset__type_support.cpp.o[0m
+[3.646s] [ 73%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/srv/detail/controller__type_support_c.cpp.o[0m
+[3.729s] [ 74%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c.dir/rosidl_typesupport_introspection_c/sim_msgs/srv/detail/reset__type_support.c.o[0m
+[3.843s] [ 75%] [1m[32mLinking C shared library libsim_msgs__rosidl_typesupport_introspection_c.so[0m
+[3.915s] [ 75%] [0mBuilt target sim_msgs__rosidl_typesupport_introspection_c[0m
+[3.922s] [ 77%] [32mBuilding CXX object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c.dir/rosidl_typesupport_fastrtps_c/sim_msgs/srv/detail/reset__type_support_c.cpp.o[0m
+[4.016s] [ 78%] [1m[32mLinking CXX shared library libsim_msgs__rosidl_typesupport_introspection_cpp.so[0m
+[4.117s] [ 78%] [0mBuilt target sim_msgs__rosidl_typesupport_introspection_cpp[0m
+[4.187s] [ 79%] [1m[32mLinking CXX shared library libsim_msgs__rosidl_typesupport_fastrtps_cpp.so[0m
+[4.277s] [ 79%] [0mBuilt target sim_msgs__rosidl_typesupport_fastrtps_cpp[0m
+[4.299s] [ 81%] [1m[32mLinking CXX shared library libsim_msgs__rosidl_typesupport_fastrtps_c.so[0m
+[4.380s] [ 81%] [0mBuilt target sim_msgs__rosidl_typesupport_fastrtps_c[0m
+[4.391s] [ 81%] [0mBuilt target sim_msgs[0m
+[4.404s] [ 82%] [1m[34mGenerating Python code for ROS interfaces[0m
+[5.270s] [ 82%] [0mBuilt target sim_msgs__py[0m
+[5.295s] [ 86%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/msg/_obj_data_s.c.o[0m
+[5.295s] [ 86%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/msg/_low_cmd_s.c.o[0m
+[5.296s] [ 86%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/msg/_high_cmd_s.c.o[0m
+[5.296s] [ 88%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/msg/_field_data_s.c.o[0m
+[5.296s] [ 88%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/msg/_settings_s.c.o[0m
+[5.297s] [ 89%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/srv/_controller_s.c.o[0m
+[5.297s] [ 91%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_generator_py.dir/rosidl_generator_py/sim_msgs/srv/_reset_s.c.o[0m
+[5.435s] [ 92%] [1m[32mLinking C shared library rosidl_generator_py/sim_msgs/libsim_msgs__rosidl_generator_py.so[0m
+[5.469s] [ 92%] [0mBuilt target sim_msgs__rosidl_generator_py[0m
+[5.482s] [ 96%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_fastrtps_c__pyext.dir/rosidl_generator_py/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_fastrtps_c.c.o[0m
+[5.482s] [ 96%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_c__pyext.dir/rosidl_generator_py/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_c.c.o[0m
+[5.482s] [ 96%] [32mBuilding C object CMakeFiles/sim_msgs__rosidl_typesupport_introspection_c__pyext.dir/rosidl_generator_py/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_introspection_c.c.o[0m
+[5.593s] [ 98%] [1m[32mLinking C shared library rosidl_generator_py/sim_msgs/sim_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so[0m
+[5.593s] [ 98%] [1m[32mLinking C shared library rosidl_generator_py/sim_msgs/sim_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so[0m
+[5.598s] [100%] [1m[32mLinking C shared library rosidl_generator_py/sim_msgs/sim_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so[0m
+[5.620s] [100%] [0mBuilt target sim_msgs__rosidl_typesupport_introspection_c__pyext[0m
+[5.623s] [100%] [0mBuilt target sim_msgs__rosidl_typesupport_c__pyext[0m
+[5.626s] [100%] [0mBuilt target sim_msgs__rosidl_typesupport_fastrtps_c__pyext[0m
+[5.635s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/vsss_sim/bullet_ws/install/vision:/home/arepo/vsss_sim/bullet_ws/install/sim:/opt/ros/humble /home/arepo/.local/bin/cmake --build /home/arepo/vsss_sim/bullet_ws/build/sim_msgs -- -j16 -l16
+[5.707s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/vsss_sim/bullet_ws/install/vision:/home/arepo/vsss_sim/bullet_ws/install/sim:/opt/ros/humble /home/arepo/.local/bin/cmake --install /home/arepo/vsss_sim/bullet_ws/build/sim_msgs
+[5.778s] -- Install configuration: ""
+[5.778s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/rosidl_interfaces/sim_msgs
+[5.778s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs
+[5.778s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv
+[5.778s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/reset.h
+[5.778s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__functions.h
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__functions.c
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__functions.h
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.h
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__type_support.h
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__struct.h
+[5.779s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__struct.h
+[5.780s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__functions.c
+[5.780s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/controller.h
+[5.780s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg
+[5.780s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/high_cmd.h
+[5.780s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/field_data.h
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/low_cmd.h
+[5.781s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__functions.h
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__functions.h
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__struct.h
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__functions.h
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__struct.h
+[5.781s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.h
+[5.782s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__struct.h
+[5.782s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__functions.c
+[5.782s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__functions.c
+[5.782s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__struct.h
+[5.782s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__type_support.h
+[5.782s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__functions.c
+[5.783s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__functions.h
+[5.783s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.h
+[5.783s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.h
+[5.783s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__struct.h
+[5.783s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__functions.c
+[5.784s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.h
+[5.784s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__functions.h
+[5.784s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__functions.c
+[5.784s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/obj_data.h
+[5.784s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/settings.h
+[5.784s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_generator_c__visibility_control.h
+[5.784s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/library_path.sh
+[5.784s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/library_path.dsv
+[5.785s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_generator_c.so
+[5.785s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_generator_c.so" to ""
+[5.785s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs
+[5.785s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv
+[5.785s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail
+[5.785s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__rosidl_typesupport_fastrtps_c.h
+[5.786s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_fastrtps_c.h
+[5.786s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg
+[5.786s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_typesupport_fastrtps_c__visibility_control.h
+[5.786s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail
+[5.786s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_fastrtps_c.h
+[5.786s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_fastrtps_c.h
+[5.786s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_fastrtps_c.h
+[5.786s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_fastrtps_c.h
+[5.786s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__rosidl_typesupport_fastrtps_c.h
+[5.787s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_fastrtps_c.so
+[5.787s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_fastrtps_c.so" to ""
+[5.787s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs
+[5.787s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv
+[5.787s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail
+[5.787s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.c
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__type_support.c
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_introspection_c.h
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__rosidl_typesupport_introspection_c.h
+[5.788s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg
+[5.788s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_typesupport_introspection_c__visibility_control.h
+[5.788s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_introspection_c.h
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.c
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.c
+[5.788s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_introspection_c.h
+[5.789s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.c
+[5.789s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__rosidl_typesupport_introspection_c.h
+[5.789s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_introspection_c.h
+[5.789s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.c
+[5.789s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__type_support.c
+[5.789s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_introspection_c.h
+[5.790s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_introspection_c.so
+[5.790s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_introspection_c.so" to ""
+[5.790s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_c.so
+[5.790s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_c.so" to ""
+[5.791s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs
+[5.791s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv
+[5.791s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__struct.hpp
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__traits.hpp
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__builder.hpp
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.hpp
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__builder.hpp
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__traits.hpp
+[5.791s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__type_support.hpp
+[5.792s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__struct.hpp
+[5.792s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/reset.hpp
+[5.792s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/controller.hpp
+[5.792s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg
+[5.792s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/low_cmd.hpp
+[5.792s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail
+[5.792s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.hpp
+[5.792s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__type_support.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__traits.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__traits.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__struct.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__traits.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__builder.hpp
+[5.793s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__builder.hpp
+[5.794s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.hpp
+[5.794s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__struct.hpp
+[5.794s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__struct.hpp
+[5.794s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__builder.hpp
+[5.794s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.hpp
+[5.794s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__builder.hpp
+[5.795s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__traits.hpp
+[5.795s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__builder.hpp
+[5.795s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__struct.hpp
+[5.795s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__struct.hpp
+[5.795s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__traits.hpp
+[5.795s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/high_cmd.hpp
+[5.796s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_generator_cpp__visibility_control.hpp
+[5.796s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/field_data.hpp
+[5.796s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/obj_data.hpp
+[5.796s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/settings.hpp
+[5.796s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs
+[5.796s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv
+[5.796s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail
+[5.796s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__rosidl_typesupport_fastrtps_cpp.hpp
+[5.796s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/dds_fastrtps
+[5.796s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_fastrtps_cpp.hpp
+[5.797s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg
+[5.797s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail
+[5.797s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__rosidl_typesupport_fastrtps_cpp.hpp
+[5.797s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/dds_fastrtps
+[5.797s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_fastrtps_cpp.hpp
+[5.797s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_fastrtps_cpp.hpp
+[5.797s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_fastrtps_cpp.hpp
+[5.797s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_fastrtps_cpp.hpp
+[5.797s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/rosidl_typesupport_fastrtps_cpp__visibility_control.h
+[5.798s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_fastrtps_cpp.so
+[5.799s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_fastrtps_cpp.so" to ""
+[5.799s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs
+[5.799s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv
+[5.799s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail
+[5.799s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__type_support.cpp
+[5.799s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__rosidl_typesupport_introspection_cpp.hpp
+[5.799s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/reset__rosidl_typesupport_introspection_cpp.hpp
+[5.800s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/srv/detail/controller__type_support.cpp
+[5.800s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg
+[5.800s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail
+[5.800s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__type_support.cpp
+[5.800s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/high_cmd__rosidl_typesupport_introspection_cpp.hpp
+[5.800s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__rosidl_typesupport_introspection_cpp.hpp
+[5.800s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/field_data__type_support.cpp
+[5.800s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__rosidl_typesupport_introspection_cpp.hpp
+[5.801s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__type_support.cpp
+[5.801s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__rosidl_typesupport_introspection_cpp.hpp
+[5.801s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/low_cmd__rosidl_typesupport_introspection_cpp.hpp
+[5.801s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/settings__type_support.cpp
+[5.801s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/include/sim_msgs/sim_msgs/msg/detail/obj_data__type_support.cpp
+[5.802s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_introspection_cpp.so
+[5.803s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_introspection_cpp.so" to ""
+[5.803s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_cpp.so
+[5.804s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_typesupport_cpp.so" to ""
+[5.804s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/pythonpath.sh
+[5.804s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/pythonpath.dsv
+[5.804s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info
+[5.804s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/PKG-INFO
+[5.805s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/dependency_links.txt
+[5.805s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/top_level.txt
+[5.805s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs-0.0.0-py3.10.egg-info/SOURCES.txt
+[5.805s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs
+[5.805s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/libsim_msgs__rosidl_generator_py.so
+[5.806s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv
+[5.806s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_controller_s.c
+[5.806s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/__init__.py
+[5.806s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_reset_s.c
+[5.807s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_reset.py
+[5.807s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_controller.py
+[5.807s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg
+[5.807s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_low_cmd.py
+[5.807s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_obj_data.py
+[5.808s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_obj_data_s.c
+[5.808s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/__init__.py
+[5.808s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_low_cmd_s.c
+[5.808s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_settings_s.c
+[5.809s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_settings.py
+[5.809s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_field_data_s.c
+[5.809s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_high_cmd.py
+[5.809s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_field_data.py
+[5.809s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_high_cmd_s.c
+[5.810s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[5.810s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_c.c
+[5.810s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/__init__.py
+[5.811s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_fastrtps_c.c
+[5.811s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[5.811s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[5.811s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/_sim_msgs_s.ep.rosidl_typesupport_introspection_c.c
+[5.860s] Listing '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/__init__.py'...
+[5.861s] Listing '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/__init__.py'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_field_data.py'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_high_cmd.py'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_low_cmd.py'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_obj_data.py'...
+[5.861s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/msg/_settings.py'...
+[5.861s] Listing '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv'...
+[5.862s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/__init__.py'...
+[5.862s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_controller.py'...
+[5.862s] Compiling '/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/srv/_reset.py'...
+[5.868s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so
+[5.869s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_fastrtps_c.cpython-310-x86_64-linux-gnu.so" to ""
+[5.869s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so
+[5.869s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_introspection_c.cpython-310-x86_64-linux-gnu.so" to ""
+[5.869s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so
+[5.870s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/local/lib/python3.10/dist-packages/sim_msgs/sim_msgs_s__rosidl_typesupport_c.cpython-310-x86_64-linux-gnu.so" to ""
+[5.870s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_generator_py.so
+[5.871s] -- Set non-toolchain portion of runtime path of "/home/arepo/vsss_sim/bullet_ws/install/sim_msgs/lib/libsim_msgs__rosidl_generator_py.so" to ""
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/LowCmd.idl
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/HighCmd.idl
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/ObjData.idl
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/FieldData.idl
+[5.871s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/Settings.idl
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller.idl
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Reset.idl
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/LowCmd.msg
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/HighCmd.msg
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/ObjData.msg
+[5.871s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/FieldData.msg
+[5.872s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/msg/Settings.msg
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller.srv
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller_Request.msg
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Controller_Response.msg
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Reset.srv
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Reset_Request.msg
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/srv/Reset_Response.msg
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/package_run_dependencies/sim_msgs
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/parent_prefix_path/sim_msgs
+[5.872s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/ament_prefix_path.sh
+[5.873s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/ament_prefix_path.dsv
+[5.873s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/path.sh
+[5.873s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/environment/path.dsv
+[5.873s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.bash
+[5.873s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.sh
+[5.873s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.zsh
+[5.873s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/local_setup.dsv
+[5.873s] -- Installing: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/package.dsv
+[5.873s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/ament_index/resource_index/packages/sim_msgs
+[5.873s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_cExport.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_cExport-noconfig.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cExport.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cExport-noconfig.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cExport.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cExport-noconfig.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cExport.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cExport-noconfig.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_cppExport.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cppExport.cmake
+[5.874s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_typesupport_fastrtps_cppExport-noconfig.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cppExport.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_introspection_cppExport-noconfig.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cppExport.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgs__rosidl_typesupport_cppExport-noconfig.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_pyExport.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/export_sim_msgs__rosidl_generator_pyExport-noconfig.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/rosidl_cmake-extras.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_include_directories-extras.cmake
+[5.875s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_libraries-extras.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_targets-extras.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/rosidl_cmake_export_typesupport_targets-extras.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/ament_cmake_export_dependencies-extras.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/rosidl_cmake_export_typesupport_libraries-extras.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgsConfig.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/cmake/sim_msgsConfig-version.cmake
+[5.876s] -- Up-to-date: /home/arepo/vsss_sim/bullet_ws/install/sim_msgs/share/sim_msgs/package.xml
+[5.878s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/build/sim_msgs' returned '0': CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}:/home/arepo/vsss_sim/bullet_ws/install/vision:/home/arepo/vsss_sim/bullet_ws/install/sim:/opt/ros/humble /home/arepo/.local/bin/cmake --install /home/arepo/vsss_sim/bullet_ws/build/sim_msgs
