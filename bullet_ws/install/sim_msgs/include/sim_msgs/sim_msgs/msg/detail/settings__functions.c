@@ -30,6 +30,8 @@ sim_msgs__msg__Settings__init(sim_msgs__msg__Settings * msg)
   // repulsion_radius
   // goal_tolerance
   // tangential_gain
+  // target_offset
+  // colinearity
   return true;
 }
 
@@ -52,6 +54,8 @@ sim_msgs__msg__Settings__fini(sim_msgs__msg__Settings * msg)
   // repulsion_radius
   // goal_tolerance
   // tangential_gain
+  // target_offset
+  // colinearity
 }
 
 bool
@@ -112,6 +116,14 @@ sim_msgs__msg__Settings__are_equal(const sim_msgs__msg__Settings * lhs, const si
   if (lhs->tangential_gain != rhs->tangential_gain) {
     return false;
   }
+  // target_offset
+  if (lhs->target_offset != rhs->target_offset) {
+    return false;
+  }
+  // colinearity
+  if (lhs->colinearity != rhs->colinearity) {
+    return false;
+  }
   return true;
 }
 
@@ -149,6 +161,10 @@ sim_msgs__msg__Settings__copy(
   output->goal_tolerance = input->goal_tolerance;
   // tangential_gain
   output->tangential_gain = input->tangential_gain;
+  // target_offset
+  output->target_offset = input->target_offset;
+  // colinearity
+  output->colinearity = input->colinearity;
   return true;
 }
 

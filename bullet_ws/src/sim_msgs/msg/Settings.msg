@@ -11,3 +11,5 @@ float64 repulsive_gain
 float64 repulsion_radius
 float64 goal_tolerance
 float64 tangential_gain
+float64 target_offset
+float64 colinearity

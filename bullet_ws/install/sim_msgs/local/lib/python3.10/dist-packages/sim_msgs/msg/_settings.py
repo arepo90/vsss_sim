@@ -70,6 +70,8 @@ class Settings(metaclass=Metaclass_Settings):
         '_repulsion_radius',
         '_goal_tolerance',
         '_tangential_gain',
+        '_target_offset',
+        '_colinearity',
     ]
 
     _fields_and_field_types = {
@@ -86,6 +88,8 @@ class Settings(metaclass=Metaclass_Settings):
         'repulsion_radius': 'double',
         'goal_tolerance': 'double',
         'tangential_gain': 'double',
+        'target_offset': 'double',
+        'colinearity': 'double',
     }
 
     SLOT_TYPES = (
@@ -97,6 +101,8 @@ class Settings(metaclass=Metaclass_Settings):
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
         rosidl_parser.definition.BasicType('int32'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
+        rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
         rosidl_parser.definition.BasicType('double'),  # noqa: E501
@@ -121,6 +127,8 @@ class Settings(metaclass=Metaclass_Settings):
         self.repulsion_radius = kwargs.get('repulsion_radius', float())
         self.goal_tolerance = kwargs.get('goal_tolerance', float())
         self.tangential_gain = kwargs.get('tangential_gain', float())
+        self.target_offset = kwargs.get('target_offset', float())
+        self.colinearity = kwargs.get('colinearity', float())
 
     def __repr__(self):
         typename = self.__class__.__module__.split('.')
@@ -176,6 +184,10 @@ class Settings(metaclass=Metaclass_Settings):
         if self.goal_tolerance != other.goal_tolerance:
             return False
         if self.tangential_gain != other.tangential_gain:
+            return False
+        if self.target_offset != other.target_offset:
+            return False
+        if self.colinearity != other.colinearity:
             return False
         return True
 
@@ -370,3 +382,33 @@ class Settings(metaclass=Metaclass_Settings):
             assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
                 "The 'tangential_gain' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
         self._tangential_gain = value
+
+    @builtins.property
+    def target_offset(self):
+        """Message field 'target_offset'."""
+        return self._target_offset
+
+    @target_offset.setter
+    def target_offset(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'target_offset' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'target_offset' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._target_offset = value
+
+    @builtins.property
+    def colinearity(self):
+        """Message field 'colinearity'."""
+        return self._colinearity
+
+    @colinearity.setter
+    def colinearity(self, value):
+        if __debug__:
+            assert \
+                isinstance(value, float), \
+                "The 'colinearity' field must be of type 'float'"
+            assert not (value < -1.7976931348623157e+308 or value > 1.7976931348623157e+308) or math.isinf(value), \
+                "The 'colinearity' field must be a double in [-1.7976931348623157e+308, 1.7976931348623157e+308]"
+        self._colinearity = value

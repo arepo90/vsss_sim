@@ -24,7 +24,7 @@ KP = 5
 FRICTION = 0.6
 MAX_FORCE = 5
 MAX_TORQUE = 5
-NUM_ROBOTS = 5
+NUM_ROBOTS = 2
 COLORS = {
     "red": [204/255, 0/255, 1/255],
     "green": [0/255, 204/255, 8/255],
@@ -284,7 +284,7 @@ class Sim(Node):
             time.sleep(DT)
 
     def cmdCB(self, msg: LowCmd, id: int):
-        self.robots[id].move([msg.vx, msg.vy, msg.dtheta], msg.local)
+        self.robots[id].move([msg.vx*2, msg.vy*2, msg.dtheta], msg.local)
 
     def msgCB(self, msg):
         str = msg.data

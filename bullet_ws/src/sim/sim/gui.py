@@ -12,8 +12,11 @@ from enum import IntEnum
 import math
 import numpy as np
 import threading
+import time
+import queue # <--- 1. IMPORT QUEUE
 
 class State(IntEnum):
+    HALT = -1
     PAUSE = 0
     PLAY = 1
     MIDFIELD = 2
@@ -35,10 +38,10 @@ class GUI(Node):
         super().__init__('gui')
         self.root = tk.Tk()
         self.root.title("VSSS GUI")
-        self.root.geometry("2800x1600")
+        self.root.geometry("2800x1800")
         self.bridge = CvBridge()
-
-        # --- Tkinter Control Variables ---
+        
+        self.gui_queue = queue.Queue()
         self.color_var = tk.IntVar(value=1 if TEAM_COLOR == "yellow" else 0)
         self.side_var = tk.IntVar(value=1 if TEAM_SIDE == "right" else 0)
         self.local_var = tk.IntVar(value=1 if USE_LOCAL else 0)
@@ -48,9 +51,10 @@ class GUI(Node):
         self.repulsive_gain_var = tk.DoubleVar(value=3.)
         self.repulsion_radius_var = tk.DoubleVar(value=1.)
         self.tangential_gain_var = tk.DoubleVar(value=3.)
-        self.goal_tolerance_var = tk.DoubleVar(value=1.)
+        self.goal_tolerance_var = tk.DoubleVar(value=0.0)
+        self.target_offset_var = tk.DoubleVar(value=0.5)
+        self.colinearity_var = tk.DoubleVar(value=0.97)
 
-        # --- ROS2 Publishers & Subscribers ---
         self.video_subscriber1 = self.create_subscription(Image, 'local_cam/image_raw', self.image_callback, 10)
         self.video_subscriber2 = self.create_subscription(Image, 'sim_cam/image_raw', self.image_callback, 10)
         self.video_subscriber1 = self.create_subscription(FieldData, 'field_data', self.fieldCB, 10)
@@ -59,11 +63,14 @@ class GUI(Node):
             sub = self.create_subscription(LowCmd, f'low{i}', lambda msg, i=i: self.lowCB(msg, i), 10)
             self.cmd_subscribers.append(sub)
         self.settings_publisher = self.create_publisher(Settings, 'settings', 10)
+        self.cmd_publishers = {
+            0: self.create_publisher(LowCmd, '/low0', 10),
+            1: self.create_publisher(LowCmd, '/low1', 10),
+            2: self.create_publisher(LowCmd, '/low2', 10)
+        }
 
-        # --- ROS2 Service Client ---
         self.ros_clients = {
             'controller': self.create_client(Controller, 'strat/controller'),
-            #'planner': self.create_client(Reset, 'strat/planner'),
         }
         self.client_ready = {name: False for name in self.ros_clients}
         for name, client in self.ros_clients.items():
@@ -72,17 +79,10 @@ class GUI(Node):
                 args=(name, client),
                 daemon=True
             ).start()
-        #while not self.controller_client.wait_for_service(timeout_sec=1.0):
-        #    self.get_logger().info('Waiting for Controller service...')
-
         
-        # --- Build the GUI ---
         self.setup_gui()
-        
-        # --- ROS Timers for All Loops ---
         self.create_timer(0.05, self.update_gui) # 20 Hz
         self.create_timer(0.2, self.publish_settings)
-
         self.field_data = FieldData
         self.cmds = [None, None, None]
 
@@ -114,7 +114,7 @@ class GUI(Node):
                 cv2.circle(rgb_image, coords, 8, (0, 0, 255), -1)
                 vx_px = self.field_data.ball.vx * VIDEO_WIDTH / FIELD_W
                 vy_px = -self.field_data.ball.vy * VIDEO_HEIGHT / FIELD_H
-                if abs(vx_px) > 3 and abs(vy_px) > 3:
+                if abs(vx_px) > 1 and abs(vy_px) > 1:
                     mag = math.sqrt(vx_px**2 + vy_px**2)
                     min_len = 50
                     max_len = 1000
@@ -128,7 +128,6 @@ class GUI(Node):
                     cv2.arrowedLine(rgb_image, coords, (end_x, end_y), (255, 255, 0), 5, tipLength=0.2)
 
             for i in range(6):
-                name = "bruh"
                 name = f'{"team" if i < 3 else "op"}{i%3}'
                 robot = getattr(self.field_data, f'{"team" if i < 3 else "op"}{i%3}')
                 coords = np.array(self.cvCoords((robot.x, robot.y)))
@@ -142,9 +141,14 @@ class GUI(Node):
                 else:
                     cv2.circle(rgb_image, coords, 8, (0, 255, 0) if i < 3 else (255, 0, 0), -1)
                 
-                if not self.is_paused and  i < 3 and not self.cmds[i] is None:
-                    vx_px = self.cmds[i].vx * VIDEO_WIDTH / FIELD_W
-                    vy_px = -self.cmds[i].vy * VIDEO_HEIGHT / FIELD_H
+                relevant = -1
+                for j, el in enumerate(self.team_vals):
+                    if el == i:
+                        relevant = j
+
+                if not self.is_paused and i < 3 and relevant != -1 and not self.cmds[relevant] is None:
+                    vx_px = self.cmds[relevant].vx * VIDEO_WIDTH / FIELD_W
+                    vy_px = -self.cmds[relevant].vy * VIDEO_HEIGHT / FIELD_H
                     if abs(vx_px) > 3 and abs(vy_px) > 3:
                         mag = math.sqrt(vx_px**2 + vy_px**2)
                         min_len = 50
@@ -191,7 +195,7 @@ class GUI(Node):
         exposure_frame = ttk.LabelFrame(left_frame, text="Camera Exposure", padding="10")
         exposure_frame.pack(fill=tk.X, pady=5)
         exposure_slider = ttk.Scale(
-            exposure_frame, from_=200, to=600, orient=tk.HORIZONTAL,
+            exposure_frame, from_=200, to=1000, orient=tk.HORIZONTAL,
             variable=self.exposure_var, length=200, command=self._on_exposure_change
         )
         exposure_slider.pack(anchor=tk.W, fill=tk.X, expand=True, pady=5)
@@ -253,6 +257,24 @@ class GUI(Node):
         goal_tolerance_slider.pack(anchor=tk.W, fill=tk.X, expand=True)
         ttk.Label(vector_frame, textvariable=self.goal_tolerance_var).pack(anchor=tk.CENTER, pady=(0, 5))
 
+        ttk.Label(vector_frame, text="Target offset").pack(anchor=tk.W)
+        target_offset_slider = ttk.Scale(
+            vector_frame, from_=0, to=2, orient=tk.HORIZONTAL,
+            variable=self.target_offset_var, length=200,
+            command=lambda x: self.onVarChange(self.target_offset_var, x)
+        )
+        target_offset_slider.pack(anchor=tk.W, fill=tk.X, expand=True)
+        ttk.Label(vector_frame, textvariable=self.target_offset_var).pack(anchor=tk.CENTER, pady=(0, 5))
+
+        ttk.Label(vector_frame, text="Colinearity").pack(anchor=tk.W)
+        colinearity_slider = ttk.Scale(
+            vector_frame, from_=0.8, to=1, orient=tk.HORIZONTAL,
+            variable=self.colinearity_var, length=200,
+            command=lambda x: self.colinearity_var.set(x)
+        )
+        colinearity_slider.pack(anchor=tk.W, fill=tk.X, expand=True)
+        ttk.Label(vector_frame, textvariable=self.colinearity_var).pack(anchor=tk.CENTER, pady=(0, 5))
+
         
 
         reset_button = ttk.Button(left_frame, text="Reset registry", command=self.buttonCB)
@@ -271,6 +293,7 @@ class GUI(Node):
 
         self.robot_team_vars = []
         self.robot_dropdowns = []
+        self.team_vals = [-1, -1, -1]
 
         team_options = {"None": -1, "team0": 0, "team1": 1, "team2": 2}
 
@@ -287,6 +310,9 @@ class GUI(Node):
             dropdown.pack(fill=tk.X, pady=2)
             self.robot_team_vars.append((var, team_options))
             self.robot_dropdowns.append(dropdown)
+
+        auto_button = ttk.Button(left_frame, text="Auto detect", command=self.autoCB)
+        auto_button.pack(pady=20)
 
 
         # --- Control Buttons Underneath Video ---
@@ -306,8 +332,56 @@ class GUI(Node):
         self.penalty_button = ttk.Button(button_frame, text="Penalty", command=lambda: self.call_controller(State.PENALTY))
         self.penalty_button.pack(side=tk.LEFT, padx=10)
 
+    def autoCB(self):
+        if not self.call_controller(State.HALT):
+            return
+
+        self.current = 0
+        self.auto_thread = threading.Thread(target=lambda: self.autoCheck(self.field_data), daemon=True)
+        self.auto_thread.start()
+        self.pause_button.config(text="Resume")
+        self.is_paused = True
+
+    def autoCheck(self, original):
+        for i in range(3):
+            self.gui_queue.put((i, "None"))
+
+        for i in range(3):
+            self.get_logger().info(f"Auto-detect: Testing physical robot {i}")
+            cmd_0 = LowCmd(robot_id=0, vx=0., vy=0., dtheta=0.)
+            cmd_1 = LowCmd(robot_id=0, vx=0., vy=0., dtheta=180.)
+            original = self.field_data
+            for j in range(3):
+                if j == i:
+                    self.cmd_publishers[j].publish(cmd_1)
+                else:
+                    self.cmd_publishers[j].publish(cmd_0)
+
+            timeout = time.time()
+
+            while time.time() - timeout < 2:
+                if abs(original.team0.theta - self.field_data.team0.theta) > 90:
+                    self.get_logger().info(f"robot{i} is team0. DIFF {original.team0.theta}, {self.field_data.team0.theta}")
+                    self.gui_queue.put((i, "team0"))
+                    break
+                elif abs(original.team1.theta - self.field_data.team1.theta) > 90:
+                    self.get_logger().info(f"robot{i} is team1, DIFF {original.team1.theta}, {self.field_data.team1.theta}")
+                    self.gui_queue.put((i, "team1"))
+                    break
+                elif abs(original.team2.theta - self.field_data.team2.theta) > 90:
+                    self.get_logger().info(f"obot{i} is team2 DIFF {original.team2.theta}, {self.field_data.team2.theta}")
+                    self.gui_queue.put((i, "team2"))
+                    break
+                else:
+                    time.sleep(0.1)
+
+            self.cmd_publishers[i].publish(cmd_0)
+            time.sleep(1)
+
+        self.get_logger().info("Auto-detect complete.")
+        self.call_controller(State.PAUSE)
+
     def toggle_pause(self):
-        """Toggle between PAUSE and PLAY states."""
         if self.is_paused:
             if not self.call_controller(State.PLAY):
                 return
@@ -319,19 +393,15 @@ class GUI(Node):
         self.is_paused = not self.is_paused
 
     def call_controller(self, state: State):
-        """Send a Controller service request."""
         if not self.client_ready["controller"] or not self.ros_clients["controller"].service_is_ready():
             self.get_logger().warn("Controller service not available.")
             return False
 
         req = Controller.Request()
         req.state = int(state)
-
-        # Fill HighCmd placeholders
         req.team0 = HighCmd(robot_id=0, skill=0, mod=0, tgt_x=0.0, tgt_y=0.0, tgt_theta=0.0)
         req.team1 = HighCmd(robot_id=1, skill=0, mod=0, tgt_x=0.0, tgt_y=0.0, tgt_theta=0.0)
         req.team2 = HighCmd(robot_id=2, skill=0, mod=0, tgt_x=0.0, tgt_y=0.0, tgt_theta=0.0)
-
         future = self.ros_clients["controller"].call_async(req)
         future.add_done_callback(self.controller_response)
         return True
@@ -350,17 +420,27 @@ class GUI(Node):
         self.is_paused = not self.is_paused
         self.pause_button.config(text="Pause" if self.is_paused else "Resume")
 
-
     def onVarChange(self, var, value_str):
         value = float(value_str)
-        new_value = round(value / 0.5) * 0.5
+        new_value = round(value / 0.1) * 0.1
         var.set(new_value)
         
     def update_gui(self):
+        self.process_gui_queue()
         if self.root.winfo_exists():
             self.root.update()
         else:
             rclpy.shutdown()
+            
+    def process_gui_queue(self):
+        try:
+            while not self.gui_queue.empty():
+                index, value = self.gui_queue.get_nowait()
+                if index < len(self.robot_dropdowns):
+                    print(f"setting {index} as {value}")
+                    self.robot_dropdowns[index].set(value)
+        except queue.Empty:
+            pass
 
     def publish_settings(self):
         msg = Settings()
@@ -374,9 +454,12 @@ class GUI(Node):
         msg.tangential_gain = self.tangential_gain_var.get()
         msg.goal_tolerance = self.goal_tolerance_var.get()
         msg.attractive_gain = self.attractive_gain_var.get()
+        msg.target_offset = self.target_offset_var.get()
+        msg.colinearity = self.colinearity_var.get()
 
         for i, (var, team_options) in enumerate(self.robot_team_vars):
             setattr(msg, f"robot{i}", team_options[var.get()])
+            self.team_vals[i] = team_options[var.get()]
 
         self.settings_publisher.publish(msg)
 

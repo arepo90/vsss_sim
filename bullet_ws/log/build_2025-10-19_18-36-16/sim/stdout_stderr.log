@@ -1,0 +1,27 @@
+Traceback (most recent call last):
+  File "/home/arepo/vsss_sim/bullet_ws/src/sim/setup.py", line 1, in <module>
+    from setuptools import setup
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 17, in <module>
+    from setuptools.dist import Distribution
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 37, in <module>
+    from setuptools.config import setupcfg, pyprojecttoml
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/config/__init__.py", line 8, in <module>
+    from . import setupcfg
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/config/setupcfg.py", line 33, in <module>
+    from ..extern.packaging.markers import default_environment as marker_env
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_vendor/packaging/markers.py", line 11, in <module>
+    from ._parser import MarkerAtom, MarkerList, Op, Value, Variable, parse_marker
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_vendor/packaging/_parser.py", line 10, in <module>
+    from ._tokenizer import DEFAULT_RULES, Tokenizer
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_vendor/packaging/_tokenizer.py", line 6, in <module>
+    from .specifiers import Specifier
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_vendor/packaging/specifiers.py", line 26, in <module>
+    from .utils import canonicalize_version
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_vendor/packaging/utils.py", line 9, in <module>
+    from .version import InvalidVersion, Version
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_vendor/packaging/version.py", line 38, in <module>
+    _Version = collections.namedtuple(
+  File "/usr/lib/python3.10/collections/__init__.py", line 414, in namedtuple
+    __new__ = eval(code, namespace)
+  File "<string>", line 1, in <module>
+KeyboardInterrupt

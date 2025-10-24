@@ -4,7 +4,7 @@ from ament_index_python.packages import get_package_share_directory
 from sensor_msgs.msg import Image
 from cv_bridge import CvBridge
 from sim_msgs.msg import FieldData, ObjData, Settings
-from std_msgs.msg import Int32
+from std_msgs.msg import Int32, Int32MultiArray
 import cv2
 import numpy as np
 import math
@@ -35,6 +35,7 @@ COLOR_RANGES = {
     "purple": [(130, 50, 50), (165, 255, 255)]
 }
 OBJ_LABELS = ["Ball", "yellow0", "yellow1", "yellow2", "blue0", "blue1", "blue2"]
+DETECTION_TIMEOUT = 5
 
 def bisectorAngle(P, A, B):
     P = np.array(P, dtype=float)
@@ -97,12 +98,10 @@ class PatternRegistry:
                 if best > ellipse_area / cv2.contourArea(cont):
                     best = ellipse_area / cv2.contourArea(cont)
                     options = [x, y, 0]
-                #options.append([x, y])
 
         if len(options) == 0:
             return [999, 999, 999]
 
-        #return [options[0][0], options[0][1], 0]
         return options
 
     def parseROI(self, roi, offset):
@@ -123,7 +122,6 @@ class PatternRegistry:
             kernel = np.ones((2, 2), np.uint8)
             mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
             mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
-            #cv2.imshow(f"mask {color}", mask)
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             filtered_contours = [c for c in contours if cv2.contourArea(c) > (200 if USE_LOCAL else 40)]
             if len(filtered_contours) == 0:
@@ -138,7 +136,6 @@ class PatternRegistry:
                 for contour in contours:
                     secondary_contours.append({"color": color, "contour": contour})
 
-        seen = []
         best = []
         for rect in main_contours:
             M_rect = cv2.moments(rect["contour"])
@@ -147,7 +144,6 @@ class PatternRegistry:
             for square in secondary_contours:
                 M_sq = cv2.moments(square["contour"])
                 center_sq = (int(M_sq["m10"] / M_sq["m00"]), int(M_sq["m01"] / M_sq["m00"]))
-                #if math.dist(center_rect, center_sq) < SEARCH_RADIUS:
                 neighbors.append((square, center_sq))
 
             if len(neighbors) < 2:
@@ -170,8 +166,6 @@ class PatternRegistry:
                     if avg_distance < min_dev:
                         min_dev = avg_distance
                         best = [[center[0] + offset[0], center[1] + offset[1], angle], self.getID([sq_1[0]["color"], sq_2[0]["color"], rect["color"]]), avg_distance]
-
-                    #seen.append([[sq_1[0]["color"], sq_2[0]["color"], rect["color"]], distances, (center, angle, self.getID([sq_1[0]["color"], sq_2[0]["color"], rect["color"]]))])
 
         if len(best) == 0:
             return [999, 999, 999], "", -1
@@ -368,7 +362,6 @@ class PatternRegistry:
 
         return f'{"yellow" if "yellow" in colors else "blue"}{self.patterns[key]}'
 
-    
 class Kalman:
     def __init__(self, id):
         self.id = id
@@ -455,57 +448,72 @@ class Vision(Node):
         self.prev = time.time()
         self.src_list = []
         self.dst_list = []
-        self.score = [0, 0]
+        self.active = [0, 0, 0]
+        self.mapping = [-1, -1, -1]
         self.settings_subscriber = self.create_subscription(Settings, 'settings', self.settingsCB, 10)
-        self.score1_subscriber = self.create_subscription(Int32, 'score1', lambda msg: self.scoreCB(0, msg), 10)
-        self.score2_subscriber = self.create_subscription(Int32, 'score2', lambda msg: self.scoreCB(1, msg), 10)
+        self.active_subscriber = self.create_subscription(Int32MultiArray, 'active', self.activeCB, 10)
         self.is_running = threading.Event()
         self.is_local = threading.Event()
         self.video_publisher = self.create_publisher(Image, 'local_cam/image_raw', 10)
         self.video_subscriber = self.create_subscription(Image, 'sim_cam/image_raw', self.visionCB, 10)
         self.cv_bridge = CvBridge()
-        self.seen = [False for _ in range(7)]
+        self.seen = [0 for _ in range(7)]
         self.reset_pattern = True
         self.counter = 0
+        self.cam_thread = threading.Thread(target=self.visionTCB)
         if USE_LOCAL:
             self.cam = cv2.VideoCapture(2)
+            if not self.cam.isOpened():
+                self.get_logger().error("Failed to open camera")
+                return
+            
             self.camSetup()
-            self.cam_thread = threading.Thread(target=self.visionTCB)
             self.cam_thread.start()
         else:
             self.is_local.set()
 
+    def activeCB(self, msg):
+        for i in range(3):
+            if self.mapping[i] != -1:
+                self.active[self.mapping[i]] = msg.data[self.mapping[i]]
+
     def settingsCB(self, msg):
         global CAM_EXPOSURE, USE_LOCAL, TEAM_COLOR, OP_COLOR
         if msg.local and not USE_LOCAL:
-            print("now local")
+            self.get_logger().info("Switched to local")
             USE_LOCAL = True
             self.is_local.clear()
             self.cam = cv2.VideoCapture(2)
+            if not self.cam.isOpened():
+                self.get_logger().error("Failed to open camera")
+                return
+            
             self.camSetup()
             self.cam_thread = threading.Thread(target=self.visionTCB)
             self.cam_thread.start()
         elif not msg.local and USE_LOCAL:
-            print("now sim")
+            self.get_logger().info("Switched to sim")
             USE_LOCAL = False
             self.is_local.set()
-            self.cam_thread.join()
+            if self.cam_thread.is_alive():
+                self.cam_thread.join()
+                
             if self.cam.isOpened():
                 self.cam.release()
+
+        self.mapping = [msg.robot0, msg.robot1, msg.robot2]
 
         if TEAM_COLOR != ("yellow" if msg.team_color else "blue"):
             TEAM_COLOR = "yellow" if msg.team_color else "blue"
             OP_COLOR = "blue" if msg.team_color else "yellow"
-            print(f"new team color: {TEAM_COLOR}")
 
         if USE_LOCAL and msg.exposure != CAM_EXPOSURE:
             CAM_EXPOSURE = msg.exposure
-            print(f"new exposure: {CAM_EXPOSURE}")
             self.cam.set(cv2.CAP_PROP_EXPOSURE, CAM_EXPOSURE)
 
         if msg.reset != self.reset_pattern:
             self.reset_pattern = msg.reset
-            self.seen = [False for _ in range(7)]
+            self.seen = [0 for _ in range(7)]
             for k in self.kalman:
                 k.reset()
 
@@ -516,21 +524,17 @@ class Vision(Node):
         self.cam.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
         self.cam.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
         self.cam.set(cv2.CAP_PROP_AUTO_EXPOSURE, 1) 
-        self.cam.set(cv2.CAP_PROP_EXPOSURE, CAM_EXPOSURE) # 400
+        self.cam.set(cv2.CAP_PROP_EXPOSURE, CAM_EXPOSURE)
 
     def reset(self, msg, response):
         self.registry.reset()
         self.kalman.reset()
         self.prev = time.time()
-        self.score = [0, 0]
-
-    def scoreCB(self, id, msg):
-        self.score[id] = msg.data
 
     def visionProc(self, img):
         if img is None:
-            print("bad img")
-            return
+            self.get_logger().warning("Bad image")
+            return None
         
         if not self.is_calibrated:
             cv2.namedWindow('src')
@@ -543,7 +547,6 @@ class Vision(Node):
         
         norm = cv2.warpPerspective(img, self.H, (img.shape[1], img.shape[0]))
         norm_copy = norm.copy()
-        
         ball = self.registry.detectBall(norm)
         results = self.model(norm, verbose=False)
         accumulated = {label: [999, 999, 999, 999] for label in OBJ_LABELS}
@@ -562,7 +565,6 @@ class Vision(Node):
                 accumulated[label] = obs + [avg_distance]
 
         observation = [accumulated[label][:3] for label in OBJ_LABELS]
-
         states = []
         curr = time.time()
         dt = curr - self.prev
@@ -570,13 +572,27 @@ class Vision(Node):
             self.kalman[i].predict(dt)
             if obs[0] != 999:
                 self.kalman[i].update(obs, [norm.shape[1], norm.shape[0]])
-                if not self.seen[i]:
-                    self.seen[i] = True
+                self.seen[i] = time.time()
             
-            if self.seen[i]: 
+            if time.time() - self.seen[i] < DETECTION_TIMEOUT:
                 state = self.kalman[i].getState()
                 norm_copy = self.draw(norm_copy, state, OBJ_LABELS[i], 1 if TEAM_COLOR in OBJ_LABELS[i] else (0 if "Ball" in OBJ_LABELS[i] else -1))
                 states.append(state)
+                """
+                if (1 <= i <= 3 and self.active[i-1]) or i == 0 or i > 3: 
+                    state = self.kalman[i].getState()
+                    norm_copy = self.draw(norm_copy, state, OBJ_LABELS[i], 1 if TEAM_COLOR in OBJ_LABELS[i] else (0 if "Ball" in OBJ_LABELS[i] else -1))
+                    states.append(state)
+                else:
+                    states.append({
+                        "x": 999.,
+                        "y": 999.,
+                        "theta": 999.,
+                        "vx": 999.,
+                        "vy": 999.,
+                        "w": 999.,
+                    })     
+                """          
             else:
                 states.append({
                     "x": 999.,
@@ -586,17 +602,10 @@ class Vision(Node):
                     "vy": 999.,
                     "w": 999.,
                 })
-
-            """            state = self.kalman[i].getState()
-            norm_copy = self.draw(norm_copy, state, OBJ_LABELS[i])
-            states.append(state)
-
-            """
             
         self.prev = curr
         field_data = self.getMsg(states)
         self.publisher.publish(field_data)
-
         return norm
 
     def visionTCB(self):
@@ -611,6 +620,9 @@ class Vision(Node):
                 continue
 
             last = self.visionProc(img)
+            if last is None:
+                continue
+
             msg = self.cv_bridge.cv2_to_imgmsg(last, encoding="bgr8")
             self.video_publisher.publish(msg)
             cv2.waitKey(1)
@@ -652,29 +664,7 @@ class Vision(Node):
                 vy = data[i]["vy"],
                 w = data[i]["w"]
             )
-            #if TEAM_COLOR == "yellow":
             setattr(msg, f'{"team" if msg_index < 4 else "op"}{(msg_index-1) % 3}', robot)
-            #else:
-            #    setattr(msg, f'{"op" if msg_index < 4 else "team"}{(msg_index-1) % 3}', robot)
-
-
-        """
-        for i in range(1, 7):
-            robot = ObjData(
-                obj_id = i,
-                current = True,
-                x = data[i]["x"],
-                y = data[i]["y"],
-                theta = (math.degrees(data[i]["theta"])+90) % 360,
-                vx = data[i]["vx"],
-                vy = data[i]["vy"],
-                w = data[i]["w"]
-            )
-            setattr(msg, f'robot{i-1}', robot)
-        """
-    
-        msg.score1 = self.score[0]
-        msg.score2 = self.score[1]
 
         return msg
 
@@ -708,13 +698,13 @@ class Vision(Node):
         self.src = src
         self.dst = cv2.imread(os.path.join(get_package_share_directory('sim'), 'imgs', 'dst.png'))
         self.dst = cv2.resize(self.dst, (self.src.shape[1], self.src.shape[0]))
-        print('S - Save pair\nH - End')
+        self.get_logger().info("S - Save pair\nH - End")
         while True:
             cv2.imshow('src', self.src)
             cv2.imshow('dst', self.dst)
             k = cv2.waitKey(1) & 0xFF
             if k == ord('s'):
-                print('Pair saved')
+                self.get_logger().info('Pair saved')
                 cv2.circle(self.src,(self.src_x, self.src_y), 5, (0, 255, 0), -1)
                 cv2.circle(self.dst,(self.dst_x, self.dst_y), 5, (0, 255, 0), -1)
                 self.src_list.append([self.src_x, self.src_y])
@@ -722,9 +712,9 @@ class Vision(Node):
             elif k == ord('h'):
                 src_pts = np.array(self.src_list).reshape(-1, 1, 2)
                 dst_pts = np.array(self.dst_list).reshape(-1, 1, 2)
-                H, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5)
+                H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5)
                 self.H = H
-                print("H: ", H)
+                self.get_logger().info("H: ", H)
                 break
             elif k == ord('q'):
                 self.H = np.array([
@@ -739,13 +729,6 @@ class Vision(Node):
         return True
     
     def draw(self, frame, state, label, mod):
-        """
-        if abs(state["vx"]) < 0.05 and abs(state["vy"]) < 0.05:
-            color = (0, 0, 255)
-        else:
-            color = (0, 255, 0)
-        """
-
         h_px, w_px = frame.shape[0], frame.shape[1]
 
         scale_x = w_px / 17.0
@@ -756,14 +739,6 @@ class Vision(Node):
 
         cv2.circle(frame, (x_px, y_px), 5, (0, 255, 0) if mod == 1 else ((255, 0, 255) if mod == 0 else (0, 0, 255)), -1)
 
-        """
-        vx_px = int(state["vx"] * scale_x)
-        vy_px = int(-state["vy"] * scale_y)
-        end_x = x_px + vx_px * 2
-        end_y = y_px + vy_px * 2
-        cv2.arrowedLine(frame, (x_px, y_px), (end_x, end_y), color, 2, tipLength=0.3)
-        """
-    
         angle_rad = state["theta"]
         end_x = int(x_px + 20 * math.cos(angle_rad))
         end_y = int(y_px + 20 * math.sin(angle_rad))
@@ -779,8 +754,10 @@ class Vision(Node):
     def destroyNode(self):
         self.is_running.set()
         if USE_LOCAL:
-            self.cam_thread.join()
+            if self.cam_thread.is_alive():
+                self.cam_thread.join()
             self.cam.release()
+            
         
         super().destroy_node()
 

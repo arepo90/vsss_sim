@@ -3,7 +3,7 @@
 #include <WiFiUdp.h>
 
 // === Comms ===
-#define ROBOT_ID 0
+#define ROBOT_ID 2
 #define BROADCAST_PORT 8888
 #define SEND_START_PORT 9000
 #define HEARTBEAT_INVERVAL 500
@@ -52,7 +52,7 @@ constexpr int M4_CHANNEL = 3;
 
 // === Movement settings ===
 
-constexpr int MIN_PWM = 80;
+constexpr int MIN_PWM = 100;
 constexpr int MAX_PWM = 250;
 constexpr int CORRECTION_FACTOR = 1;
 

@@ -1,0 +1,5 @@
+  File "/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/gui.py", line 318
+    self.call_controller(State.AUTO):
+                                    ^
+SyntaxError: invalid syntax
+

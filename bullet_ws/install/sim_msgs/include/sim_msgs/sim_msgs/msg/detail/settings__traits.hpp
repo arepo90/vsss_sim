@@ -113,6 +113,20 @@ inline void to_flow_style_yaml(
   {
     out << "tangential_gain: ";
     rosidl_generator_traits::value_to_yaml(msg.tangential_gain, out);
+    out << ", ";
+  }
+
+  // member: target_offset
+  {
+    out << "target_offset: ";
+    rosidl_generator_traits::value_to_yaml(msg.target_offset, out);
+    out << ", ";
+  }
+
+  // member: colinearity
+  {
+    out << "colinearity: ";
+    rosidl_generator_traits::value_to_yaml(msg.colinearity, out);
   }
   out << "}";
 }  // NOLINT(readability/fn_size)
@@ -248,6 +262,26 @@ inline void to_block_style_yaml(
     }
     out << "tangential_gain: ";
     rosidl_generator_traits::value_to_yaml(msg.tangential_gain, out);
+    out << "\n";
+  }
+
+  // member: target_offset
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "target_offset: ";
+    rosidl_generator_traits::value_to_yaml(msg.target_offset, out);
+    out << "\n";
+  }
+
+  // member: colinearity
+  {
+    if (indentation > 0) {
+      out << std::string(indentation, ' ');
+    }
+    out << "colinearity: ";
+    rosidl_generator_traits::value_to_yaml(msg.colinearity, out);
     out << "\n";
   }
 }  // NOLINT(readability/fn_size)

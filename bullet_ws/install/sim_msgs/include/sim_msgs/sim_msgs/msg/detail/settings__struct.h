@@ -33,6 +33,8 @@ typedef struct sim_msgs__msg__Settings
   double repulsion_radius;
   double goal_tolerance;
   double tangential_gain;
+  double target_offset;
+  double colinearity;
 } sim_msgs__msg__Settings;
 
 // Struct for a sequence of sim_msgs__msg__Settings.

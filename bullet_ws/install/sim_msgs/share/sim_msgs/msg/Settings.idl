@@ -31,6 +31,10 @@ module sim_msgs {
       double goal_tolerance;
 
       double tangential_gain;
+
+      double target_offset;
+
+      double colinearity;
     };
   };
 };

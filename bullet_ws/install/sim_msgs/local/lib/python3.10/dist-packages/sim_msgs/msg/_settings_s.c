@@ -167,6 +167,24 @@ bool sim_msgs__msg__settings__convert_from_py(PyObject * _pymsg, void * _ros_mes
     ros_message->tangential_gain = PyFloat_AS_DOUBLE(field);
     Py_DECREF(field);
   }
+  {  // target_offset
+    PyObject * field = PyObject_GetAttrString(_pymsg, "target_offset");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->target_offset = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
+  {  // colinearity
+    PyObject * field = PyObject_GetAttrString(_pymsg, "colinearity");
+    if (!field) {
+      return false;
+    }
+    assert(PyFloat_Check(field));
+    ros_message->colinearity = PyFloat_AS_DOUBLE(field);
+    Py_DECREF(field);
+  }
 
   return true;
 }
@@ -326,6 +344,28 @@ PyObject * sim_msgs__msg__settings__convert_to_py(void * raw_ros_message)
     field = PyFloat_FromDouble(ros_message->tangential_gain);
     {
       int rc = PyObject_SetAttrString(_pymessage, "tangential_gain", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // target_offset
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->target_offset);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "target_offset", field);
+      Py_DECREF(field);
+      if (rc) {
+        return NULL;
+      }
+    }
+  }
+  {  // colinearity
+    PyObject * field = NULL;
+    field = PyFloat_FromDouble(ros_message->colinearity);
+    {
+      int rc = PyObject_SetAttrString(_pymessage, "colinearity", field);
       Py_DECREF(field);
       if (rc) {
         return NULL;

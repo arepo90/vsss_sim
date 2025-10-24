@@ -51,6 +51,8 @@ struct Settings_
       this->repulsion_radius = 0.0;
       this->goal_tolerance = 0.0;
       this->tangential_gain = 0.0;
+      this->target_offset = 0.0;
+      this->colinearity = 0.0;
     }
   }
 
@@ -73,6 +75,8 @@ struct Settings_
       this->repulsion_radius = 0.0;
       this->goal_tolerance = 0.0;
       this->tangential_gain = 0.0;
+      this->target_offset = 0.0;
+      this->colinearity = 0.0;
     }
   }
 
@@ -116,6 +120,12 @@ struct Settings_
   using _tangential_gain_type =
     double;
   _tangential_gain_type tangential_gain;
+  using _target_offset_type =
+    double;
+  _target_offset_type target_offset;
+  using _colinearity_type =
+    double;
+  _colinearity_type colinearity;
 
   // setters for named parameter idiom
   Type & set__team_color(
@@ -194,6 +204,18 @@ struct Settings_
     const double & _arg)
   {
     this->tangential_gain = _arg;
+    return *this;
+  }
+  Type & set__target_offset(
+    const double & _arg)
+  {
+    this->target_offset = _arg;
+    return *this;
+  }
+  Type & set__colinearity(
+    const double & _arg)
+  {
+    this->colinearity = _arg;
     return *this;
   }
 
@@ -276,6 +298,12 @@ struct Settings_
       return false;
     }
     if (this->tangential_gain != other.tangential_gain) {
+      return false;
+    }
+    if (this->target_offset != other.target_offset) {
+      return false;
+    }
+    if (this->colinearity != other.colinearity) {
       return false;
     }
     return true;

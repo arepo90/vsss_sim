@@ -21,16 +21,48 @@ namespace msg
 namespace builder
 {
 
+class Init_Settings_colinearity
+{
+public:
+  explicit Init_Settings_colinearity(::sim_msgs::msg::Settings & msg)
+  : msg_(msg)
+  {}
+  ::sim_msgs::msg::Settings colinearity(::sim_msgs::msg::Settings::_colinearity_type arg)
+  {
+    msg_.colinearity = std::move(arg);
+    return std::move(msg_);
+  }
+
+private:
+  ::sim_msgs::msg::Settings msg_;
+};
+
+class Init_Settings_target_offset
+{
+public:
+  explicit Init_Settings_target_offset(::sim_msgs::msg::Settings & msg)
+  : msg_(msg)
+  {}
+  Init_Settings_colinearity target_offset(::sim_msgs::msg::Settings::_target_offset_type arg)
+  {
+    msg_.target_offset = std::move(arg);
+    return Init_Settings_colinearity(msg_);
+  }
+
+private:
+  ::sim_msgs::msg::Settings msg_;
+};
+
 class Init_Settings_tangential_gain
 {
 public:
   explicit Init_Settings_tangential_gain(::sim_msgs::msg::Settings & msg)
   : msg_(msg)
   {}
-  ::sim_msgs::msg::Settings tangential_gain(::sim_msgs::msg::Settings::_tangential_gain_type arg)
+  Init_Settings_target_offset tangential_gain(::sim_msgs::msg::Settings::_tangential_gain_type arg)
   {
     msg_.tangential_gain = std::move(arg);
-    return std::move(msg_);
+    return Init_Settings_target_offset(msg_);
   }
 
 private:

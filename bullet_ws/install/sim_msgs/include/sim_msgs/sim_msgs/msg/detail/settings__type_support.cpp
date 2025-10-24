@@ -37,7 +37,7 @@ void Settings_fini_function(void * message_memory)
   typed_message->~Settings();
 }
 
-static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_message_member_array[13] = {
+static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_message_member_array[15] = {
   {
     "team_color",  // name
     ::rosidl_typesupport_introspection_cpp::ROS_TYPE_BOOLEAN,  // type
@@ -258,13 +258,47 @@ static const ::rosidl_typesupport_introspection_cpp::MessageMember Settings_mess
     nullptr,  // fetch(index, &value) function pointer
     nullptr,  // assign(index, value) function pointer
     nullptr  // resize(index) function pointer
+  },
+  {
+    "target_offset",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs::msg::Settings, target_offset),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
+  },
+  {
+    "colinearity",  // name
+    ::rosidl_typesupport_introspection_cpp::ROS_TYPE_DOUBLE,  // type
+    0,  // upper bound of string
+    nullptr,  // members of sub message
+    false,  // is array
+    0,  // array size
+    false,  // is upper bound
+    offsetof(sim_msgs::msg::Settings, colinearity),  // bytes offset in struct
+    nullptr,  // default value
+    nullptr,  // size() function pointer
+    nullptr,  // get_const(index) function pointer
+    nullptr,  // get(index) function pointer
+    nullptr,  // fetch(index, &value) function pointer
+    nullptr,  // assign(index, value) function pointer
+    nullptr  // resize(index) function pointer
   }
 };
 
 static const ::rosidl_typesupport_introspection_cpp::MessageMembers Settings_message_members = {
   "sim_msgs::msg",  // message namespace
   "Settings",  // message name
-  13,  // number of fields
+  15,  // number of fields
   sizeof(sim_msgs::msg::Settings),
   Settings_message_member_array,  // message members
   Settings_init_function,  // function to initialize message memory (memory has to be allocated)
