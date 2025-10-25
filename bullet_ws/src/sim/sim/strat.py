@@ -20,10 +20,11 @@ FIELD_HEIGHT = 13
 GOAL_WIDTH = 3
 TEAM_GOAL = np.array([FIELD_LENGTH / 2, 0.0])
 OP_GOAL = np.array([-FIELD_LENGTH / 2, 0.0])
-
 DEF_POS = np.array([(FIELD_LENGTH-5) / 2, 0.0])
 MID_POS = [np.array([0, 3]), np.array([0, -3]), np.array([0, 0])]
 
+X_MARGIN = 1
+Y_MARGIN = 2
 
 ATTRACTIVE_GAIN = 0.5
 REPULSIVE_GAIN = 2
@@ -48,6 +49,12 @@ class SkillLib:
             vx_robot, vy_robot = self._world_to_robot_frame(net_vector, robot.theta)
         else:
             vx_robot, vy_robot = net_vector
+
+        if FIELD_LENGTH/2 - abs(robot_pos[0]) < X_MARGIN and not -GOAL_WIDTH /2 < robot_pos[1] < GOAL_WIDTH / 2:
+            vx_robot = 0.
+
+        if FIELD_HEIGHT/2 - abs(robot_pos[1]) < Y_MARGIN:
+            vy_robot = 0.
 
         vx_capped, vy_capped = self._cap_speed(vx_robot, vy_robot)
         cmd = LowCmd()
@@ -161,7 +168,6 @@ class Strat(Node):
             with self.mutex:
                 self.state = msg.state
                 print(f"recv: {self.state}")
-
                 for i in range(3):
                     self.params[i] = getattr(msg, f"team{i}")
 
@@ -211,7 +217,6 @@ class Strat(Node):
         defender = -1
         midfield = []
         attacker = -1
-
         best = 999
         for i in range(3):
             robot = getattr(field, f"team{i}")
@@ -228,7 +233,8 @@ class Strat(Node):
             for i in range(3):
                 if i != defender:
                     midfield.append(i)                
-        elif math.copysign(1, ball_coords[0]) == math.copysign(1, OP_GOAL[0]):
+        #elif math.copysign(1, ball_coords[0]) == math.copysign(1, OP_GOAL[0]):
+        elif np.linalg.norm(ball_coords - OP_GOAL) < 12:
             for i in range(3):
                 robot = getattr(field, f"team{i}")
                 robot_coords = np.array([robot.x, robot.y])
@@ -298,7 +304,6 @@ class Strat(Node):
         theta = math.atan2(vec[1], vec[0])
         angle = - (theta - math.pi/2)
         angle_deg = math.degrees(angle)
-        
         return angle_deg
     
     def allButSelf(self, field, robot):
@@ -360,6 +365,7 @@ class Strat(Node):
                         norm_vec = vec / np.linalg.norm(vec)
                         self.cmds[i] = self.skills.moveToStrike(team_obj, future_ball_pos + norm_vec * TARGET_OFFSET, 0., [], norm_vec)
                         """
+                        
                     elif team_index in midfield:
                         if ball_coords[0] == 999:
                             self.cmds[i] = self.skills.moveToPoint(team_obj, MID_POS[midfield.index(team_index)], 0, [])

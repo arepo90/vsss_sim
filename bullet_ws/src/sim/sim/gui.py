@@ -360,16 +360,16 @@ class GUI(Node):
             timeout = time.time()
 
             while time.time() - timeout < 2:
-                if abs(original.team0.theta - self.field_data.team0.theta) > 90:
+                if abs(original.team0.theta - self.field_data.team0.theta) > 45:
                     self.get_logger().info(f"robot{i} is team0. DIFF {original.team0.theta}, {self.field_data.team0.theta}")
                     self.gui_queue.put((i, "team0"))
                     break
-                elif abs(original.team1.theta - self.field_data.team1.theta) > 90:
+                elif abs(original.team1.theta - self.field_data.team1.theta) > 45:
                     self.get_logger().info(f"robot{i} is team1, DIFF {original.team1.theta}, {self.field_data.team1.theta}")
                     self.gui_queue.put((i, "team1"))
                     break
-                elif abs(original.team2.theta - self.field_data.team2.theta) > 90:
-                    self.get_logger().info(f"obot{i} is team2 DIFF {original.team2.theta}, {self.field_data.team2.theta}")
+                elif abs(original.team2.theta - self.field_data.team2.theta) > 45:
+                    self.get_logger().info(f"robot{i} is team2 DIFF {original.team2.theta}, {self.field_data.team2.theta}")
                     self.gui_queue.put((i, "team2"))
                     break
                 else:

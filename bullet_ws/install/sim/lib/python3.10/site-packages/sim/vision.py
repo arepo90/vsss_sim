@@ -54,6 +54,19 @@ def bisectorAngle(P, A, B):
 
     return (math.degrees(math.atan2(w[1], w[0])) + 360) % 360
 
+def trisectorAngle(P, A, B, C):
+    P = np.array(P, dtype=float)
+    u = np.array(A, dtype=float)
+    v = np.array(B, dtype=float)
+    w = np.array(C, dtype=float)
+    nu = np.linalg.norm(u)
+    nv = np.linalg.norm(v)
+    nw = np.linalg.norm(w)
+    if nu == 0 or nv == 0 or nw == 0:
+        return -1
+    
+    return np.degrees(np.atan2(w[1], w[0]) + 360) % 360
+
 def centroid(A, B, C):
     x = (A[0] + B[0] + C[0]) // 3
     y = (A[1] + B[1] + C[1]) // 3
@@ -86,6 +99,7 @@ class PatternRegistry:
         sorted_contours = sorted(filtered_contours, key=cv2.contourArea, reverse=True)
 
         TOLERANCE = 0.1
+
         options = []
         best = 999
         for cont in sorted_contours[:3]:
@@ -98,6 +112,7 @@ class PatternRegistry:
                 if best > ellipse_area / cv2.contourArea(cont):
                     best = ellipse_area / cv2.contourArea(cont)
                     options = [x, y, 0]
+
 
         if len(options) == 0:
             return [999, 999, 999]
