@@ -556,11 +556,13 @@ class Vision(Node):
             cv2.namedWindow('dst')
             cv2.setMouseCallback('src', self.srcCB)
             cv2.setMouseCallback('dst', self.dstCB)
-            self.is_calibrated = self.calibrate(img.copy(), True) # mod
+            self.is_calibrated = self.calibrate(img.copy(), True)
             cv2.destroyWindow('src')
             cv2.destroyWindow('dst')
         
         norm = cv2.warpPerspective(img, self.H, (img.shape[1], img.shape[0]))
+        norm = norm[45:705, 35:1255]
+        #cv2.imshow("norm", norm)
         norm_copy = norm.copy()
         ball = self.registry.detectBall(norm)
         results = self.model(norm, verbose=False)
@@ -707,6 +709,16 @@ class Vision(Node):
                     [-3.42416353e-03, 9.30203586e-01, 1.68165116e+01],
                     [1.11241564e-05, -3.17810579e-05, 1.00000000e+00]
                 ])
+
+                """
+                H: [[      1.404    0.068012     -135.11]
+ [  -0.019966      1.0104      41.707]
+ [-2.6735e-05  5.2833e-05           1]]
+ H: [[      1.396   -0.019535     -113.31]
+ [  -0.021856     0.95574      48.693]
+ [-2.6409e-07 -4.2463e-05           1]]
+
+                """
             
             return True
         
@@ -729,7 +741,7 @@ class Vision(Node):
                 dst_pts = np.array(self.dst_list).reshape(-1, 1, 2)
                 H, _ = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5)
                 self.H = H
-                self.get_logger().info("H: ", H)
+                print("H:", H)
                 break
             elif k == ord('q'):
                 self.H = np.array([

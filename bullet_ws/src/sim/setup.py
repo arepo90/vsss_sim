@@ -33,6 +33,7 @@ setup(
             'comms = sim.comms:main',
             'gui = sim.gui:main',
             'tests = sim.tests:main',
+            'stratmax = sim.stratMax:main',
         ],
     },
 )

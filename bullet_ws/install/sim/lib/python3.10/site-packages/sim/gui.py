@@ -47,21 +47,27 @@ class GUI(Node):
         self.local_var = tk.IntVar(value=1 if USE_LOCAL else 0)
         self.exposure_var = tk.IntVar(value=CAM_EXPOSURE)
         self.reset_var = False
-        self.attractive_gain_var = tk.DoubleVar(value=0.5)
-        self.repulsive_gain_var = tk.DoubleVar(value=3.)
-        self.repulsion_radius_var = tk.DoubleVar(value=1.)
-        self.tangential_gain_var = tk.DoubleVar(value=3.)
-        self.goal_tolerance_var = tk.DoubleVar(value=0.0)
+        self.attractive_gain_var = tk.DoubleVar(value=2.0)
+        self.repulsive_gain_var = tk.DoubleVar(value=2.)
+        self.repulsion_radius_var = tk.DoubleVar(value=2.)
+        self.tangential_gain_var = tk.DoubleVar(value=2.)
+        self.goal_tolerance_var = tk.DoubleVar(value=2.5)
         self.target_offset_var = tk.DoubleVar(value=0.5)
-        self.colinearity_var = tk.DoubleVar(value=0.97)
+        self.colinearity_var = tk.DoubleVar(value=0.9)
 
         self.video_subscriber1 = self.create_subscription(Image, 'local_cam/image_raw', self.image_callback, 10)
         self.video_subscriber2 = self.create_subscription(Image, 'sim_cam/image_raw', self.image_callback, 10)
         self.video_subscriber1 = self.create_subscription(FieldData, 'field_data', self.fieldCB, 10)
         self.cmd_subscribers = []
+        self.tgt_subscribers = []
         for i in range(3):
             sub = self.create_subscription(LowCmd, f'low{i}', lambda msg, i=i: self.lowCB(msg, i), 10)
             self.cmd_subscribers.append(sub)
+
+        for i in range(3):
+            sub = self.create_subscription(HighCmd, f'high{i}', lambda msg, i=i: self.highCB(msg, i), 10)
+            self.tgt_subscribers.append(sub)
+
         self.settings_publisher = self.create_publisher(Settings, 'settings', 10)
         self.cmd_publishers = {
             0: self.create_publisher(LowCmd, '/low0', 10),
@@ -85,6 +91,7 @@ class GUI(Node):
         self.create_timer(0.2, self.publish_settings)
         self.field_data = FieldData
         self.cmds = [None, None, None]
+        self.tgts = [None, None, None]
 
     def _wait_for_service(self, name, client):
         while not client.wait_for_service(timeout_sec=1.0):
@@ -94,6 +101,9 @@ class GUI(Node):
 
     def lowCB(self, msg, id):
         self.cmds[id] = msg
+
+    def highCB(self, msg, id):
+        self.tgts[id] = msg
 
     def fieldCB(self, msg):
         self.field_data = msg
@@ -147,20 +157,32 @@ class GUI(Node):
                         relevant = j
 
                 if not self.is_paused and i < 3 and relevant != -1 and not self.cmds[relevant] is None:
-                    vx_px = self.cmds[relevant].vx * VIDEO_WIDTH / FIELD_W
-                    vy_px = -self.cmds[relevant].vy * VIDEO_HEIGHT / FIELD_H
-                    if abs(vx_px) > 3 and abs(vy_px) > 3:
+                    vx_local = self.cmds[relevant].vx
+                    vy_local = self.cmds[relevant].vy
+                    theta_rad = math.radians(-robot.theta)
+                    vx_global = vx_local * math.cos(theta_rad) - vy_local * math.sin(theta_rad)
+                    vy_global = vx_local * math.sin(theta_rad) + vy_local * math.cos(theta_rad)
+                    vx_px = vx_global * VIDEO_WIDTH / FIELD_W
+                    vy_px = -vy_global * VIDEO_HEIGHT / FIELD_H
+
+                    if abs(vx_px) > 3 or abs(vy_px) > 3:
                         mag = math.sqrt(vx_px**2 + vy_px**2)
                         min_len = 50
                         max_len = 1000
                         if mag > 1e-6:
-                            scale = max(min_len, min(max_len, mag)) / mag
+                            #scale = max(min_len, min(max_len, mag)) / mag
+                            scale = 3
                             vx_px *= scale
                             vy_px *= scale
 
                         end_x = int(coords[0] + vx_px)
                         end_y = int(coords[1] + vy_px)
                         cv2.arrowedLine(rgb_image, coords, (end_x, end_y), (255, 255, 0), 5, tipLength=0.2)
+
+                    if not self.tgts[relevant] is None: 
+                        coords = np.array(self.cvCoords((self.tgts[relevant].tgt_x, self.tgts[relevant].tgt_y))) 
+                        cv2.circle(rgb_image, coords, 10, (0, 255, 255), -1)
+
 
             pil_image = PILImage.fromarray(rgb_image)
             photo_image = ImageTk.PhotoImage(image=pil_image)
@@ -268,7 +290,7 @@ class GUI(Node):
 
         ttk.Label(vector_frame, text="Colinearity").pack(anchor=tk.W)
         colinearity_slider = ttk.Scale(
-            vector_frame, from_=0.8, to=1, orient=tk.HORIZONTAL,
+            vector_frame, from_=0, to=1, orient=tk.HORIZONTAL,
             variable=self.colinearity_var, length=200,
             command=lambda x: self.colinearity_var.set(x)
         )

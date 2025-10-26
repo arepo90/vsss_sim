@@ -1,0 +1,5 @@
+  File "/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/strat.py", line 445
+    elif abs(ball_coords[0] - DEF_POS[0]) < 2: # close
+    ^^^^
+SyntaxError: invalid syntax
+

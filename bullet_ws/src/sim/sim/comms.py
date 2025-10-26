@@ -6,14 +6,14 @@ import socket
 import threading
 import struct
 import time
+import numpy as np
 
 HEARTBEAT_TIMEOUT_S = 2.0 
 LAPTOP_IP = "0.0.0.0"
 HEARTBEAT_BASE_PORT = 9000
-ANGLE_DAMP_FACTOR = 5
+ANGLE_DAMP_FACTOR = 3
 BROADCAST_IP = "<broadcast>"
 BROADCAST_PORT = 8888
-ROBOT_CONFIG = [5, 3, 3]
 
 class Comms(Node):
     def __init__(self):
@@ -35,6 +35,7 @@ class Comms(Node):
             try:
                 recv_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
                 recv_socket.bind((LAPTOP_IP, HEARTBEAT_BASE_PORT + i))
+                recv_socket.settimeout(0.2)
                 self.recv_sockets.append(recv_socket)
             except OSError as e:
                 self.get_logger().error(f"Failed to bind heartbeat socket for robot {i}: {e}")
@@ -65,9 +66,14 @@ class Comms(Node):
         full_payload = bytearray()
         for i in range(3):
             cmd = self.latest_cmds[i]
-            clamped_vx = int(cmd.vx / ROBOT_CONFIG[i] * 255)
-            clamped_vy = int(cmd.vy / ROBOT_CONFIG[i] * 255)
-            clamped_dtheta = int(cmd.dtheta / ANGLE_DAMP_FACTOR)
+            clamped_vx = int(cmd.vx * 255)
+            clamped_vy = int(cmd.vy * 255)
+            speed = np.sqrt(clamped_vx**2 + clamped_vy**2)
+            if speed > 50:
+                clamped_dtheta = int(cmd.dtheta / 2)
+            else:
+                clamped_dtheta = int(cmd.dtheta / 4)
+
             payload_part = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta)
             full_payload.extend(payload_part)
         
@@ -80,6 +86,8 @@ class Comms(Node):
                 with self.active_mutex:
                     self.robot_status[robot_id]['active'] = True
                     self.robot_status[robot_id]['last_heartbeat'] = time.time()
+            except socket.timeout:
+                continue
             except socket.error:
                 break
 
@@ -100,15 +108,16 @@ class Comms(Node):
 
     def destroyNode(self):
         self.is_running.set()
-        self.broadcast_socket.close()
         for sock in self.recv_sockets:
             sock.close()
 
-        self.active_thread.join()
         for thread in self.listener_threads:
-            thread.join()
+            thread.join(timeout=1.0)
+        self.active_thread.join(timeout=1.0)
 
+        self.broadcast_socket.close()
         super().destroy_node()
+
 
 def main(args=None):
     rclpy.init(args=args)
