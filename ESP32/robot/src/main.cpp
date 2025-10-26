@@ -3,7 +3,7 @@
 #include <WiFiUdp.h>
 
 // === Comms ===
-#define ROBOT_ID 2
+#define ROBOT_ID 0
 #define BROADCAST_PORT 8888
 #define SEND_START_PORT 9000
 #define HEARTBEAT_INVERVAL 500
