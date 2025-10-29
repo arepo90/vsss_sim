@@ -1,0 +1,55 @@
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/colcon_parallel_executor/executor/parallel.py", line 75, in execute
+    loop.run_until_complete(future)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 636, in run_until_complete
+    self.run_forever()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 603, in run_forever
+    self._run_once()
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1871, in _run_once
+    event_list = self._selector.select(timeout)
+  File "/usr/lib/python3.10/selectors.py", line 469, in select
+    fd_event_list = self._selector.poll(timeout, max_ev)
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/colcon_core/executor/__init__.py", line 91, in __call__
+    rc = await self.task(*args, **kwargs)
+  File "/usr/lib/python3/dist-packages/colcon_core/task/__init__.py", line 93, in __call__
+    return await task_method(*args, **kwargs)
+  File "/usr/lib/python3/dist-packages/colcon_ros/task/ament_python/build.py", line 102, in build
+    return await extension.build(additional_hooks=additional_hooks)
+  File "/usr/lib/python3/dist-packages/colcon_core/task/python/build.py", line 96, in build
+    available_commands = await self._get_available_commands(
+  File "/usr/lib/python3/dist-packages/colcon_core/task/python/build.py", line 194, in _get_available_commands
+    output = await check_output(
+  File "/usr/lib/python3/dist-packages/colcon_core/subprocess.py", line 129, in check_output
+    assert not rc, f'Expected {args} to pass: {stderr_data}'
+AssertionError: Expected ['/usr/bin/python3', '-W', 'ignore:setup.py install is deprecated', '-W', 'ignore:easy_install command is deprecated', 'setup.py', '--help-commands'] to pass: Traceback (most recent call last):
+  File "/home/arepo/vsss_sim/bullet_ws/src/sim/setup.py", line 7, in <module>
+    setup(
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/__init__.py", line 107, in setup
+    return distutils.core.setup(**attrs)
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/_distutils/core.py", line 159, in setup
+    dist.parse_config_files()
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 902, in parse_config_files
+    self._parse_config_files(filenames=inifiles)
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 755, in _parse_config_files
+    opt = self.warn_dash_deprecation(opt, section)
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 791, in warn_dash_deprecation
+    self._setuptools_commands(),
+  File "/home/arepo/.local/lib/python3.10/site-packages/setuptools/dist.py", line 815, in _setuptools_commands
+    return metadata.distribution('setuptools').entry_points.names
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 969, in distribution
+    return Distribution.from_name(distribution_name)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 544, in from_name
+    dist = next(iter(dists), None)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 904, in <genexpr>
+    path.search(prepared) for path in map(FastPath, paths)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 802, in search
+    return self.lookup(self.mtime).search(name)
+  File "/usr/lib/python3.10/importlib/metadata/__init__.py", line 837, in search
+    def search(self, prepared):
+KeyboardInterrupt
+

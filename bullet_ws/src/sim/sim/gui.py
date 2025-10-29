@@ -19,8 +19,10 @@ class State(IntEnum):
     HALT = -1
     PAUSE = 0
     PLAY = 1
-    MIDFIELD = 2
-    PENALTY = 3
+    MIDFIELD_DEF = 2
+    PENALTY_DEF = 3
+    MIDFIELD_ATT = 4
+    PENALTY_ATT = 5
 
 # --- Default Settings ---
 TEAM_COLOR = "yellow"
@@ -47,13 +49,13 @@ class GUI(Node):
         self.local_var = tk.IntVar(value=1 if USE_LOCAL else 0)
         self.exposure_var = tk.IntVar(value=CAM_EXPOSURE)
         self.reset_var = False
-        self.attractive_gain_var = tk.DoubleVar(value=2.0)
-        self.repulsive_gain_var = tk.DoubleVar(value=3.)
-        self.repulsion_radius_var = tk.DoubleVar(value=3.)
-        self.tangential_gain_var = tk.DoubleVar(value=3.)
+        self.attractive_gain_var = tk.DoubleVar(value=1.0)
+        self.repulsive_gain_var = tk.DoubleVar(value=2.5)
+        self.repulsion_radius_var = tk.DoubleVar(value=2.5)
+        self.tangential_gain_var = tk.DoubleVar(value=2.5)
         self.goal_tolerance_var = tk.DoubleVar(value=2.5)
-        self.target_offset_var = tk.DoubleVar(value=0.5)
-        self.colinearity_var = tk.DoubleVar(value=0.93)
+        self.target_offset_var = tk.DoubleVar(value=1.)
+        self.colinearity_var = tk.DoubleVar(value=0.92)
 
         self.video_subscriber1 = self.create_subscription(Image, 'local_cam/image_raw', self.image_callback, 10)
         self.video_subscriber2 = self.create_subscription(Image, 'sim_cam/image_raw', self.image_callback, 10)
@@ -347,12 +349,19 @@ class GUI(Node):
         self.pause_button.pack(side=tk.LEFT, padx=10)
 
         # MIDFIELD button
-        self.midfield_button = ttk.Button(button_frame, text="Midfield", command=lambda: self.call_controller(State.MIDFIELD))
+        self.midfield_button = ttk.Button(button_frame, text="Midfield def", command=lambda: self.call_controller(State.MIDFIELD_DEF))
         self.midfield_button.pack(side=tk.LEFT, padx=10)
 
         # PENALTY button
-        self.penalty_button = ttk.Button(button_frame, text="Penalty", command=lambda: self.call_controller(State.PENALTY))
+        self.penalty_button = ttk.Button(button_frame, text="Penalty def", command=lambda: self.call_controller(State.PENALTY_DEF))
         self.penalty_button.pack(side=tk.LEFT, padx=10)
+
+        self.midfield_button2 = ttk.Button(button_frame, text="Midfield att", command=lambda: self.call_controller(State.MIDFIELD_ATT))
+        self.midfield_button2.pack(side=tk.LEFT, padx=10)
+
+        # PENALTY button
+        self.penalty_button2 = ttk.Button(button_frame, text="Penalty att", command=lambda: self.call_controller(State.PENALTY_ATT))
+        self.penalty_button2.pack(side=tk.LEFT, padx=10)
 
     def autoCB(self):
         if not self.call_controller(State.HALT):
@@ -379,7 +388,7 @@ class GUI(Node):
                 else:
                     self.cmd_publishers[j].publish(cmd_0)
 
-            timeout = time.time()
+            timeout = time.time()   
 
             while time.time() - timeout < 2:
                 if abs(original.team0.theta - self.field_data.team0.theta) > 45:

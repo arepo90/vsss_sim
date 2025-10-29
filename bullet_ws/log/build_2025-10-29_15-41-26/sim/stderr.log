@@ -1,0 +1,5 @@
+  File "/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/strat.py", line 413
+    self.cmds[i], pos2 = self.skills.moveToStrike(team_obj, pos, 0., [], np.array([-, 0]))
+                                                                                    ^
+SyntaxError: invalid syntax
+

@@ -71,12 +71,17 @@ class Comms(Node):
             clamped_vx = int(cmd.vx * 255)
             clamped_vy = int(cmd.vy * 255)
             speed = np.sqrt(clamped_vx**2 + clamped_vy**2)
-            if speed > 20:
+            clamped_dtheta = int(cmd.dtheta / 4)
+            """
+            if speed <= 5:
                 clamped_dtheta = int(cmd.dtheta / 2)
+            elif speed > 20:
+                clamped_dtheta = int(cmd.dtheta / 2 + OFFSET[i])
             else:
-                clamped_dtheta = int(cmd.dtheta / 4)
+                clamped_dtheta = int(cmd.dtheta / 4 + OFFSET[i])
+            """
 
-            payload_part = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta + OFFSET[i])
+            payload_part = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta)
             full_payload.extend(payload_part)
         
         self.broadcast_socket.sendto(full_payload, (BROADCAST_IP, BROADCAST_PORT))

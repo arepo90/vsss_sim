@@ -25,8 +25,9 @@ OP_COLOR = "blue"
 MIN_AREA = 40
 SEARCH_RADIUS = 40
 PATTERN_TOLERANCE = 0.5
+"""
 COLOR_RANGES = {
-    "red": [(0, 100, 100), (15, 255, 255), (165, 100, 100), (180, 255, 255)],
+    "red": [(0, 100, 100), (15, 255, 255), (165, 100, 100), (0, 255, 255)],
     "orange": [(0, 100, 100), (20, 255, 255)],
     "yellow": [(20, 25, 25), (38, 255, 255)],
     "green": [(38, 50, 50), (90, 255, 255)],
@@ -34,6 +35,17 @@ COLOR_RANGES = {
     "blue": [(105, 50, 50), (130, 255, 255)], 
     "purple": [(130, 50, 50), (165, 255, 255)]
 }
+"""
+COLOR_RANGES = {
+    "red": [(0, 100, 100), (7, 255, 255), (170, 100, 100), (180, 255, 255)],
+    "orange": [(0, 100, 100), (20, 255, 255)],
+    "yellow": [(25, 25, 25), (38, 255, 255)],
+    "green": [(38, 50, 50), (90, 255, 255)],
+    "light_blue": [(90, 100, 100), (105, 255, 255)],
+    "blue": [(105, 50, 50), (107, 255, 255)], 
+    "purple": [(130, 50, 50), (169, 255, 255)]
+}
+
 OBJ_LABELS = ["Ball", "yellow0", "yellow1", "yellow2", "blue0", "blue1", "blue2"]
 DETECTION_TIMEOUT = 5
 
@@ -98,7 +110,7 @@ class PatternRegistry:
         
         sorted_contours = sorted(filtered_contours, key=cv2.contourArea, reverse=True)
 
-        TOLERANCE = 0.1
+        TOLERANCE = 0.05
 
         options = []
         best = 999
@@ -698,11 +710,17 @@ class Vision(Node):
     def calibrate(self, src, bypass = False):
         if bypass:
             if USE_LOCAL:
+                """
                 self.H = np.array([
                     [1.37815360e+00, 5.54951443e-03, -1.20929691e+02],
                     [-2.28416795e-02, 9.55954974e-01, 5.12234601e+01],
                     [-1.97069052e-05, -2.71718704e-05, 1.00000000e+00]
                 ])
+                """
+                self.H = np.array([[     1.5022 ,  -0.036159   ,  -365.46],
+                    [   0.011599     ,  1.025    ,   21.39],
+                    [ 7.7535e-06 ,-4.0441e-05   ,        1]])
+
             else:
                 self.H = np.array([
                     [1.02222994e+00, -6.07657129e-03, -2.02668347e+00],
