@@ -15,6 +15,8 @@ ANGLE_DAMP_FACTOR = 3
 BROADCAST_IP = "<broadcast>"
 BROADCAST_PORT = 8888
 
+OFFSET = [20, 20, 25]
+
 class Comms(Node):
     def __init__(self):
         super().__init__('comms')
@@ -69,12 +71,12 @@ class Comms(Node):
             clamped_vx = int(cmd.vx * 255)
             clamped_vy = int(cmd.vy * 255)
             speed = np.sqrt(clamped_vx**2 + clamped_vy**2)
-            if speed > 50:
+            if speed > 20:
                 clamped_dtheta = int(cmd.dtheta / 2)
             else:
                 clamped_dtheta = int(cmd.dtheta / 4)
 
-            payload_part = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta)
+            payload_part = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta + OFFSET[i])
             full_payload.extend(payload_part)
         
         self.broadcast_socket.sendto(full_payload, (BROADCAST_IP, BROADCAST_PORT))

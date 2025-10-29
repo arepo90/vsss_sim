@@ -17,7 +17,7 @@ class State(IntEnum):
 
 FIELD_LENGTH = 17
 FIELD_HEIGHT = 13
-GOAL_WIDTH = 8
+GOAL_WIDTH = 3
 TEAM_GOAL = np.array([FIELD_LENGTH / 2, 0.0])
 OP_GOAL = np.array([-FIELD_LENGTH / 2, 0.0])
 DEF_POS = np.array([(FIELD_LENGTH-4) / 2, 0.0])
@@ -39,6 +39,26 @@ DEFENSE_DISTANCE_FROM_GOAL = 1.5
 KICK_TRIGGER_DISTANCE = 2
 
 USE_LOCAL = True
+
+def intersects(ball, robot):
+    rx, ry = robot
+    bx, by = ball
+    goal_y_min = -GOAL_WIDTH / 2
+    goal_y_max = GOAL_WIDTH / 2
+    dx = bx - rx
+    dy = by - ry
+    if dx == 0:
+        return rx == TEAM_GOAL[0]
+
+    shot_direction_x = dx
+    goal_direction_x = -TEAM_GOAL[0] - rx
+    if (shot_direction_x * goal_direction_x) <= 0:
+        print("False")
+        return False
+
+    m = dy / dx
+    y_hit = ry + m * (-TEAM_GOAL[0] - rx)
+    return goal_y_min <= y_hit <= goal_y_max
 
 class SkillLib:
     def moveToPoint(self, robot: ObjData, target_pos: np.ndarray, target_theta: float, obstacles: list[np.ndarray], bypass = False) -> LowCmd:
@@ -67,11 +87,13 @@ class SkillLib:
         cmd.vx = vx_capped
         cmd.vy = vy_capped
 
+        """
         if abs(-robot.theta + target_theta) < (360 -robot.theta + target_theta) % 360:
             cmd.dtheta = -robot.theta + target_theta
         else:
             cmd.dtheta = (360 - robot.theta + target_theta) % 360
-
+        """
+        cmd.dtheta = theta = (target_theta - robot.theta + 180) % 360 - 180
         return cmd
     
     def moveToStrike(self, robot: ObjData, target_pos: np.ndarray, target_theta: float, obstacles: list[np.ndarray], strike_dir: np.ndarray) -> LowCmd:
@@ -84,10 +106,21 @@ class SkillLib:
             norm_vec_robot_to_target = vec_robot_to_target / dist_to_target
             alignment = np.dot(norm_vec_robot_to_target, strike_dir)
 
+        #inter = intersects(target_pos, robot_pos)
+        
         if alignment > COLINEARITY:
-            return self.moveToPoint(robot, target_pos + strike_dir * TARGET_OFFSET, target_theta, [])
+            return self.moveToPoint(robot, target_pos + strike_dir * TARGET_OFFSET, target_theta, []), target_pos + strike_dir * TARGET_OFFSET
         else:
-            return self.moveToPoint(robot, target_pos - strike_dir * TARGET_OFFSET, target_theta, obstacles + [target_pos], True)
+            return self.moveToPoint(robot, target_pos - strike_dir * TARGET_OFFSET, target_theta, obstacles + [target_pos], True), target_pos - strike_dir * TARGET_OFFSET
+        
+        """
+        if alignment < -0.5:
+            return self.moveToPoint(robot, target_pos - strike_dir * TARGET_OFFSET, target_theta, obstacles + [target_pos], True), target_pos - strike_dir * TARGET_OFFSET
+        elif alignment > COLINEARITY:
+            return self.moveToPoint(robot, target_pos + strike_dir * TARGET_OFFSET, target_theta, obstacles, True), target_pos + strike_dir * TARGET_OFFSET
+        else:
+            return self.moveToPoint(robot, target_pos - strike_dir * TARGET_OFFSET, target_theta, obstacles, True), target_pos - strike_dir * TARGET_OFFSET
+        """
 
     def _calculate_potential_field_vector(self, robot_pos: np.ndarray, robot_vel: np.ndarray, target_pos: np.ndarray, obstacles: list[np.ndarray], bypass = False) -> np.ndarray:
         
@@ -108,7 +141,7 @@ class SkillLib:
 
         v_max = ATTRACTIVE_GAIN
         d0 = GOAL_TOLERANCE 
-        n = 3
+        n = 2
 
         mag = v_max * (distance**n) / (distance**n + d0**n + 1e-9)
         attractive_vector = direction * mag
@@ -133,6 +166,7 @@ class SkillLib:
                 norm_tangential_dir = np.linalg.norm(tangential_dir)
                 if norm_tangential_dir > 1e-6:
                     tangential_force = TANGENTIAL_GAIN * repulsion_magnitude * (tangential_dir / norm_tangential_dir)
+                    #tangential_force = TANGENTIAL_GAIN * (tangential_dir / norm_tangential_dir)
                 else:
                     tangential_force = np.array([0., 0.])
 
@@ -311,27 +345,6 @@ class Strat(Node):
         x_pred = obj.x + dir_x * d
         y_pred = obj.y + dir_y * d
         return x_pred, y_pred
-    
-        
-    def intersects(self, ball, robot):
-        rx, ry = robot
-        bx, by = ball
-        goal_y_min = -GOAL_WIDTH / 2
-        goal_y_max = GOAL_WIDTH / 2
-        dx = bx - rx
-        dy = by - ry
-        if dx == 0:
-            return rx == TEAM_GOAL[0]
-
-        shot_direction_x = dx
-        goal_direction_x = -TEAM_GOAL[0] - rx
-        if (shot_direction_x * goal_direction_x) <= 0:
-            print("False")
-            return False
-
-        m = dy / dx
-        y_hit = ry + m * (-TEAM_GOAL[0] - rx)
-        return goal_y_min <= y_hit <= goal_y_max
 
     def getAngle(self, ball_coords, robot_coords):
         vec = ball_coords - robot_coords
@@ -340,14 +353,14 @@ class Strat(Node):
         angle_deg = math.degrees(angle)
         return angle_deg
     
-    def allButSelf(self, field, robot):
+    def allButSelf(self, field, robot, team_only = True):
         all = []
         for i in range(6):
             if i < 3:
                 obj = getattr(field, f"team{i}")
                 if obj != robot:
                     all.append(np.array([obj.x, obj.y]))
-            else:
+            elif not team_only:
                 obj = getattr(field, f"op{i%3}")
                 all.append(np.array([obj.x, obj.y]))
 
@@ -387,8 +400,8 @@ class Strat(Node):
                         #inter = self.intersects(future_ball_pos, team_coords)
                         vec = OP_GOAL - ball_coords
                         norm_vec = vec / np.linalg.norm(vec)
-                        self.cmds[i] = self.skills.moveToStrike(team_obj, future_ball_pos, 0., [ball_coords], norm_vec)
-                        self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=future_ball_pos[0], tgt_y=future_ball_pos[1], tgt_theta=0.)
+                        self.cmds[i], pos = self.skills.moveToStrike(team_obj, future_ball_pos, 0., [ball_coords], norm_vec)
+                        self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=pos[0], tgt_y=pos[1], tgt_theta=0.)
                         """
                         print(inter)
                         if inter:
@@ -436,10 +449,12 @@ class Strat(Node):
                             self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=DEF_POS[0], tgt_y=DEF_POS[1], tgt_theta=0.)
                         else:
                             dist1 = np.linalg.norm(team_coords - ball_coords)
-                            dist2 = np.linalg.norm(team_coords - np.array([DEF_POS[0], ball_coords[1]]))
-                            #angle = self.getAngle(ball_coords, team_coords)
-                            angle = 90.0
-                            if dist1 < 1 and dist2 < 1: # kick
+                            lim = np.clip(ball_coords[1], -3, 3)
+                            dist2 = np.linalg.norm(team_coords - np.array([DEF_POS[0], lim]))
+                            angle = -90.0
+                            print(dist1, dist2)
+                            if dist1 < 2 and dist2 < 2: # kick
+                                #angle = 0.0
                                 vec = ball_coords - TEAM_GOAL
                                 norm_vec = vec / np.linalg.norm(vec)
                                 pos = ball_coords + norm_vec * TARGET_OFFSET
@@ -464,21 +479,24 @@ class Strat(Node):
                                     self.cmds[i] = self.skills.moveToPoint(team_obj, np.array([DEF_POS[0], y]), angle, [])
                                     self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=DEF_POS[0], tgt_y=y, tgt_theta=angle)
                                 """
-                            elif dist1 > 12:
+                            elif dist1 > 10: # far
+                                #angle = self.getAngle(ball_coords, team_coords)
                                 self.cmds[i] = self.skills.moveToPoint(team_obj, DEF_POS, angle, [])
                                 self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=DEF_POS[0], tgt_y=DEF_POS[1], tgt_theta=angle)
-                            else: # far
-                                #horizon = np.linalg.norm(ball_coords - team_coords)
-                                #future_ball_pos = self.predPos(field.ball, horizon, 3)
+                            else: # follow
+                                #angle = self.getAngle(ball_coords, team_coords)
                                 if abs(field.ball.vx) < 0.1:
                                     horizon = 0
                                 else:
                                     horizon = abs((DEF_POS[0] - ball_coords[0]) / field.ball.vx)
-                                future_ball_pos = self.predPos(field.ball, horizon, 1)
+                                future_ball_pos = self.predPos(field.ball, horizon, 3)
+                                """
                                 if abs(future_ball_pos[1]) > 3:
                                     y = np.copysign(3, future_ball_pos[1])
                                 else:
                                     y = future_ball_pos[1]
+                                """
+                                y = np.clip(future_ball_pos[1], -3, 3)
                                 self.cmds[i] = self.skills.moveToPoint(team_obj, np.array([DEF_POS[0], y]), angle, [])
                                 self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=DEF_POS[0], tgt_y=y, tgt_theta=angle)
                                 #y = ball_coords[1] * GOAL_WIDTH / FIELD_HEIGHT

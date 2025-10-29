@@ -3,16 +3,16 @@
 #include <WiFiUdp.h>
 
 // === Comms ===
+
 #define ROBOT_ID 0
 #define BROADCAST_PORT 8888
 #define SEND_START_PORT 9000
 #define HEARTBEAT_INVERVAL 500
-//const char* SSID = "Totalplay-D0AB";
-//const char* PASSWORD = "D0AB459EZxSqXN42";
-//const char* TARGET_IP = "192.168.100.196";
-const char* SSID = "robot_1";
-const char* PASSWORD = "robot123";
-const char* TARGET_IP = "192.168.0.131";
+
+const char* SSID = "ASUS_68";
+const char* PASSWORD = "kitchen_9544";
+//const char* TARGET_IP = "192.168.50.218";     // 2.4 GHz
+const char* TARGET_IP = "192.168.50.34";        // ethernet
 
 struct CommandPayload {
     int vx;

@@ -48,12 +48,12 @@ class GUI(Node):
         self.exposure_var = tk.IntVar(value=CAM_EXPOSURE)
         self.reset_var = False
         self.attractive_gain_var = tk.DoubleVar(value=2.0)
-        self.repulsive_gain_var = tk.DoubleVar(value=2.)
-        self.repulsion_radius_var = tk.DoubleVar(value=2.)
-        self.tangential_gain_var = tk.DoubleVar(value=2.)
+        self.repulsive_gain_var = tk.DoubleVar(value=3.)
+        self.repulsion_radius_var = tk.DoubleVar(value=3.)
+        self.tangential_gain_var = tk.DoubleVar(value=3.)
         self.goal_tolerance_var = tk.DoubleVar(value=2.5)
         self.target_offset_var = tk.DoubleVar(value=0.5)
-        self.colinearity_var = tk.DoubleVar(value=0.9)
+        self.colinearity_var = tk.DoubleVar(value=0.93)
 
         self.video_subscriber1 = self.create_subscription(Image, 'local_cam/image_raw', self.image_callback, 10)
         self.video_subscriber2 = self.create_subscription(Image, 'sim_cam/image_raw', self.image_callback, 10)
