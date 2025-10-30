@@ -1,0 +1,5 @@
+  File "/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/bridge.py", line 19
+    +ANGLE_DAMP_FACTOR = 3
+    ^^^^^^^^^^^^^^^^^^
+SyntaxError: cannot assign to expression here. Maybe you meant '==' instead of '='?
+

@@ -1,0 +1,31 @@
+[1.939s] Invoking command in '/home/arepo/vsss_sim/bullet_ws/src/sim': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sim build --build-base /home/arepo/vsss_sim/bullet_ws/build/sim/build install --record /home/arepo/vsss_sim/bullet_ws/build/sim/install.log --single-version-externally-managed install_data
+[2.426s] running egg_info
+[2.460s] writing ../../build/sim/sim.egg-info/PKG-INFO
+[2.460s] writing dependency_links to ../../build/sim/sim.egg-info/dependency_links.txt
+[2.461s] writing entry points to ../../build/sim/sim.egg-info/entry_points.txt
+[2.461s] writing requirements to ../../build/sim/sim.egg-info/requires.txt
+[2.461s] writing top-level names to ../../build/sim/sim.egg-info/top_level.txt
+[2.525s] reading manifest file '../../build/sim/sim.egg-info/SOURCES.txt'
+[2.526s] adding license file 'LICENSE'
+[2.528s] writing manifest file '../../build/sim/sim.egg-info/SOURCES.txt'
+[2.528s] running build
+[2.528s] running build_py
+[2.529s] copying sim/vision.py -> /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim
+[2.530s] running install
+[2.538s] running install_lib
+[2.571s] copying /home/arepo/vsss_sim/bullet_ws/build/sim/build/lib/sim/vision.py -> /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim
+[2.572s] byte-compiling /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim/vision.py to vision.cpython-310.pyc
+[2.583s] running install_data
+[2.584s] running install_egg_info
+[2.617s] removing '/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim-0.0.0-py3.10.egg-info' (and everything under it)
+[2.617s] Copying ../../build/sim/sim.egg-info to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages/sim-0.0.0-py3.10.egg-info
+[2.619s] running install_scripts
+[2.921s] Installing comms script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.921s] Installing gui script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.922s] Installing sim script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.922s] Installing strat script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.922s] Installing stratmax script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.922s] Installing tests script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.923s] Installing vision script to /home/arepo/vsss_sim/bullet_ws/install/sim/lib/sim
+[2.923s] writing list of installed files to '/home/arepo/vsss_sim/bullet_ws/build/sim/install.log'
+[2.958s] Invoked command in '/home/arepo/vsss_sim/bullet_ws/src/sim' returned '0': PYTHONPATH=/home/arepo/vsss_sim/bullet_ws/build/sim/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/arepo/vsss_sim/bullet_ws/install/sim/lib/python3.10/site-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py egg_info --egg-base ../../build/sim build --build-base /home/arepo/vsss_sim/bullet_ws/build/sim/build install --record /home/arepo/vsss_sim/bullet_ws/build/sim/install.log --single-version-externally-managed install_data

@@ -34,6 +34,7 @@ setup(
             'gui = sim.gui:main',
             'tests = sim.tests:main',
             'stratmax = sim.stratMax:main',
+            'bridge = sim.bridge:main'
         ],
     },
 )

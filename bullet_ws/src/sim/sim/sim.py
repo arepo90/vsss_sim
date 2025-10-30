@@ -24,7 +24,7 @@ KP = 5
 FRICTION = 0.6
 MAX_FORCE = 5
 MAX_TORQUE = 5
-NUM_ROBOTS = 2
+NUM_ROBOTS = 6
 COLORS = {
     "red": [204/255, 0/255, 1/255],
     "green": [0/255, 204/255, 8/255],

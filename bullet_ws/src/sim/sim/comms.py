@@ -71,7 +71,7 @@ class Comms(Node):
             clamped_vx = int(cmd.vx * 255)
             clamped_vy = int(cmd.vy * 255)
             speed = np.sqrt(clamped_vx**2 + clamped_vy**2)
-            clamped_dtheta = int(cmd.dtheta / 4)
+            clamped_dtheta = int(cmd.dtheta / 2)
             """
             if speed <= 5:
                 clamped_dtheta = int(cmd.dtheta / 2)

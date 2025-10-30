@@ -25,26 +25,28 @@ OP_COLOR = "blue"
 MIN_AREA = 40
 SEARCH_RADIUS = 40
 PATTERN_TOLERANCE = 0.5
+
 """
 COLOR_RANGES = {
-    "red": [(0, 100, 100), (15, 255, 255), (165, 100, 100), (0, 255, 255)],
-    "orange": [(0, 100, 100), (20, 255, 255)],
-    "yellow": [(20, 25, 25), (38, 255, 255)],
-    "green": [(38, 50, 50), (90, 255, 255)],
-    "light_blue": [(90, 100, 100), (105, 255, 255)],
-    "blue": [(105, 50, 50), (130, 255, 255)], 
-    "purple": [(130, 50, 50), (165, 255, 255)]
+    "red": [(0, 125, 125), (12, 255, 255), (175, 100, 100), (0, 255, 255)],
+    "orange": [(0, 200, 0), (10, 255, 255)],
+    "yellow": [(0, 62, 220), (27, 145, 255)],
+    "green": [(0, 50, 215), (45, 85, 255)],
+    "light_blue": [(90, 95, 0), (102, 255, 255)],
+    "blue": [(105, 50, 50), (130, 255, 255)], # missing
+    "purple": [(161, 150, 0), (172, 255, 255)]
 }
 """
 COLOR_RANGES = {
     "red": [(0, 100, 100), (7, 255, 255), (170, 100, 100), (180, 255, 255)],
-    "orange": [(0, 100, 100), (20, 255, 255)],
-    "yellow": [(25, 25, 25), (38, 255, 255)],
-    "green": [(38, 50, 50), (90, 255, 255)],
-    "light_blue": [(90, 100, 100), (105, 255, 255)],
-    "blue": [(105, 50, 50), (107, 255, 255)], 
-    "purple": [(130, 50, 50), (169, 255, 255)]
+    "orange": [(2, 100, 100), (20, 255, 255)],
+    "yellow": [(22, 25, 25), (30, 255, 255)],
+    "green": [(35, 50, 50), (90, 255, 255)],
+    "light_blue": [(90, 100, 100), (100, 255, 255)],
+    "blue": [(101, 50, 50), (120, 255, 255)], 
+    "purple": [(130, 50, 50), (167, 255, 255)]
 }
+
 
 OBJ_LABELS = ["Ball", "yellow0", "yellow1", "yellow2", "blue0", "blue1", "blue2"]
 DETECTION_TIMEOUT = 5
@@ -103,14 +105,15 @@ class PatternRegistry:
         kernel = np.ones((2, 2), np.uint8)
         mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
         mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+        #cv2.imshow("mask", mask)
         contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-        filtered_contours = [cont for cont in contours if cv2.contourArea(cont) > 40]
+        filtered_contours = [cont for cont in contours if cv2.contourArea(cont) > MIN_AREA]
         if len(filtered_contours) == 0:
             return [999, 999, 999]
         
         sorted_contours = sorted(filtered_contours, key=cv2.contourArea, reverse=True)
 
-        TOLERANCE = 0.05
+        TOLERANCE = 0.1
 
         options = []
         best = 999
@@ -146,9 +149,11 @@ class PatternRegistry:
             else:
                 mask = cv2.inRange(hsv_frame, c_range[0], c_range[1])
 
+
             kernel = np.ones((2, 2), np.uint8)
             mask = cv2.morphologyEx(mask, cv2.MORPH_OPEN, kernel)
             mask = cv2.morphologyEx(mask, cv2.MORPH_CLOSE, kernel)
+            cv2.imshow(f"mask {color}", mask)
             contours, _ = cv2.findContours(mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             filtered_contours = [c for c in contours if cv2.contourArea(c) > (200 if USE_LOCAL else 40)]
             if len(filtered_contours) == 0:
@@ -178,7 +183,7 @@ class PatternRegistry:
             
             min_dev = 999
             for sq_1, sq_2 in combinations(neighbors, 2):
-                if sq_1[0]["color"] == sq_2[0]["color"]:
+                if sq_1[0]["color"] == sq_2[0]["color"] and not sq_1[0]["color"] in ("red", "purple"):
                     continue
 
                 d1 = math.dist(center_rect, sq_1[1])
@@ -573,8 +578,8 @@ class Vision(Node):
             cv2.destroyWindow('dst')
         
         norm = cv2.warpPerspective(img, self.H, (img.shape[1], img.shape[0]))
-        norm = norm[45:705, 35:1255]
-        #cv2.imshow("norm", norm)
+        norm = norm[0:720, 20:1255]
+        cv2.imshow("norm", norm)
         norm_copy = norm.copy()
         ball = self.registry.detectBall(norm)
         results = self.model(norm, verbose=False)
@@ -661,7 +666,13 @@ class Vision(Node):
             return
         
         img = self.cv_bridge.imgmsg_to_cv2(msg, desired_encoding="bgr8")
-        self.visionProc(img)
+        last = self.visionProc(img)
+        if last is None:
+            return
+
+        msg = self.cv_bridge.cv2_to_imgmsg(last, encoding="bgr8")
+        self.video_publisher.publish(msg)
+        cv2.waitKey(1)
         
     def getMsg(self, data):
         msg = FieldData()
