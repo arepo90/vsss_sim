@@ -1,2 +1,3 @@
 bullet_ws/build/*
 no_ros/.venv/*
+bullet_ws/src/sim/models/*
