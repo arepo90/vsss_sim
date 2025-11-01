@@ -578,7 +578,7 @@ class Vision(Node):
             cv2.destroyWindow('dst')
         
         norm = cv2.warpPerspective(img, self.H, (img.shape[1], img.shape[0]))
-        norm = norm[0:720, 20:1255]
+        norm = norm[40:700, 50:1255]
         cv2.imshow("norm", norm)
         norm_copy = norm.copy()
         ball = self.registry.detectBall(norm)
@@ -728,9 +728,14 @@ class Vision(Node):
                     [-1.97069052e-05, -2.71718704e-05, 1.00000000e+00]
                 ])
                 """
+                """
                 self.H = np.array([[     1.5022 ,  -0.036159   ,  -365.46],
                     [   0.011599     ,  1.025    ,   21.39],
                     [ 7.7535e-06 ,-4.0441e-05   ,        1]])
+                """
+                self.H = np.array([[     1.3794 ,   0.013779,     -297.26],
+                    [  -0.028178  ,   0.95883     , 51.835],
+                    [-3.2125e-05, -3.5546e-05  ,         1]])
 
             else:
                 self.H = np.array([
