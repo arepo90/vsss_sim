@@ -7,6 +7,12 @@ from sim_msgs.srv import Controller
 from enum import IntEnum
 import threading
 import math
+import time
+
+# World frame: origin at field center, x right, y up, in meters.
+# Angles: degrees, CCW from +x. Vision applies a +90 offset in getMsg so
+# theta=0 corresponds to +y. _world_to_robot_frame rotates by -theta.
+# dtheta is computed as a signed shortest-path delta in degrees, [-180, 180].
 
 class State(IntEnum):
     HALT = -1
@@ -35,6 +41,9 @@ COLINEARITY = 0.975
 APPROACH_DISTANCE = 1
 DEFENSE_DISTANCE_FROM_GOAL = 1.5
 KICK_TRIGGER_DISTANCE = 2
+STRIKE_APPROACH_DIST = 2.0
+ATTACKER_SWAP_MARGIN = 0.3
+ATTACKER_SWAP_DWELL = 0.5
 
 USE_LOCAL = True
 
@@ -85,11 +94,11 @@ class SkillLib:
         else:
             norm_vec_robot_to_target = vec_robot_to_target / dist_to_target
             alignment = np.dot(norm_vec_robot_to_target, strike_dir)
-        
+
         if alignment > COLINEARITY:
-            return self.moveToPoint(robot, target_pos + strike_dir * TARGET_OFFSET, target_theta, [])
+            return self.moveToPointOrg(robot, target_pos + strike_dir * TARGET_OFFSET, target_theta, [])
         else:
-            return self.moveToPoint(robot, target_pos - strike_dir * TARGET_OFFSET, target_theta, obstacles + [target_pos], True)
+            return self.moveToPointOrg(robot, target_pos - strike_dir * TARGET_OFFSET, target_theta, obstacles + [target_pos], True)
         
     def moveToPoint(self, robot: ObjData, target_pos: np.ndarray, target_theta: float, obstacles: list[np.ndarray], bypass = False, ball_obstacle: tuple = None) -> LowCmd:
         robot_pos = np.array([robot.x, robot.y])
@@ -127,7 +136,10 @@ class SkillLib:
         robot_pos = np.array([robot.x, robot.y])
         vec_robot_to_target = target_pos - robot_pos
         dist_to_target = np.linalg.norm(vec_robot_to_target)
-        
+
+        if dist_to_target > STRIKE_APPROACH_DIST:
+            return self.moveToPoint(robot, target_pos + strike_dir * TARGET_OFFSET, target_theta, obstacles)
+
         if dist_to_target < 1e-6:
             alignment = 1.0
         else:
@@ -174,32 +186,32 @@ class SkillLib:
 
         net_repulsive_vector = np.array([0.0, 0.0])
         for obs in obstacles:
-            vec_to_robot = robot_pos - obs
-            dist_to_robot = np.linalg.norm(vec_to_robot)
-            if dist_to_robot < REPULSION_RADIUS:
-                vec_robot_to_goal = target_pos - robot_pos
-                if not bypass:
-                    repulsion_magnitude = REPULSIVE_GAIN * (1.0 / dist_to_robot - 1.0 / REPULSION_RADIUS)
-                    radial_repulsive_force = repulsion_magnitude * (vec_to_robot / dist_to_robot)
-                else:
-                    repulsion_magnitude = REPULSIVE_GAIN * (1.0 / dist_to_robot - 1.0 / REPULSION_RADIUS)
-                    radial_repulsive_force = 0
-
-                tangential_dir = np.array([-vec_robot_to_goal[1], vec_robot_to_goal[0]])
-                if np.dot(tangential_dir, vec_to_robot) < 0:
-                    tangential_dir = -tangential_dir
-
-                norm_tangential_dir = np.linalg.norm(tangential_dir)
-                if norm_tangential_dir > 1e-6:
-                    tangential_force = TANGENTIAL_GAIN * repulsion_magnitude * (tangential_dir / norm_tangential_dir)
-                    #tangential_force = TANGENTIAL_GAIN * (tangential_dir / norm_tangential_dir)
-                else:
-                    tangential_force = np.array([0., 0.])
-
-                #tangential_force = TANGENTIAL_GAIN * repulsion_magnitude * (tangential_dir / np.linalg.norm(tangential_dir))
-                net_repulsive_vector += (radial_repulsive_force + tangential_force)
+            net_repulsive_vector += self._obstacle_force(robot_pos, target_pos, obs, radial=not bypass, scale=1.0)
 
         return attractive_vector + net_repulsive_vector
+
+    def _obstacle_force(self, robot_pos: np.ndarray, target_pos: np.ndarray, obstacle_pos: np.ndarray, radial: bool = True, scale: float = 1.0) -> np.ndarray:
+        vec_from_obs = robot_pos - obstacle_pos
+        dist = np.linalg.norm(vec_from_obs)
+        if dist >= REPULSION_RADIUS or dist < 1e-6 or scale <= 0:
+            return np.array([0.0, 0.0])
+
+        radial_dir = vec_from_obs / dist
+        repulsion_magnitude = REPULSIVE_GAIN * (1.0 / dist - 1.0 / REPULSION_RADIUS)
+        radial_force = repulsion_magnitude * radial_dir if radial else np.array([0.0, 0.0])
+
+        perp_a = np.array([-radial_dir[1], radial_dir[0]])
+        perp_b = -perp_a
+        goal_dir = target_pos - robot_pos
+        goal_norm = np.linalg.norm(goal_dir)
+        if goal_norm > 1e-6:
+            goal_dir = goal_dir / goal_norm
+            tangential_dir = perp_a if np.dot(perp_a, goal_dir) >= np.dot(perp_b, goal_dir) else perp_b
+        else:
+            tangential_dir = perp_a
+
+        tangential_force = TANGENTIAL_GAIN * repulsion_magnitude * tangential_dir
+        return (radial_force + tangential_force) * scale
 
     def _calculate_potential_field_vector(self, robot_pos: np.ndarray, robot_vel: np.ndarray, target_pos: np.ndarray, obstacles: list[np.ndarray], bypass = False, ball_obstacle: tuple = None) -> np.ndarray:
         direction = target_pos - robot_pos
@@ -207,58 +219,15 @@ class SkillLib:
         if distance < 1e-6:
             attractive_vector = np.array([0., 0.])
         else:
-            direction /= distance
-            v_max = ATTRACTIVE_GAIN
-            d0 = GOAL_TOLERANCE 
-            n = 2
-            mag = v_max * (distance**n) / (distance**n + d0**n + 1e-9)
-            attractive_vector = direction * mag
+            attractive_vector = direction / distance
 
         net_repulsive_vector = np.array([0.0, 0.0])
         for obs in obstacles:
-            vec_to_robot = robot_pos - obs
-            dist_to_robot = np.linalg.norm(vec_to_robot)
-            if dist_to_robot < REPULSION_RADIUS:
-                vec_robot_to_goal = target_pos - robot_pos
-                
-                repulsion_magnitude = REPULSIVE_GAIN * (1.0 / dist_to_robot - 1.0 / REPULSION_RADIUS)
-                radial_repulsive_force = repulsion_magnitude * (vec_to_robot / dist_to_robot)
-
-                tangential_dir = np.array([-vec_robot_to_goal[1], vec_robot_to_goal[0]])
-                if np.dot(tangential_dir, vec_to_robot) < 0:
-                    tangential_dir = -tangential_dir
-
-                norm_tangential_dir = np.linalg.norm(tangential_dir)
-                if norm_tangential_dir > 1e-6:
-                    tangential_force = TANGENTIAL_GAIN * repulsion_magnitude * (tangential_dir / norm_tangential_dir)
-                else:
-                    tangential_force = np.array([0., 0.])
-
-                net_repulsive_vector += (radial_repulsive_force + tangential_force)
+            net_repulsive_vector += self._obstacle_force(robot_pos, target_pos, obs, radial=True, scale=1.0)
 
         if ball_obstacle is not None:
             ball_pos, repulsion_scale = ball_obstacle
-            vec_to_robot = robot_pos - ball_pos
-            dist_to_robot = np.linalg.norm(vec_to_robot)
-
-            if dist_to_robot < REPULSION_RADIUS and repulsion_scale > 0:
-                vec_robot_to_goal = target_pos - robot_pos
-                
-                repulsion_magnitude = REPULSIVE_GAIN * (1.0 / dist_to_robot - 1.0 / REPULSION_RADIUS)
-                radial_repulsive_force = 0.0
-
-                tangential_dir = np.array([-vec_robot_to_goal[1], vec_robot_to_goal[0]])
-                if np.dot(tangential_dir, vec_to_robot) < 0:
-                    tangential_dir = -tangential_dir
-                
-                norm_tangential_dir = np.linalg.norm(tangential_dir)
-                if norm_tangential_dir > 1e-6:
-                    tangential_force = TANGENTIAL_GAIN * repulsion_magnitude * (tangential_dir / norm_tangential_dir)
-                else:
-                    tangential_force = np.array([0., 0.])
-
-                # PAPER
-                net_repulsive_vector += (radial_repulsive_force + tangential_force) * repulsion_scale
+            net_repulsive_vector += self._obstacle_force(robot_pos, target_pos, ball_pos, radial=False, scale=repulsion_scale)
 
         return attractive_vector + net_repulsive_vector
 
@@ -310,6 +279,9 @@ class Strat(Node):
         self.mapping = [-1, -1, -1]
         self.active = [0, 0, 0]
         self.mutex = threading.Lock()
+        self.current_attacker = -1
+        self.attacker_challenger = -1
+        self.challenger_since = 0.0
 
     def activeCB(self, msg):
         self.active = msg.data
@@ -368,34 +340,53 @@ class Strat(Node):
     def roleAssigner(self, field):
         defender = -1
         midfield = []
-        attacker = -1
         best = 999
         for i in range(3):
             robot = getattr(field, f"team{i}")
             robot_coords = np.array([robot.x, robot.y])
             dist = np.linalg.norm(TEAM_GOAL - robot_coords)
-            #if dist < best and self.active[i]:
             if dist < best:
                 best = dist
                 defender = i
 
         ball_coords = np.array([field.ball.x, field.ball.y])
-        best = 999
+        attacker = self.current_attacker
+
         if ball_coords[0] == 999:
+            attacker = -1
+            self.attacker_challenger = -1
             for i in range(3):
                 if i != defender:
-                    midfield.append(i)   
+                    midfield.append(i)
         else:
+            dists = {}
             for i in range(3):
+                if i == defender:
+                    continue
                 robot = getattr(field, f"team{i}")
-                robot_coords = np.array([robot.x, robot.y])
-                dist = np.linalg.norm(ball_coords - robot_coords)
-                if dist < best and attacker != i:
-                    best = dist
-                    attacker = i
+                dists[i] = np.linalg.norm(ball_coords - np.array([robot.x, robot.y]))
+
+            if not dists:
+                attacker = -1
+                self.attacker_challenger = -1
+            else:
+                closest = min(dists, key=dists.get)
+                if attacker not in dists:
+                    attacker = closest
+                    self.attacker_challenger = -1
+                elif closest != attacker and (dists[attacker] - dists[closest]) > ATTACKER_SWAP_MARGIN:
+                    now = time.time()
+                    if self.attacker_challenger != closest:
+                        self.attacker_challenger = closest
+                        self.challenger_since = now
+                    elif now - self.challenger_since > ATTACKER_SWAP_DWELL:
+                        attacker = closest
+                        self.attacker_challenger = -1
+                else:
+                    self.attacker_challenger = -1
 
             for i in range(3):
-                if defender != i and attacker != i:
+                if i != defender and i != attacker:
                     midfield.append(i)
 
             """
@@ -436,6 +427,7 @@ class Strat(Node):
                     midfield.append(i)
             """
 
+        self.current_attacker = attacker
         return attacker, midfield, defender
     
     def predPos(self, obj, horizon, friction=0.0):
@@ -585,12 +577,8 @@ class Strat(Node):
                             dist2 = np.linalg.norm(team_coords - np.array([DEF_POS[0], lim]))
                             angle = -90.0
                             if dist1 < 2 and dist2 < 2: # kick
-                                vec = ball_coords - TEAM_GOAL
+                                vec = OP_GOAL - ball_coords
                                 norm_vec = vec / np.linalg.norm(vec)
-                                pos = ball_coords + norm_vec * TARGET_OFFSET
-                                #self.cmds[i] = self.skills.moveToPoint(team_obj, pos, angle, [])
-
-                                #self.cmds[i], pos = self.skills.moveToStrike(team_obj, ball_coords + norm_vec * TARGET_OFFSET, angle, [], norm_vec)
                                 self.cmds[i], pos = self.skills.moveToStrikeOrg(team_obj, ball_coords + norm_vec * TARGET_OFFSET, angle, [], norm_vec)
                                 self.tgts[i] = HighCmd(robot_id=i, skill=0, mod=0, tgt_x=pos[0], tgt_y=pos[1], tgt_theta=angle)
                                 """

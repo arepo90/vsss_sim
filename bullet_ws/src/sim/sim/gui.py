@@ -86,7 +86,7 @@ class GUI(Node):
         self.setup_gui()
         self.create_timer(0.05, self.update_gui) # 20 Hz
         self.create_timer(0.2, self.publish_settings)
-        self.field_data = FieldData
+        self.field_data = FieldData()
         self.cmds = [None, None, None]
         self.tgts = [None, None, None]
 
@@ -213,7 +213,7 @@ class GUI(Node):
         exposure_frame = ttk.LabelFrame(left_frame, text="Camera Exposure", padding="10")
         exposure_frame.pack(fill=tk.X, pady=5)
         exposure_slider = ttk.Scale(
-            exposure_frame, from_=200, to=1000, orient=tk.HORIZONTAL,
+            exposure_frame, from_=0, to=1000, orient=tk.HORIZONTAL,
             variable=self.exposure_var, length=200, command=self._on_exposure_change
         )
         exposure_slider.pack(anchor=tk.W, fill=tk.X, expand=True, pady=5)

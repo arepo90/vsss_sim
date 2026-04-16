@@ -9,7 +9,8 @@ import numpy as np
 import serial
 import serial.tools.list_ports
 
-HEARTBEAT_TIMEOUT_S = 2.0 
+HEARTBEAT_TIMEOUT_S = 2.0
+CMD_TIMEOUT_S = 0.5
 
 SERIAL_CMD_HEADER = b'\xAA\xBB'
 SERIAL_HB_HEADER_1 = 0xCC
@@ -24,7 +25,8 @@ class Comms(Node):
         super().__init__('comms')
 
         self.robot_status = [{'active': False, 'last_heartbeat': 0.0} for _ in range(3)]
-        self.latest_cmds = [LowCmd() for _ in range(3)] 
+        self.latest_cmds = [LowCmd() for _ in range(3)]
+        self.last_cmd_time = [0.0, 0.0, 0.0]
         self.active_mutex = threading.Lock()
         self.is_running = threading.Event()
 
@@ -73,16 +75,21 @@ class Comms(Node):
 
     def lowCB(self, msg: LowCmd, robot_id: int):
         self.latest_cmds[robot_id] = msg
+        self.last_cmd_time[robot_id] = time.time()
 
     def send_serial_packet(self):
+        now = time.time()
         full_payload = bytearray()
         for i in range(3):
-            cmd = self.latest_cmds[i]
-            
-            clamped_vx = int(cmd.vx * 255)
-            clamped_vy = int(cmd.vy * 255)
-
-            clamped_dtheta = int(cmd.dtheta / 4)
+            if now - self.last_cmd_time[i] > CMD_TIMEOUT_S:
+                clamped_vx = 0
+                clamped_vy = 0
+                clamped_dtheta = 0
+            else:
+                cmd = self.latest_cmds[i]
+                clamped_vx = int(cmd.vx * 255)
+                clamped_vy = int(cmd.vy * 255)
+                clamped_dtheta = int(cmd.dtheta)
 
             payload_part = struct.pack('iii', clamped_vx, clamped_vy, clamped_dtheta)
             full_payload.extend(payload_part)

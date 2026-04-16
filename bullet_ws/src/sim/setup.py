@@ -29,7 +29,9 @@ setup(
         'console_scripts': [
             'sim = sim.sim:main',
             'vision = sim.vision:main',
+            'vision2 = sim.vision2:main',
             'strat = sim.strat:main',
+            'strat2 = sim.strat2:main',
             'comms = sim.comms:main',
             'gui = sim.gui:main',
             'tests = sim.tests:main',
